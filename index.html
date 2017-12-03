@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>WEditor</title>
+		<link rel="stylesheet" href="./css/editor.css">
+		<link rel="stylesheet" href="./css/main.css">
+		<link rel="stylesheet" href="./css/right.css">
+		<link rel="stylesheet" href="./css/center.css">
+		<link rel="stylesheet" href="./css/left.css">
+		<link rel="stylesheet" href="./font-awesome/css/font-awesome.min.css">
+	</head>
+	<body>
+		<div class="left_panel">
+			<div class="logo">
+				<img src="" />
+			</div>
+			<div class="left_panel_toolbar">
+			</div>
+			<div class="left_panel_header panel_header">
+				<i class="fa fa-chevron-circle-down" ></i> HIERARCHY
+				<div class="tool_bar">
+					<a ><i class="fa fa-plus"></i></a>
+					<a ><i class="fa fa-copy"></i></a>
+					<a ><i class="fa fa-trash"></i></a>
+				</div>
+			</div>
+		</div>
+		<div class="center_panel">
+			<div class="main_container">
+				<canvas id="canvas"></canvas>
+			</div>
+			<div class="center_bottom_panel">
+				<div class="assets_hierarchy">
+					<div class="assets_hierarchy_header panel_header">
+						<i class="fa fa-chevron-circle-down" ></i> ASSETS
+						<div class="tool_bar">
+							<a ><i class="fa fa-plus"></i></a>
+							<a ><i class="fa fa-copy"></i></a>
+							<a ><i class="fa fa-trash"></i></a>
+						</div>
+					</div>
+
+
+				</div>
+
+				<div class="assets_container">
+					<div class="assets_container_header panel_header">
+						<a ><i class="fa fa-th"></i></a>
+						<a ><i class="fa fa-th-large"></i></a>
+						<div class="header_input">
+							<input type="text" placeholder="Search"><i class="fa fa-search"></i>
+						</div>
+					</div>
+
+					
+				</div>
+			</div>
+		</div>
+		<div class="right_panel">
+			<div class="right_panel_header panel_header">
+				<i class="fa fa-chevron-circle-down" ></i> DETAIL
+				<div class="tool_bar">
+					<a ><i class="fa fa-caret-left"></i></a>
+				</div>
+			</div>
+		</div>
+	</body>
+    <script src="./js/playcanvas-latest.js"></script>
+    <script src="./js/hammer.min.js"></script>
+    <script src="./js/editorCamera.js"></script>
+    <script src="./js/editor.js"></script>
+</html>

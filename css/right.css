@@ -1,0 +1,20 @@
+.right_panel{
+	position:absolute;
+	right: 0;
+	top:0;
+	height:100%;
+	width:320px;
+	background-color:#233A3A;
+
+}
+
+.right_panel_header{
+	position: absolute;
+	left:0;
+	top: 0;
+	right: 0;
+}
+
+.right_panel_header i{
+	font-size:16px !important;
+}

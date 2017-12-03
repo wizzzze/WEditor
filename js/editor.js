@@ -1,0 +1,55 @@
+document.addEventListener('contextmenu', function(e){
+	e.preventDefault();
+});
+
+
+
+var Editor = function(){
+	var canvas = document.getElementById("canvas");
+
+	var appMouse = new pc.Mouse(canvas);
+	var app = new pc.Application(canvas,{
+		mouse : appMouse,
+	});
+	app.start();
+	this.app = app;
+
+
+	window.addEventListener('resize', function(){
+		app.setCanvasResolution(pc.RESOLUTION_AUTO);
+	});
+	app.setCanvasResolution(pc.RESOLUTION_AUTO);
+	app.scene.ambientLight = new pc.Color(0.2, 0.2, 0.2);
+	var box = new pc.Entity();
+	box.addComponent("model", {
+	    type: "box",
+	});
+
+	// Create an Entity with a point light component and a sphere model component.
+	var light = new pc.Entity();
+	light.addComponent("light", {
+	    type: "point",
+	    color: new pc.Color(1, 0, 0),
+	    radius: 10
+	});
+	light.addComponent("model", {
+	    type: "sphere"
+	});
+	// Scale the sphere down to 0.1m
+	light.setLocalScale(0.1, 0.1, 0.1);
+
+	// Create an Entity with a camera component
+	var camera = new EditorCamera(app);
+
+	// Add the new Entities to the hierarchy
+	app.root.addChild(box);
+	app.root.addChild(light);
+	app.root.addChild(camera);
+
+	app.on("update", function (dt) {
+	});
+}();
+
+
+
+
