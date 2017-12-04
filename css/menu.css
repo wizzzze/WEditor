@@ -1,0 +1,30 @@
+.menu{
+	position:absolute;
+	width:200px;
+	height:auto;
+}
+
+.menu>.menu_item{
+	padding-left:10px;
+	color:#D7D7D7;
+	background-color:#061B1B;
+	height:36px;
+	border-bottom: 1px solid #102B2B;
+	line-height: 36px;
+	font-size:13px;
+	letter-spacing:1px;
+	cursor:pointer;
+}
+.menu>.menu_item>i{
+	padding: 0 5px;
+}
+
+.menu>.menu_item>.child{
+	float:right;
+}
+.menu>.menu_item:last-child{
+	border-bottom:none;
+}
+.menu>.menu_item:hover{
+	background-color:#135555;
+}

@@ -4,7 +4,8 @@ document.addEventListener('contextmenu', function(e){
 
 
 
-var Editor = function(){
+var Editor = function(){};
+(function(Editor){
 	var canvas = document.getElementById("canvas");
 
 	var appMouse = new pc.Mouse(canvas);
@@ -13,6 +14,33 @@ var Editor = function(){
 	});
 	app.start();
 	this.app = app;
+
+	this.assetManager = new AssetManager(this, 'assets_hierarchy' ,'assets_container');
+	this.menuManager = new MenuManager(this);
+
+	assetManager.setData({
+		name : '/',
+		type : 'folder',
+		children : [
+			{
+				name : 'Textures',
+				type : 'folder',
+				children : [],
+			},
+
+			{
+				name : 'Models',
+				type : 'folder',
+				children : [],
+			},
+
+			{
+				name : 'model.json',
+				type : 'model',
+			}
+		]
+
+	});
 
 
 	window.addEventListener('resize', function(){
@@ -46,9 +74,7 @@ var Editor = function(){
 	app.root.addChild(light);
 	app.root.addChild(camera);
 
-	app.on("update", function (dt) {
-	});
-}();
+})(Editor);
 
 
 
