@@ -54,6 +54,28 @@ AssetManager.prototype = {
 		folderRemoveBtn.innerHTML = '<i class="fa fa-trash"></i>';
 		folderToolbar.appendChild(folderRemoveBtn);
 
+		var folderThBtn = document.createElement('a');
+		folderThBtn.innerHTML = '<i class="fa fa-th"></i>';
+		folderToolbar.appendChild(folderThBtn);
+
+		var folderThLargeBtn = document.createElement('a');
+		folderThLargeBtn.innerHTML = '<i class="fa fa-th-large"></i>';
+		folderToolbar.appendChild(folderThLargeBtn);
+
+		var folderSearch = document.createElement('div');
+		folderSearch.classList.add('header_input');
+		folderSearch.innerHTML = '<input type="text" placeholder="Search"><i class="fa fa-search"></i>';
+		folderToolbar.appendChild(folderSearch);
+
+
+		var modelLibary = document.createElement('a');
+		modelLibary.innerHTML = '<i class="fa fa-cube"></i>  Models';
+		folderToolbar.appendChild(modelLibary);
+
+		var materialLibary = document.createElement('a');
+		materialLibary.innerHTML = '<i class="fa fa-tint"></i>  Materials';
+		folderToolbar.appendChild(materialLibary);
+
 		folderHeader.appendChild(folderToolbar);
 
 		this.folder.appendChild(folderHeader);
@@ -61,7 +83,7 @@ AssetManager.prototype = {
 	setData : function(data){
 		if(this.data !== data){
 			this.data = data;
-			this.dataChanged();
+			// this.dataChanged();
 		}
 	},
 	dataChanged : function(){
@@ -81,10 +103,15 @@ AssetManager.prototype = {
 	},
 
 	genFolder : function(){
-		for(var i in this.data){
-			if()
+		if(!this.folderDOM){
+			this.folderDOM = document.createElement('ul');
+			this.folderDOM.classList.add('folder_list');
 		}
-	}
+		for(var i in this.data){
+			var item = this.data[i];
+
+		}
+	},
 
 	addModel : function(){
 		if(!this.uploadInput){

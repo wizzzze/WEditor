@@ -11,52 +11,84 @@
 		<link rel="stylesheet" href="./font-awesome/css/font-awesome.min.css">
 	</head>
 	<body>
-		<div class="left_panel">
-			<div class="logo">
-				<img src="" />
-			</div>
-			<div class="left_panel_toolbar">
-			</div>
-			<div class="left_panel_header panel_header">
-				<i class="fa fa-chevron-circle-down" ></i> HIERARCHY
-				<div class="tool_bar">
-					<a ><i class="fa fa-plus"></i></a>
-					<a ><i class="fa fa-copy"></i></a>
-					<a ><i class="fa fa-trash"></i></a>
+		<div class="editor" id="editor">
+			<div class="left_panel">
+				
+				<div class="left_panel_toolbar">
+					<div class="logo">
+						<img src="./images/logo.png" />
+					</div>
 				</div>
-			</div>
-			<div class="scene_filter">
-				<input type="text" placeholder="Search"/>
-			</div>
-			<div class="scene_list"></div>
-		</div>
-		<div class="center_panel">
-			<div class="main_container">
-				<canvas id="canvas"></canvas>
-			</div>
-			<div class="center_bottom_panel">
-				<div class="assets_hierarchy" id="assets_hierarchy">
-
-				</div>
-
-				<div class="assets_container" id="assets_container">
-					<div class="assets_container_header panel_header">
-						<a ><i class="fa fa-th"></i></a>
-						<a ><i class="fa fa-th-large"></i></a>
-						<div class="header_input">
-							<input type="text" placeholder="Search"><i class="fa fa-search"></i>
+				<div class="scene_list_container">
+					<div class="left_panel_header panel_header">
+						<i class="fa fa-chevron-circle-down" ></i> HIERARCHY
+						<div class="tool_bar">
+							<a ><i class="fa fa-plus"></i></a>
+							<a ><i class="fa fa-copy"></i></a>
+							<a ><i class="fa fa-trash"></i></a>
 						</div>
 					</div>
-
-					
+					<div class="scene_filter">
+						<input type="text" placeholder="Search"/>
+					</div>
+					<div class="scene_list"></div>
 				</div>
 			</div>
-		</div>
-		<div class="right_panel">
-			<div class="right_panel_header panel_header">
-				<i class="fa fa-chevron-circle-down" ></i> DETAIL
-				<div class="tool_bar">
-					<a ><i class="fa fa-caret-left"></i></a>
+			<div class="center_panel">
+				<div class="main_container">
+					<div>
+						<canvas id="canvas"></canvas>
+					</div>
+				</div>
+				<div class="center_bottom_panel">
+					<div class="assets_hierarchy" id="assets_hierarchy">
+						<ul class="folder_list folder_root">
+							<li class="has_child">
+								<div><i class='fa fa-folder'></i>  / </div>
+								<ul class="folder_list">
+									<li class="has_child">
+										<div><i class='fa fa-folder'></i> Textures</div>
+										<ul class="folder_list">
+											<li class="has_child">
+												<div><i class='fa fa-folder'></i> Textures</div>
+												<ul class="folder_list">
+													<li class="has_child">
+														<div><i class='fa fa-folder'></i> Textures</div>
+													</li>
+													<li><div><i class='fa fa-folder'></i> Models</div></li>
+												</ul>
+											</li>
+											<li><div><i class='fa fa-folder'></i> Models</div></li>
+										</ul>
+									</li>
+									<li><div><i class='fa fa-folder'></i> Models</div></li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+
+					<div class="assets_container" id="assets_container">
+						<div>
+							<div class="file_preview"><img src="./images/clouds.jpg"></div>
+							<div class="file_name">clouds.jpg</div>
+						</div>
+						<div>
+							<div class="file_preview"><img src="./images/snowflake.png"></div>
+							<div class="file_name">snowflake.jpg</div>
+						</div>
+						<div>
+							<div class="file_preview"><img src="./images/spark.png"></div>
+							<div class="file_name">spark.jpg</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="right_panel">
+				<div class="right_panel_header panel_header">
+					<i class="fa fa-chevron-circle-down" ></i> DETAIL
+					<div class="tool_bar">
+						<a ><i class="fa fa-caret-left"></i></a>
+					</div>
 				</div>
 			</div>
 		</div>

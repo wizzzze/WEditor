@@ -18,10 +18,7 @@ var Editor = function(){};
 	this.assetManager = new AssetManager(this, 'assets_hierarchy' ,'assets_container');
 	this.menuManager = new MenuManager(this);
 
-	assetManager.setData({
-		name : '/',
-		type : 'folder',
-		children : [
+	assetManager.setData([
 			{
 				name : 'Textures',
 				type : 'folder',
@@ -40,12 +37,13 @@ var Editor = function(){};
 			}
 		]
 
-	});
+	);
 
 
 	window.addEventListener('resize', function(){
 		app.setCanvasResolution(pc.RESOLUTION_AUTO);
 	});
+	
 	app.setCanvasResolution(pc.RESOLUTION_AUTO);
 	app.scene.ambientLight = new pc.Color(0.2, 0.2, 0.2);
 	var box = new pc.Entity();

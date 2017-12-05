@@ -4,8 +4,8 @@ var MenuManager = function(editor){
 	this.menus = {};
 	this.menusFrom = {};
 	this.activeMenu = null;
-	this.clientWidth = document.body.clientWidth;
-	this.clientHeight = document.body.clientHeight;
+	this.clientWidth = document.getElementById('editor').clientWidth;
+	this.clientHeight = document.getElementById('editor').clientHeight;
 	var self = this;
 	document.body.addEventListener('click', function(event){
 		// var target = event.target;
@@ -92,6 +92,7 @@ MenuManager.prototype = {
 			}
 		}else{
 			var rectObject = target.getBoundingClientRect();
+			console.log(rectObject);
 			var top = rectObject.top;
 			var left = rectObject.left;
 			var clientWidth = rectObject.width;
@@ -102,6 +103,7 @@ MenuManager.prototype = {
 			}
 			if(top + height > this.clientHeight){
 				y = this.clientHeight - height;
+				console.log(y);
 			}else{
 				y = top;
 			}
