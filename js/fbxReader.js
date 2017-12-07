@@ -24,10 +24,10 @@ var FbxReader = function(arrayBuffer){
 	}
 	console.log(this.FBXTree);
 
-	// var connections = this.parseConnections( FBXTree );
+	var connections = this.parseConnections( FBXTree );
 	// var images = parseImages( FBXTree );
 	// var textures = parseTextures( FBXTree, new THREE.TextureLoader( this.manager ).setPath( resourceDirectory ), images, connections );
-	// var materials = parseMaterials( FBXTree, textures, connections );
+	var materials = this.parseMaterials( FBXTree, connections );
 	// var deformers = parseDeformers( FBXTree, connections );
 	// var geometryMap = parseGeometries( FBXTree, connections, deformers );
 	// var sceneGraph = parseScene( FBXTree, connections, deformers, geometryMap, materials );
@@ -113,6 +113,60 @@ FbxReader.prototype = {
 		}
 
 		return connectionMap;
+
+	},
+
+	/**
+	 * Parses map of Material information.
+	 * @param {{Objects: {subNodes: {Material: Object.<number, FBXMaterialNode>}}}} FBXTree
+	 * @param {Map<number, THREE.Texture>} textureMap
+	 * @param {Map<number, {parents: {ID: number, relationship: string}[], children: {ID: number, relationship: string}[]}>} connections
+	 * @returns {Map<number, THREE.Material>}
+	 */
+	parseMaterials : function ( FBXTree, connections ) {
+
+		var materialMap = new Map();
+
+		if ( 'Material' in FBXTree.Objects.subNodes ) {
+
+			var materialNodes = FBXTree.Objects.subNodes.Material;
+			for ( var nodeID in materialNodes ) {
+
+				var material = parseMaterial( materialNodes[ nodeID ], textureMap, connections );
+				if ( material !== null ) materialMap.set( parseInt( nodeID ), material );
+
+			}
+
+		}
+
+		return materialMap;
+
+	},
+
+	function parseMaterial( materialNode, connections ) {
+
+		var FBX_ID = materialNode.id;
+		var name = materialNode.attrName;
+		var type = materialNode.properties.ShadingModel;
+
+		//Case where FBX wraps shading model in property object.
+		if ( typeof type === 'object' ) {
+
+			type = type.value;
+
+		}
+
+		// Seems like FBX can include unused materials which don't have any connections.
+		// Ignores them so far.
+		if ( ! connections.has( FBX_ID ) ) return null;
+
+		var children = connections.get( FBX_ID ).children;
+
+		//Because we use pbr system, and fbx does't support, so here we gonna just use a default material to replace the original material
+		var material = ;
+
+		material.name = name;
+		return material;
 
 	}
 }

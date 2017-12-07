@@ -189,7 +189,7 @@ AssetManager.prototype = {
 		};
 		this.reader.onload = function(data){
 			var arrayBuffer = data.target.result;
-			new FbxReader(arrayBuffer);
+			var model = new FbxReader(arrayBuffer);
 		};
 		this.reader.onerror = function(e){
 			console.log(e);
