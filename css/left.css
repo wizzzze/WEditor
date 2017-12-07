@@ -26,12 +26,17 @@
 	background-color:#1c3030;
 
 }
+.left_panel_toolbar>hr{
+	border-color:rgba(255,255,255,.1);
+}
 
 .left_panel_toolbar>a{
 	width:50px;
 	height:50px;
+	line-height:50px;
+	color:#D7D7D7;
 	display: block;
-	line-height:40px;
+	font-size: 20px;
 	text-align:center;
 }
 

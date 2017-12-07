@@ -1,4 +1,4 @@
-var Renderers = function(){
+var Renderers = function(editor){
 	this.renderers = {};
 }
 
