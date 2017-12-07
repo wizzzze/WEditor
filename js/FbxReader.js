@@ -1,0 +1,3 @@
+var FbxReader = function(){
+	
+}

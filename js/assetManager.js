@@ -7,9 +7,16 @@ var AssetManager = function(editor, folder, container){
 	this.data;
 	this.folderData;
 	this.containerData;
+
+	this.queue = [];
+	this.reader = new FileReader();
+
+	var self = this;
+	this.reader.onloadend = function(){
+		self.handlerQueue();
+	}
 }
-
-
+//模型、贴图数据使用fileReader读取，用户通过编辑器主动上传至服务器。
 
 AssetManager.prototype = {
 	folderMenu : function(){
@@ -24,7 +31,13 @@ AssetManager.prototype = {
 			{
 				html : '<i class="fa fa-cube"></i>  Model',
 				callback : function(){
-					self.addModel();
+					self.add('model');
+				}
+			},
+			{
+				html : '<i class="fa fa-image"></i>  Texture',
+				callback : function(){
+					self.add('texture');
 				}
 			},
 		];
@@ -112,18 +125,74 @@ AssetManager.prototype = {
 
 		}
 	},
+	add : function(type){
+		var self  = this;
+		if(type == 'folder'){
 
-	addModel : function(){
+			return ;
+		}
+
 		if(!this.uploadInput){
 			this.uploadInput = document.createElement('input');
 			this.uploadInput.type = 'file';
+			this.uploadInput.multiple = "multiple";
 			this.uploadInput.onchange = function(){
-				alert('upload file');
+				var files = this.files;
+				console.log(files);
+				var i = 0;
+				while(i < files.length){
+					var file = files[i];
+					this.queue.push(file);
+					i++;
+				}
 			};
+		}else{
+			this.uploadInput.files.length = 0;
 		}
+
+		if(type == 'model'){
+			this.uploadInput.accept = '';
+
+		}else if(type == 'texture'){
+			this.uploadInput.accept = 'image/jpeg,image/png';
+		}
+
 
 		this.uploadInput.click();
 		this.editor.menuManager.destoryMenu();
+	},
+
+	handlerQueue : function(){
+		var file = this.queue.shift();
+		if(!file){
+			return;
+		}
+		var fileName = file.name;
+		var ext = (fileName.split('.')).pop();
+		if(ext.toLowerCase() == 'fbx'){
+			var model = this.readFbxFile(file);
+		}else if(ext.toLowerCase() == 'obj'){
+			var model = ObjReader(file, this.reader);
+		}else if(ext.toLowerCase() == 'png'){
+
+		}else if(ext.toLowerCase() == 'jpg'){
+
+		}
+	},
+
+	readFbxFile : function(file){
+		this.reader.readAsArrayBuffer(file);
+		this.reader.onprogress = function(progress){
+			console.log(progress);
+		};
+		this.reader.onload = function(data){
+			var arrayBuffer = data.target.result;
+			console.log(arrayBuffer);
+		};
+		this.reader.onerror = function(e){
+			console.log(e);
+		}
+
 	}
 
 }
