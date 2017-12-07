@@ -142,9 +142,11 @@ AssetManager.prototype = {
 				var i = 0;
 				while(i < files.length){
 					var file = files[i];
-					this.queue.push(file);
+					self.queue.push(file);
 					i++;
 				}
+
+				self.handlerQueue();
 			};
 		}else{
 			this.uploadInput.files.length = 0;
@@ -187,12 +189,12 @@ AssetManager.prototype = {
 		};
 		this.reader.onload = function(data){
 			var arrayBuffer = data.target.result;
-			console.log(arrayBuffer);
+			new FbxReader(arrayBuffer);
 		};
 		this.reader.onerror = function(e){
 			console.log(e);
 		}
 
-	}
+	},
 
 }
