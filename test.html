@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>WEditor</title>
+		<link rel="stylesheet" href="./css/editor.css">
+		<link rel="stylesheet" href="./css/main.css">
+		<link rel="stylesheet" href="./css/right.css">
+		<link rel="stylesheet" href="./css/center.css">
+		<link rel="stylesheet" href="./css/left.css">
+		<link rel="stylesheet" href="./css/menu.css">
+		<link rel="stylesheet" href="./font-awesome/css/font-awesome.min.css">
+	</head>
+	<body>
+		<canvas id="canvas" style="width:128px;height:128px;"></canvas>
+		<canvas id="canvas2" style="width:128px;height:128px;"></canvas>
+	</body>
+    <script src="./js/playcanvas-latest.js"></script>
+    <script src="./js/render.js"></script>
+    <script>
+    var canvas = document.getElementById('canvas');
+    var canvas2 = document.getElementById('canvas2');
+    var graphicsDevice = new pc.GraphicsDevice(canvas2, {});
+
+    var box = pc.createBox(graphicsDevice);
+
+    console.log(box);
+
+    var material = new pc.StandardMaterial();
+    var shader = material.shader;
+    console.log(shader);
+
+
+    var model = {
+    	material : material,
+    	mesh : box,
+    }
+    var render = new Renderer(canvas, model);
+
+    </script>
+</html>

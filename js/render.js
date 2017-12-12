@@ -18,7 +18,7 @@ Renderers.prototype = {
 
 
 
-var Renderer = function(canvas, file){
+var Renderer = function(canvas, model){
 	var gl = canvas.getContext('webgl');
 	this.gl = gl;
 	if(gl){
@@ -26,26 +26,12 @@ var Renderer = function(canvas, file){
 		gl.viewportHeight = canvas.clientHeight;
 	}
 
-	this.model = null;
-	if(file.type == 'material'){
-		var material = new Material();
-		var mesh = new Mesh();
-		mesh.createMaterialBall();
-		this.model = new Model(mesh, material);
-	}else if(file.type == 'mesh'){
-		var material = new Material();
-		var mesh = new Mesh();
-		mesh.loadFromUrl();
-		this.model = new Model(mesh, material);
-
-	}else if(file.type == 'model'){
-		var model = new Model();
-		this.model = model;
-	}
+	this.model = model;
+	
 
 }
 
-Renderer.prototype = function(){
+Renderer.prototype = {
 	setupShaders : function(gl){
 	  	var vertexShaderSource = 
 	    "attribute vec3 aVertexPosition;                 \n" +
@@ -75,8 +61,10 @@ Renderer.prototype = function(){
 	  
 	  	shaderProgram.vertexPositionAttribute = gl.getAttribLocation(shaderProgram, "aVertexPosition"); 
 	},
-	render : function(){
-
+	draw : function(){
+		gl.viewport(0, 0, gl.viewportWidth, gl.viewportHeight);
+		gl.clearColor(gl.COLOR_BUFFER_BIT);
+		
 		this.setupShaders(this.gl);
 	},
 	destory : function(){

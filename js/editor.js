@@ -55,14 +55,13 @@ var Editor = function(){};
 	var light = new pc.Entity();
 	light.addComponent("light", {
 	    type: "point",
-	    color: new pc.Color(1, 0, 0),
+	    color: new pc.Color(1, 1, 1),
 	    radius: 10
 	});
-	light.addComponent("model", {
-	    type: "sphere"
-	});
 	// Scale the sphere down to 0.1m
+	light.range = 5;
 	light.setLocalScale(0.1, 0.1, 0.1);
+	light.setPosition(2, 2, 2);
 
 	// Create an Entity with a camera component
 	var camera = new EditorCamera(app);
@@ -74,6 +73,8 @@ var Editor = function(){};
 
 })(Editor);
 
+
+Editor.defaultMaterial = new pc.StandardMaterial();
 
 
 

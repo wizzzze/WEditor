@@ -24,13 +24,10 @@ var FbxReader = function(arrayBuffer){
 	}
 	console.log(this.FBXTree);
 
-	var connections = this.parseConnections( FBXTree );
-	// var images = parseImages( FBXTree );
-	// var textures = parseTextures( FBXTree, new THREE.TextureLoader( this.manager ).setPath( resourceDirectory ), images, connections );
-	var materials = this.parseMaterials( FBXTree, connections );
-	// var deformers = parseDeformers( FBXTree, connections );
-	// var geometryMap = parseGeometries( FBXTree, connections, deformers );
-	// var sceneGraph = parseScene( FBXTree, connections, deformers, geometryMap, materials );
+	var connections = this.parseConnections( this.FBXTree );
+	var materials = this.parseMaterials( this.FBXTree, connections );
+	var geometryMap = this.parseGeometries( FBXTree, connections, deformers );
+	var sceneGraph = this.parse( FBXTree, connections, geometryMap, materials );
 
 	return sceneGraph;
 }
@@ -143,7 +140,7 @@ FbxReader.prototype = {
 
 	},
 
-	function parseMaterial( materialNode, connections ) {
+	parseMaterial : function( materialNode, connections ) {
 
 		var FBX_ID = materialNode.id;
 		var name = materialNode.attrName;
@@ -163,10 +160,32 @@ FbxReader.prototype = {
 		var children = connections.get( FBX_ID ).children;
 
 		//Because we use pbr system, and fbx does't support, so here we gonna just use a default material to replace the original material
-		var material = ;
+		var material = Editor.defaultMaterial;
 
 		material.name = name;
 		return material;
+
+	},
+
+	parseGeometries : function( FBXTree, connections ) {
+
+		var geometryMap = new Map();
+
+		if ( 'Geometry' in FBXTree.Objects.subNodes ) {
+
+			var geometryNodes = FBXTree.Objects.subNodes.Geometry;
+
+			for ( var nodeID in geometryNodes ) {
+
+				var relationships = connections.get( parseInt( nodeID ) );
+				var geo = parseGeometry( geometryNodes[ nodeID ], relationships, );
+				geometryMap.set( parseInt( nodeID ), geo );
+
+			}
+
+		}
+
+		return geometryMap;
 
 	}
 }
