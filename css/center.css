@@ -75,6 +75,7 @@
 	text-overflow: ellipsis;
 	text-align: center;
 }
+
 .folder_list{
 	margin:0;
 	padding:0;
@@ -133,6 +134,9 @@
 	border-left:1px solid #999;
 	width:1px;
 }
+.folder_list>li:first-child:before{
+	top:-8px;
+}
 
 .folder_list>li:after{
 	position: absolute;
@@ -155,12 +159,12 @@
 	background-color:#162B2B;
 }
 
-li.has_child ul{
+.folder_list>li.has_child ul{
 	padding-left:25px;
 }
 
 
-li.has_child ul:before{
+.folder_list>li.has_child ul:before{
 	left:34px;
 }
 

@@ -3,7 +3,14 @@
 	width:200px;
 	height:auto;
 }
-
+.menu>hr{
+	margin:0;
+	padding:0;
+	height:1px;
+	color: #999;
+	background-color: #999;
+	border:none;
+}
 .menu>.menu_item{
 	padding-left:10px;
 	color:#D7D7D7;
@@ -16,6 +23,8 @@
 	cursor:pointer;
 }
 .menu>.menu_item>i{
+	width:14px;
+	text-align:center;
 	padding: 0 5px;
 }
 

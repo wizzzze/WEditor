@@ -35,6 +35,12 @@ AssetManager.prototype = {
 				}
 			},
 			{
+				html : '<i class="fa fa-tint"></i>  Material',
+				callback : function(){
+					self.add('material');
+				}
+			},
+			{
 				html : '<i class="fa fa-image"></i>  Texture',
 				callback : function(){
 					self.add('texture');
@@ -96,13 +102,13 @@ AssetManager.prototype = {
 	setData : function(data){
 		if(this.data !== data){
 			this.data = data;
-			// this.dataChanged();
+			this.dataChanged();
 		}
 	},
 	dataChanged : function(){
 		var data = this.loadFromData(this.data);
-		this.folderData = data.folderData;
-		this.containerData = data.containerData;
+		this.folderData = data.folderData || {};
+		this.containerData = data.containerData || {};
 	},
 	loadFromData : function(data){
 		var floderData = [],containerData = [];
@@ -110,9 +116,11 @@ AssetManager.prototype = {
 		for(var i in data){
 			var item = data[i];
 			if(item.type === 'folder'){
-				folderData.push()
+				// folderData.push()
 			}
 		}
+
+		return {floderData:floderData, containerData:containerData};
 	},
 
 	genFolder : function(){
@@ -131,6 +139,13 @@ AssetManager.prototype = {
 
 			return ;
 		}
+
+		if(type == "material"){
+			var material = new pc.StandardMaterial();
+
+			return;
+		}
+
 
 		if(!this.uploadInput){
 			this.uploadInput = document.createElement('input');
@@ -161,7 +176,7 @@ AssetManager.prototype = {
 
 
 		this.uploadInput.click();
-		this.editor.menuManager.destoryMenu();
+		this.editor.menuManager.destroyMenu();
 	},
 
 	handlerQueue : function(){

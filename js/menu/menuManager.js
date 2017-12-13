@@ -9,9 +9,8 @@ var MenuManager = function(editor){
 	var self = this;
 	document.body.addEventListener('click', function(event){
 		// var target = event.target;
-		console.log(self.isMenu(event.target));
 		if(!self.isMenu(event.target) && self.activeMenu){
-			self.destoryMenu();
+			self.destroyMenu();
 		}
 	});
 }
@@ -55,7 +54,7 @@ MenuManager.prototype = {
 		}
 		
 		if(this.activeMenu && this.activeMenu != menu){
-			this.destoryMenu();
+			this.destroyMenu();
 		}
 
 		this.activeMenu = menu;
@@ -63,7 +62,7 @@ MenuManager.prototype = {
 
 	},
 
-	destoryMenu: function(){
+	destroyMenu: function(){
 		if(this.activeMenu.cache){
 			this.activeMenu.style.display = "none";
 		}else{
@@ -81,7 +80,7 @@ MenuManager.prototype = {
 		var x,y;
 		if(!target.getBoundingClientRect){
 			if(target.clientX + width <= this.clientWidth){
-				x = target.clientX + target.clientWidth;
+				x = target.clientX;
 			}else{
 				x = target.clientX - width;
 			}
@@ -92,20 +91,19 @@ MenuManager.prototype = {
 			}
 		}else{
 			var rectObject = target.getBoundingClientRect();
-			console.log(rectObject);
 			var top = rectObject.top;
 			var left = rectObject.left;
 			var clientWidth = rectObject.width;
+			var clientHeight = rectObject.height;
 			if(left+clientWidth+width > this.clientWidth){
 				x = left - width;
 			}else{
-				x = left + clientWidth;
+				x = left;
 			}
-			if(top + height > this.clientHeight){
+			if(top + height + clientHeight > this.clientHeight){
 				y = this.clientHeight - height;
-				console.log(y);
 			}else{
-				y = top;
+				y = top + clientHeight;
 			}
 		}	
 
@@ -125,18 +123,30 @@ MenuManager.prototype = {
 
 
 var MenuItem = function(item, menu){
+	if(item === 'separate'){
+		var separate = document.createElement('hr');
+		return separate;
+	}
 	var menuItem = document.createElement('div');
 	menuItem.classList.add('menu_item');
-	menuItem.innerHTML = item.html;
+	if(typeof item.html == 'string'){
+		menuItem.innerHTML = item.html;
+	}else{
+
+		menuItem.innerHTML = item.html();
+	}
 	if(item.children){
 		menuItem.innerHTML += "<i class='fa fa-caret-right child'></i>";
 		menu.createMenu(item.children);
 		menuItem.addEventListener('mouseover', function(){
 
 		})
-	}else{
+	}else if(item.callback){
 		menuItem.addEventListener('click', function(){
 			//do some action here;
+			if(typeof item.html == 'function'){
+				this.innerHTML = item.html();
+			}
 			item.callback();
 		})
 	}

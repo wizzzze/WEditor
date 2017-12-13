@@ -66,6 +66,8 @@
 	color:#fff;
 }
 
-.scene_list{
+.scene_list_panel{
 	flex-grow: 1;
+	padding-left:10px;
+	padding-top:5px;
 }

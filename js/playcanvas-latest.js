@@ -1,9 +1,9 @@
 /*
- PlayCanvas Engine v0.217.0-dev revision 85574ac
+ PlayCanvas Engine v0.220.0-dev revision e0adf38
  http://playcanvas.com
  Copyright 2011-2017 PlayCanvas Ltd. All rights reserved.
 */
-var pc = {version:"0.217.0-dev", revision:"85574ac", config:{}, common:{}, apps:{}, data:{}, unpack:function() {
+var pc = {version:"0.220.0-dev", revision:"e0adf38", config:{}, common:{}, apps:{}, data:{}, unpack:function() {
   console.warn("pc.unpack has been deprecated and will be removed shortly. Please update your code.");
 }, makeArray:function(arr) {
   var i, ret = [], length = arr.length;
@@ -288,7 +288,7 @@ pc.extend(pc, function() {
     }
     return s;
   }, URI:function(uri) {
-    var re = /^(([^:\/?\#]+):)?(\/\/([^\/?\#]*))?([^?\#]*)(\?([^\#]*))?(\#(.*))?/, result = uri.match(re);
+    var re = /^(([^:\/?#]+):)?(\/\/([^\/?#]*))?([^?#]*)(\?([^#]*))?(#(.*))?/, result = uri.match(re);
     this.scheme = result[2];
     this.authority = result[4];
     this.path = result[5];
@@ -3142,13 +3142,13 @@ pc.extend(pc, function() {
 }());
 (function() {
   var enums = {ADDRESS_REPEAT:0, ADDRESS_CLAMP_TO_EDGE:1, ADDRESS_MIRRORED_REPEAT:2, BLENDMODE_ZERO:0, BLENDMODE_ONE:1, BLENDMODE_SRC_COLOR:2, BLENDMODE_ONE_MINUS_SRC_COLOR:3, BLENDMODE_DST_COLOR:4, BLENDMODE_ONE_MINUS_DST_COLOR:5, BLENDMODE_SRC_ALPHA:6, BLENDMODE_SRC_ALPHA_SATURATE:7, BLENDMODE_ONE_MINUS_SRC_ALPHA:8, BLENDMODE_DST_ALPHA:9, BLENDMODE_ONE_MINUS_DST_ALPHA:10, BLENDEQUATION_ADD:0, BLENDEQUATION_SUBTRACT:1, BLENDEQUATION_REVERSE_SUBTRACT:2, BLENDEQUATION_MIN:3, BLENDEQUATION_MAX:4, BUFFER_STATIC:0, 
-  BUFFER_DYNAMIC:1, BUFFER_STREAM:2, BUFFER_GPUDYNAMIC:3, CLEARFLAG_COLOR:1, CLEARFLAG_DEPTH:2, CLEARFLAG_STENCIL:4, CUBEFACE_POSX:0, CUBEFACE_NEGX:1, CUBEFACE_POSY:2, CUBEFACE_NEGY:3, CUBEFACE_POSZ:4, CUBEFACE_NEGZ:5, CULLFACE_NONE:0, CULLFACE_BACK:1, CULLFACE_FRONT:2, CULLFACE_FRONTANDBACK:3, ELEMENTTYPE_INT8:0, ELEMENTTYPE_UINT8:1, ELEMENTTYPE_INT16:2, ELEMENTTYPE_UINT16:3, ELEMENTTYPE_INT32:4, ELEMENTTYPE_UINT32:5, ELEMENTTYPE_FLOAT32:6, FILTER_NEAREST:0, FILTER_LINEAR:1, FILTER_NEAREST_MIPMAP_NEAREST:2, 
-  FILTER_NEAREST_MIPMAP_LINEAR:3, FILTER_LINEAR_MIPMAP_NEAREST:4, FILTER_LINEAR_MIPMAP_LINEAR:5, FUNC_NEVER:0, FUNC_LESS:1, FUNC_EQUAL:2, FUNC_LESSEQUAL:3, FUNC_GREATER:4, FUNC_NOTEQUAL:5, FUNC_GREATEREQUAL:6, FUNC_ALWAYS:7, INDEXFORMAT_UINT8:0, INDEXFORMAT_UINT16:1, INDEXFORMAT_UINT32:2, PIXELFORMAT_A8:0, PIXELFORMAT_L8:1, PIXELFORMAT_L8_A8:2, PIXELFORMAT_R5_G6_B5:3, PIXELFORMAT_R5_G5_B5_A1:4, PIXELFORMAT_R4_G4_B4_A4:5, PIXELFORMAT_R8_G8_B8:6, PIXELFORMAT_R8_G8_B8_A8:7, PIXELFORMAT_DXT1:8, PIXELFORMAT_DXT3:9, 
-  PIXELFORMAT_DXT5:10, PIXELFORMAT_RGB16F:11, PIXELFORMAT_RGBA16F:12, PIXELFORMAT_RGB32F:13, PIXELFORMAT_RGBA32F:14, PIXELFORMAT_R32F:15, PIXELFORMAT_DEPTH:16, PIXELFORMAT_DEPTHSTENCIL:17, PIXELFORMAT_111110F:18, PIXELFORMAT_SRGB:19, PIXELFORMAT_SRGBA:20, PIXELFORMAT_ETC1:21, PIXELFORMAT_PVRTC_2BPP_RGB_1:22, PIXELFORMAT_PVRTC_2BPP_RGBA_1:23, PIXELFORMAT_PVRTC_4BPP_RGB_1:24, PIXELFORMAT_PVRTC_4BPP_RGBA_1:25, PRIMITIVE_POINTS:0, PRIMITIVE_LINES:1, PRIMITIVE_LINELOOP:2, PRIMITIVE_LINESTRIP:3, PRIMITIVE_TRIANGLES:4, 
-  PRIMITIVE_TRISTRIP:5, PRIMITIVE_TRIFAN:6, SEMANTIC_POSITION:"POSITION", SEMANTIC_NORMAL:"NORMAL", SEMANTIC_TANGENT:"TANGENT", SEMANTIC_BLENDWEIGHT:"BLENDWEIGHT", SEMANTIC_BLENDINDICES:"BLENDINDICES", SEMANTIC_COLOR:"COLOR", SEMANTIC_TEXCOORD0:"TEXCOORD0", SEMANTIC_TEXCOORD1:"TEXCOORD1", SEMANTIC_TEXCOORD2:"TEXCOORD2", SEMANTIC_TEXCOORD3:"TEXCOORD3", SEMANTIC_TEXCOORD4:"TEXCOORD4", SEMANTIC_TEXCOORD5:"TEXCOORD5", SEMANTIC_TEXCOORD6:"TEXCOORD6", SEMANTIC_TEXCOORD7:"TEXCOORD7", SEMANTIC_ATTR0:"ATTR0", 
-  SEMANTIC_ATTR1:"ATTR1", SEMANTIC_ATTR2:"ATTR2", SEMANTIC_ATTR3:"ATTR3", SEMANTIC_ATTR4:"ATTR4", SEMANTIC_ATTR5:"ATTR5", SEMANTIC_ATTR6:"ATTR6", SEMANTIC_ATTR7:"ATTR7", SEMANTIC_ATTR8:"ATTR8", SEMANTIC_ATTR9:"ATTR9", SEMANTIC_ATTR10:"ATTR10", SEMANTIC_ATTR11:"ATTR11", SEMANTIC_ATTR12:"ATTR12", SEMANTIC_ATTR13:"ATTR13", SEMANTIC_ATTR14:"ATTR14", SEMANTIC_ATTR15:"ATTR15", SHADERTAG_MATERIAL:1, STENCILOP_KEEP:0, STENCILOP_ZERO:1, STENCILOP_REPLACE:2, STENCILOP_INCREMENT:3, STENCILOP_INCREMENTWRAP:4, 
-  STENCILOP_DECREMENT:5, STENCILOP_DECREMENTWRAP:6, STENCILOP_INVERT:7, TEXTURELOCK_READ:1, TEXTURELOCK_WRITE:2, TEXHINT_NONE:0, TEXHINT_SHADOWMAP:1, TEXHINT_ASSET:2, TEXHINT_LIGHTMAP:3, UNIFORMTYPE_BOOL:0, UNIFORMTYPE_INT:1, UNIFORMTYPE_FLOAT:2, UNIFORMTYPE_VEC2:3, UNIFORMTYPE_VEC3:4, UNIFORMTYPE_VEC4:5, UNIFORMTYPE_IVEC2:6, UNIFORMTYPE_IVEC3:7, UNIFORMTYPE_IVEC4:8, UNIFORMTYPE_BVEC2:9, UNIFORMTYPE_BVEC3:10, UNIFORMTYPE_BVEC4:11, UNIFORMTYPE_MAT2:12, UNIFORMTYPE_MAT3:13, UNIFORMTYPE_MAT4:14, UNIFORMTYPE_TEXTURE2D:15, 
-  UNIFORMTYPE_TEXTURECUBE:16, UNIFORMTYPE_FLOATARRAY:17, UNIFORMTYPE_TEXTURE2D_SHADOW:18, UNIFORMTYPE_TEXTURECUBE_SHADOW:19, UNIFORMTYPE_TEXTURE3D:20};
+  BUFFER_DYNAMIC:1, BUFFER_STREAM:2, BUFFER_GPUDYNAMIC:3, CLEARFLAG_COLOR:1, CLEARFLAG_DEPTH:2, CLEARFLAG_STENCIL:4, CUBEFACE_POSX:0, CUBEFACE_NEGX:1, CUBEFACE_POSY:2, CUBEFACE_NEGY:3, CUBEFACE_POSZ:4, CUBEFACE_NEGZ:5, CULLFACE_NONE:0, CULLFACE_BACK:1, CULLFACE_FRONT:2, CULLFACE_FRONTANDBACK:3, TYPE_INT8:0, TYPE_UINT8:1, TYPE_INT16:2, TYPE_UINT16:3, TYPE_INT32:4, TYPE_UINT32:5, TYPE_FLOAT32:6, FILTER_NEAREST:0, FILTER_LINEAR:1, FILTER_NEAREST_MIPMAP_NEAREST:2, FILTER_NEAREST_MIPMAP_LINEAR:3, FILTER_LINEAR_MIPMAP_NEAREST:4, 
+  FILTER_LINEAR_MIPMAP_LINEAR:5, FUNC_NEVER:0, FUNC_LESS:1, FUNC_EQUAL:2, FUNC_LESSEQUAL:3, FUNC_GREATER:4, FUNC_NOTEQUAL:5, FUNC_GREATEREQUAL:6, FUNC_ALWAYS:7, INDEXFORMAT_UINT8:0, INDEXFORMAT_UINT16:1, INDEXFORMAT_UINT32:2, PIXELFORMAT_A8:0, PIXELFORMAT_L8:1, PIXELFORMAT_L8_A8:2, PIXELFORMAT_R5_G6_B5:3, PIXELFORMAT_R5_G5_B5_A1:4, PIXELFORMAT_R4_G4_B4_A4:5, PIXELFORMAT_R8_G8_B8:6, PIXELFORMAT_R8_G8_B8_A8:7, PIXELFORMAT_DXT1:8, PIXELFORMAT_DXT3:9, PIXELFORMAT_DXT5:10, PIXELFORMAT_RGB16F:11, PIXELFORMAT_RGBA16F:12, 
+  PIXELFORMAT_RGB32F:13, PIXELFORMAT_RGBA32F:14, PIXELFORMAT_R32F:15, PIXELFORMAT_DEPTH:16, PIXELFORMAT_DEPTHSTENCIL:17, PIXELFORMAT_111110F:18, PIXELFORMAT_SRGB:19, PIXELFORMAT_SRGBA:20, PIXELFORMAT_ETC1:21, PIXELFORMAT_PVRTC_2BPP_RGB_1:22, PIXELFORMAT_PVRTC_2BPP_RGBA_1:23, PIXELFORMAT_PVRTC_4BPP_RGB_1:24, PIXELFORMAT_PVRTC_4BPP_RGBA_1:25, PRIMITIVE_POINTS:0, PRIMITIVE_LINES:1, PRIMITIVE_LINELOOP:2, PRIMITIVE_LINESTRIP:3, PRIMITIVE_TRIANGLES:4, PRIMITIVE_TRISTRIP:5, PRIMITIVE_TRIFAN:6, SEMANTIC_POSITION:"POSITION", 
+  SEMANTIC_NORMAL:"NORMAL", SEMANTIC_TANGENT:"TANGENT", SEMANTIC_BLENDWEIGHT:"BLENDWEIGHT", SEMANTIC_BLENDINDICES:"BLENDINDICES", SEMANTIC_COLOR:"COLOR", SEMANTIC_TEXCOORD0:"TEXCOORD0", SEMANTIC_TEXCOORD1:"TEXCOORD1", SEMANTIC_TEXCOORD2:"TEXCOORD2", SEMANTIC_TEXCOORD3:"TEXCOORD3", SEMANTIC_TEXCOORD4:"TEXCOORD4", SEMANTIC_TEXCOORD5:"TEXCOORD5", SEMANTIC_TEXCOORD6:"TEXCOORD6", SEMANTIC_TEXCOORD7:"TEXCOORD7", SEMANTIC_ATTR0:"ATTR0", SEMANTIC_ATTR1:"ATTR1", SEMANTIC_ATTR2:"ATTR2", SEMANTIC_ATTR3:"ATTR3", 
+  SEMANTIC_ATTR4:"ATTR4", SEMANTIC_ATTR5:"ATTR5", SEMANTIC_ATTR6:"ATTR6", SEMANTIC_ATTR7:"ATTR7", SEMANTIC_ATTR8:"ATTR8", SEMANTIC_ATTR9:"ATTR9", SEMANTIC_ATTR10:"ATTR10", SEMANTIC_ATTR11:"ATTR11", SEMANTIC_ATTR12:"ATTR12", SEMANTIC_ATTR13:"ATTR13", SEMANTIC_ATTR14:"ATTR14", SEMANTIC_ATTR15:"ATTR15", SHADERTAG_MATERIAL:1, STENCILOP_KEEP:0, STENCILOP_ZERO:1, STENCILOP_REPLACE:2, STENCILOP_INCREMENT:3, STENCILOP_INCREMENTWRAP:4, STENCILOP_DECREMENT:5, STENCILOP_DECREMENTWRAP:6, STENCILOP_INVERT:7, 
+  TEXTURELOCK_READ:1, TEXTURELOCK_WRITE:2, TEXHINT_NONE:0, TEXHINT_SHADOWMAP:1, TEXHINT_ASSET:2, TEXHINT_LIGHTMAP:3, UNIFORMTYPE_BOOL:0, UNIFORMTYPE_INT:1, UNIFORMTYPE_FLOAT:2, UNIFORMTYPE_VEC2:3, UNIFORMTYPE_VEC3:4, UNIFORMTYPE_VEC4:5, UNIFORMTYPE_IVEC2:6, UNIFORMTYPE_IVEC3:7, UNIFORMTYPE_IVEC4:8, UNIFORMTYPE_BVEC2:9, UNIFORMTYPE_BVEC3:10, UNIFORMTYPE_BVEC4:11, UNIFORMTYPE_MAT2:12, UNIFORMTYPE_MAT3:13, UNIFORMTYPE_MAT4:14, UNIFORMTYPE_TEXTURE2D:15, UNIFORMTYPE_TEXTURECUBE:16, UNIFORMTYPE_FLOATARRAY:17, 
+  UNIFORMTYPE_TEXTURE2D_SHADOW:18, UNIFORMTYPE_TEXTURECUBE_SHADOW:19, UNIFORMTYPE_TEXTURE3D:20};
   pc.extend(pc, enums);
   pc.gfx = {};
   pc.extend(pc.gfx, enums);
@@ -3221,25 +3221,25 @@ pc.extend(pc, function() {
   function VertexIteratorSetter(buffer, vertexElement) {
     this.index = 0;
     switch(vertexElement.dataType) {
-      case pc.ELEMENTTYPE_INT8:
+      case pc.TYPE_INT8:
         this.array = new Int8Array(buffer, vertexElement.offset);
         break;
-      case pc.ELEMENTTYPE_UINT8:
+      case pc.TYPE_UINT8:
         this.array = new Uint8Array(buffer, vertexElement.offset);
         break;
-      case pc.ELEMENTTYPE_INT16:
+      case pc.TYPE_INT16:
         this.array = new Int16Array(buffer, vertexElement.offset);
         break;
-      case pc.ELEMENTTYPE_UINT16:
+      case pc.TYPE_UINT16:
         this.array = new Uint16Array(buffer, vertexElement.offset);
         break;
-      case pc.ELEMENTTYPE_INT32:
+      case pc.TYPE_INT32:
         this.array = new Int32Array(buffer, vertexElement.offset);
         break;
-      case pc.ELEMENTTYPE_UINT32:
+      case pc.TYPE_UINT32:
         this.array = new Uint32Array(buffer, vertexElement.offset);
         break;
-      case pc.ELEMENTTYPE_FLOAT32:
+      case pc.TYPE_FLOAT32:
         this.array = new Float32Array(buffer, vertexElement.offset);
         break;
     }
@@ -3304,13 +3304,13 @@ pc.extend(pc, function() {
 }());
 pc.extend(pc, function() {
   var _typeSize = [];
-  _typeSize[pc.ELEMENTTYPE_INT8] = 1;
-  _typeSize[pc.ELEMENTTYPE_UINT8] = 1;
-  _typeSize[pc.ELEMENTTYPE_INT16] = 2;
-  _typeSize[pc.ELEMENTTYPE_UINT16] = 2;
-  _typeSize[pc.ELEMENTTYPE_INT32] = 4;
-  _typeSize[pc.ELEMENTTYPE_UINT32] = 4;
-  _typeSize[pc.ELEMENTTYPE_FLOAT32] = 4;
+  _typeSize[pc.TYPE_INT8] = 1;
+  _typeSize[pc.TYPE_UINT8] = 1;
+  _typeSize[pc.TYPE_INT16] = 2;
+  _typeSize[pc.TYPE_UINT16] = 2;
+  _typeSize[pc.TYPE_INT32] = 4;
+  _typeSize[pc.TYPE_UINT32] = 4;
+  _typeSize[pc.TYPE_FLOAT32] = 4;
   var VertexFormat = function(graphicsDevice, description) {
     var i, len, element;
     this.elements = [];
@@ -3322,7 +3322,7 @@ pc.extend(pc, function() {
       var elementDesc = description[i];
       element = {name:elementDesc.semantic, offset:0, stride:0, stream:-1, scopeId:graphicsDevice.scope.resolve(elementDesc.semantic), dataType:elementDesc.type, numComponents:elementDesc.components, normalize:elementDesc.normalize === undefined ? false : elementDesc.normalize, size:elementDesc.components * _typeSize[elementDesc.type]};
       this.elements.push(element);
-      this.size += element.size;
+      this.size += Math.ceil(element.size / 4) * 4;
       if (elementDesc.semantic === pc.SEMANTIC_TEXCOORD0) {
         this.hasUv0 = true;
       } else {
@@ -3421,7 +3421,7 @@ pc.extend(pc, function() {
   return {VertexBuffer:VertexBuffer};
 }());
 pc.extend(pc, function() {
-  var IndexBuffer = function(graphicsDevice, format, numIndices, usage) {
+  var IndexBuffer = function(graphicsDevice, format, numIndices, usage, initialData) {
     this.usage = usage || pc.BUFFER_STATIC;
     this.format = format;
     this.numIndices = numIndices;
@@ -3444,9 +3444,13 @@ pc.extend(pc, function() {
       }
     }
     this.bytesPerIndex = bytesPerIndex;
-    var numBytes = this.numIndices * bytesPerIndex;
-    this.storage = new ArrayBuffer(numBytes);
-    graphicsDevice._vram.ib += numBytes;
+    this.numBytes = this.numIndices * bytesPerIndex;
+    if (initialData && this.setData(initialData)) {
+      return;
+    } else {
+      this.storage = new ArrayBuffer(this.numBytes);
+    }
+    graphicsDevice._vram.ib += this.numBytes;
   };
   IndexBuffer.prototype = {destroy:function() {
     if (!this.bufferId) {
@@ -3488,6 +3492,14 @@ pc.extend(pc, function() {
     }
     gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, this.bufferId);
     gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, this.storage, glUsage);
+  }, setData:function(data) {
+    if (data.byteLength !== this.numBytes) {
+      console.error("IndexBuffer: wrong initial data size: expected " + this.numBytes + ", got " + data.byteLength);
+      return false;
+    }
+    this.storage = data;
+    this.unlock();
+    return true;
   }};
   return {IndexBuffer:IndexBuffer};
 }());
@@ -3550,6 +3562,7 @@ pc.extend(pc, function() {
     this._cubemap = false;
     this._volume = false;
     this.fixCubemapSeams = false;
+    this._flipY = true;
     this._mipmaps = true;
     this._minFilter = pc.FILTER_LINEAR_MIPMAP_LINEAR;
     this._magFilter = pc.FILTER_LINEAR;
@@ -3579,6 +3592,7 @@ pc.extend(pc, function() {
       this._addressV = options.addressV !== undefined ? options.addressV : this._addressV;
       this._compareOnRead = options.compareOnRead !== undefined ? options.compareOnRead : this._compareOnRead;
       this._compareFunc = options._compareFunc !== undefined ? options._compareFunc : this._compareFunc;
+      this._flipY = options.flipY !== undefined ? options.flipY : this._flipY;
       if (graphicsDevice.webgl2) {
         this._depth = options.depth !== undefined ? options.depth : this._depth;
         this._volume = options.volume !== undefined ? options.volume : this._volume;
@@ -3707,6 +3721,14 @@ pc.extend(pc, function() {
   Object.defineProperty(Texture.prototype, "volume", {get:function() {
     return this._volume;
   }});
+  Object.defineProperty(Texture.prototype, "flipY", {get:function() {
+    return this._flipY;
+  }, set:function(flipY) {
+    if (this._flipY !== flipY) {
+      this._flipY = flipY;
+      this._needsUpload = true;
+    }
+  }});
   pc.extend(Texture.prototype, {bind:function() {
   }, destroy:function() {
     if (this._glTextureId) {
@@ -3779,31 +3801,36 @@ pc.extend(pc, function() {
     var invalid = false;
     var width, height;
     if (this._cubemap) {
-      width = source[0] && source[0].width || 0;
-      height = source[0] && source[0].height || 0;
       if (source[0]) {
+        width = source[0].width || 0;
+        height = source[0].height || 0;
         for (i = 0;i < 6;i++) {
           if (!source[i] || source[i].width !== width || source[i].height !== height || !(source[i] instanceof HTMLImageElement) && !(source[i] instanceof HTMLCanvasElement) && !(source[i] instanceof HTMLVideoElement)) {
             invalid = true;
+            break;
           }
         }
       } else {
         invalid = true;
       }
-      for (i = 0;i < 6;i++) {
-        if (invalid || this._levels[0][i] !== source[i]) {
-          this._levelsUpdated[0][i] = true;
+      if (!invalid) {
+        for (i = 0;i < 6;i++) {
+          if (this._levels[0][i] !== source[i]) {
+            this._levelsUpdated[0][i] = true;
+          }
         }
       }
     } else {
       if (!(source instanceof HTMLImageElement) && !(source instanceof HTMLCanvasElement) && !(source instanceof HTMLVideoElement)) {
         invalid = true;
       }
-      if (invalid || source !== this._levels[0]) {
-        this._levelsUpdated[0] = true;
+      if (!invalid) {
+        if (source !== this._levels[0]) {
+          this._levelsUpdated[0] = true;
+        }
+        width = source.width;
+        height = source.height;
       }
-      width = source.width;
-      height = source.height;
     }
     if (invalid) {
       this._width = 4;
@@ -4177,8 +4204,7 @@ pc.extend(pc, function() {
       if (this.definition.attributes[info.name] === undefined) {
         console.error('Vertex shader attribute "' + info.name + '" is not mapped to a semantic in shader definition.');
       }
-      var attr = new pc.ShaderInput(this.device, this.definition.attributes[info.name], _typeToPc[info.type], location);
-      this.attributes.push(attr);
+      this.attributes.push(new pc.ShaderInput(this.device, this.definition.attributes[info.name], _typeToPc[info.type], location));
     }
     i = 0;
     var numUniforms = gl.getProgramParameter(this.program, gl.ACTIVE_UNIFORMS);
@@ -4306,7 +4332,7 @@ pc.extend(pc, function() {
   function _isIE() {
     var ua = window.navigator.userAgent;
     var msie = ua.indexOf("MSIE ");
-    var trident = navigator.userAgent.match(/Trident.*rv\:11\./);
+    var trident = navigator.userAgent.match(/Trident.*rv:11\./);
     return msie > 0 || !!trident;
   }
   var _pixelFormat2Size = null;
@@ -4419,23 +4445,23 @@ pc.extend(pc, function() {
       throw new pc.UnsupportedBrowserError;
     }
     if (canvas) {
-      var preferWebGl2 = options && options.preferWebGl2 !== undefined ? options.preferWebGl2 : true
-    }
-    var names = preferWebGl2 ? ["webgl2", "experimental-webgl2", "webgl", "experimental-webgl"] : ["webgl", "experimental-webgl"];
-    var context = null;
-    options = options || {};
-    options.stencil = true;
-    for (var i = 0;i < names.length;i++) {
-      try {
-        context = canvas.getContext(names[i], options);
-      } catch (e) {
+      var preferWebGl2 = options && options.preferWebGl2 !== undefined ? options.preferWebGl2 : true;
+      var names = preferWebGl2 ? ["webgl2", "experimental-webgl2", "webgl", "experimental-webgl"] : ["webgl", "experimental-webgl"];
+      var context = null;
+      options = options || {};
+      options.stencil = true;
+      for (var i = 0;i < names.length;i++) {
+        try {
+          context = canvas.getContext(names[i], options);
+        } catch (e) {
+        }
+        if (context) {
+          this.webgl2 = preferWebGl2 && i < 2;
+          break;
+        }
       }
-      if (context) {
-        this.webgl2 = preferWebGl2 && i < 2;
-        break;
-      }
+      this.gl = context;
     }
-    this.gl = context;
     if (!this.gl) {
       throw new pc.ContextCreationError;
     }
@@ -5230,7 +5256,7 @@ pc.extend(pc, function() {
                 }
               }
             }
-            gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
+            gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, texture._flipY);
             gl.pixelStorei(gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL, false);
             gl.texImage2D(gl.TEXTURE_2D, mipLevel, texture._glInternalFormat, texture._glFormat, texture._glPixelType, mipObject);
           } else {
@@ -5839,13 +5865,8 @@ pc.extend(pc, function() {
 }());
 pc.extend(pc, function() {
   var shaderChunks = {};
-  var attrib2Semantic = {};
-  attrib2Semantic["vertex_position"] = pc.SEMANTIC_POSITION;
-  attrib2Semantic["vertex_normal"] = pc.SEMANTIC_NORMAL;
-  attrib2Semantic["vertex_tangent"] = pc.SEMANTIC_TANGENT;
-  attrib2Semantic["vertex_texCoord0"] = pc.SEMANTIC_TEXCOORD0;
-  attrib2Semantic["vertex_texCoord1"] = pc.SEMANTIC_TEXCOORD1;
-  attrib2Semantic["vertex_color"] = pc.SEMANTIC_COLOR;
+  var attrib2Semantic = {vertex_position:pc.SEMANTIC_POSITION, vertex_normal:pc.SEMANTIC_NORMAL, vertex_tangent:pc.SEMANTIC_TANGENT, vertex_texCoord0:pc.SEMANTIC_TEXCOORD0, vertex_texCoord1:pc.SEMANTIC_TEXCOORD1, vertex_texCoord2:pc.SEMANTIC_TEXCOORD2, vertex_texCoord3:pc.SEMANTIC_TEXCOORD3, vertex_texCoord4:pc.SEMANTIC_TEXCOORD4, vertex_texCoord5:pc.SEMANTIC_TEXCOORD5, vertex_texCoord6:pc.SEMANTIC_TEXCOORD6, vertex_texCoord7:pc.SEMANTIC_TEXCOORD7, vertex_color:pc.SEMANTIC_COLOR, vertex_boneIndices:pc.SEMANTIC_BLENDINDICES, 
+  vertex_boneWeights:pc.SEMANTIC_BLENDWEIGHT};
   shaderChunks.collectAttribs = function(vsCode) {
     var attribs = {};
     var attrs = 0;
@@ -5897,9 +5918,10 @@ pc.extend(pc, function() {
 }());
 pc.extend(pc, function() {
   var _postEffectQuadVB = null;
+  var _postEffectQuadDraw = {type:pc.PRIMITIVE_TRISTRIP, base:0, count:4, indexed:false};
   function drawQuadWithShader(device, target, shader, rect, scissorRect, useBlend) {
     if (_postEffectQuadVB === null) {
-      var vertexFormat = new pc.VertexFormat(device, [{semantic:pc.SEMANTIC_POSITION, components:2, type:pc.ELEMENTTYPE_FLOAT32}]);
+      var vertexFormat = new pc.VertexFormat(device, [{semantic:pc.SEMANTIC_POSITION, components:2, type:pc.TYPE_FLOAT32}]);
       _postEffectQuadVB = new pc.VertexBuffer(device, vertexFormat, 4);
       var iterator = new pc.VertexIterator(_postEffectQuadVB);
       iterator.element[pc.SEMANTIC_POSITION].set(-1, -1);
@@ -5951,7 +5973,7 @@ pc.extend(pc, function() {
     }
     device.setVertexBuffer(_postEffectQuadVB, 0);
     device.setShader(shader);
-    device.draw({type:pc.PRIMITIVE_TRISTRIP, base:0, count:4, indexed:false});
+    device.draw(_postEffectQuadDraw);
     device.setDepthTest(oldDepthTest);
     device.setDepthWrite(oldDepthWrite);
     device.setCullMode(oldCull);
@@ -6371,8 +6393,8 @@ pc.extend(pc, function() {
   }
   return {paraboloidFromCubemap:paraboloidFromCubemap, generateDpAtlas:generateDpAtlas};
 }());
-pc.shaderChunks.TBNPS = "void getTBN() {\n    dTBN = mat3(normalize(vTangentW), normalize(vBinormalW), normalize(vNormalW));\n}\n";
-pc.shaderChunks.TBNfastPS = "void getTBN() {\n    dTBN = mat3((vTangentW), (vBinormalW), (vNormalW));\n}\n";
+pc.shaderChunks.TBNPS = "void getTBN() {\n    dTBN = mat3(normalize(dTangentW), normalize(dBinormalW), normalize(dVertexNormalW));\n}\n";
+pc.shaderChunks.TBNfastPS = "void getTBN() {\n    dTBN = mat3(dTangentW, dBinormalW, dVertexNormalW);\n}\n";
 pc.shaderChunks.alphaTestPS = "uniform float alpha_ref;\nvoid alphaTest(float a) {\n    if (a < alpha_ref) discard;\n}\n";
 pc.shaderChunks.ambientConstantPS = "\nvoid addAmbient() {\n    dDiffuseLight += light_globalAmbient;\n}\n";
 pc.shaderChunks.ambientPrefilteredCubePS = "void addAmbient() {\n    vec3 fixedReflDir = fixSeamsStatic(dNormalW, 1.0 - 1.0 / 4.0);\n    fixedReflDir.x *= -1.0;\n    dDiffuseLight += processEnvironment($DECODE(textureCube(texture_prefilteredCubeMap4, fixedReflDir)).rgb);\n}\n";
@@ -6444,7 +6466,7 @@ pc.shaderChunks.lightDiffuseLambertPS = "float getLightDiffuse() {\n    return m
 pc.shaderChunks.lightDirPointPS = "void getLightDirPoint(vec3 lightPosW) {\n    dLightDirW = vPositionW - lightPosW;\n    dLightDirNormW = normalize(dLightDirW);\n    dLightPosW = lightPosW;\n}\n";
 pc.shaderChunks.lightSpecularBlinnPS = "// Energy-conserving (hopefully) Blinn-Phong\nfloat getLightSpecular() {\n    vec3 h = normalize( -dLightDirNormW + dViewDirW );\n    float nh = max( dot( h, dNormalW ), 0.0 );\n    float specPow = exp2(dGlossiness * 11.0); // glossiness is linear, power is not; 0 - 2048\n    specPow = antiAliasGlossiness(specPow);\n    // Hack: On Mac OS X, calling pow with zero for the exponent generates hideous artifacts so bias up a little\n    specPow = max(specPow, 0.0001);\n    return pow(nh, specPow) * (specPow + 2.0) / 8.0;\n}\n";
 pc.shaderChunks.lightSpecularPhongPS = "float getLightSpecular() {\n    float specPow = dGlossiness;\n    specPow = antiAliasGlossiness(specPow);\n    // Hack: On Mac OS X, calling pow with zero for the exponent generates hideous artifacts so bias up a little\n    return pow(max(dot(dReflDirW, -dLightDirNormW), 0.0), specPow + 0.0001);\n}\n";
-pc.shaderChunks.lightmapDirPS = "uniform sampler2D texture_lightMap;\nuniform sampler2D texture_dirLightMap;\nvoid addLightMap() {\n    vec3 color = $texture2DSAMPLE(texture_lightMap, $UV).$CH;\n    vec4 dir = texture2D(texture_dirLightMap, $UV);\n    if (dot(dir.xyz,vec3(1.0)) < 0.00001) {\n        dDiffuseLight += color;\n        return;\n    }\n    dLightDirNormW = normalize(dir.xyz * 2.0 - vec3(1.0));\n    float vlight = saturate(dot(dLightDirNormW, -vNormalW));\n    float flight = saturate(dot(dLightDirNormW, -dNormalW));\n    float nlight = (flight / max(vlight,0.01)) * 0.5;\n    dDiffuseLight += color * nlight * 2.0;\n}\nvoid addDirLightMap() {\n    vec4 dir = texture2D(texture_dirLightMap, $UV);\n    if (dot(dir.xyz,vec3(1.0)) < 0.00001) return;\n    vec3 color = $texture2DSAMPLE(texture_lightMap, $UV).$CH;\n    dLightDirNormW = normalize(dir.xyz * 2.0 - vec3(1.0));\n    dSpecularLight += vec3(getLightSpecular()) * color;\n}\n";
+pc.shaderChunks.lightmapDirPS = "uniform sampler2D texture_lightMap;\nuniform sampler2D texture_dirLightMap;\nvoid addLightMap() {\n    vec3 color = $texture2DSAMPLE(texture_lightMap, $UV).$CH;\n    vec4 dir = texture2D(texture_dirLightMap, $UV);\n    if (dot(dir.xyz,vec3(1.0)) < 0.00001) {\n        dDiffuseLight += color;\n        return;\n    }\n    dLightDirNormW = normalize(dir.xyz * 2.0 - vec3(1.0));\n    float vlight = saturate(dot(dLightDirNormW, -dVertexNormalW));\n    float flight = saturate(dot(dLightDirNormW, -dNormalW));\n    float nlight = (flight / max(vlight,0.01)) * 0.5;\n    dDiffuseLight += color * nlight * 2.0;\n}\nvoid addDirLightMap() {\n    vec4 dir = texture2D(texture_dirLightMap, $UV);\n    if (dot(dir.xyz,vec3(1.0)) < 0.00001) return;\n    vec3 color = $texture2DSAMPLE(texture_lightMap, $UV).$CH;\n    dLightDirNormW = normalize(dir.xyz * 2.0 - vec3(1.0));\n    dSpecularLight += vec3(getLightSpecular()) * color;\n}\n";
 pc.shaderChunks.lightmapSinglePS = "uniform sampler2D texture_lightMap;\nvoid addLightMap() {\n    dDiffuseLight += $texture2DSAMPLE(texture_lightMap, $UV).$CH;\n}\n";
 pc.shaderChunks.lightmapSingleVertPS = "void addLightMap() {\n    dDiffuseLight += saturate(vVertexColor.$CH);\n}\n";
 pc.shaderChunks.metalnessPS = "void processMetalness(float metalness) {\n    const float dielectricF0 = 0.04;\n    dSpecularity = mix(vec3(dielectricF0), dAlbedo, metalness);\n    dAlbedo *= 1.0 - metalness;\n}\n";
@@ -6460,7 +6482,7 @@ pc.shaderChunks.normalMapPS = "uniform sampler2D texture_normalMap;\nuniform flo
 pc.shaderChunks.normalMapFloatPS = "uniform sampler2D texture_normalMap;\nuniform float material_bumpiness;\nvoid getNormal() {\n    vec3 normalMap = unpackNormal(texture2D(texture_normalMap, $UV));\n    dNormalMap = normalMap;\n    normalMap = normalize(mix(vec3(0.0, 0.0, 1.0), normalMap, material_bumpiness));\n    dNormalW = dTBN * normalMap;\n}\n";
 pc.shaderChunks.normalMapFloatTBNfastPS = "uniform sampler2D texture_normalMap;\nuniform float material_bumpiness;\nvoid getNormal() {\n    vec3 normalMap = unpackNormal(texture2D(texture_normalMap, $UV));\n    dNormalMap = normalMap;\n    normalMap = mix(vec3(0.0, 0.0, 1.0), normalMap, material_bumpiness);\n    dNormalW = normalize(dTBN * normalMap);\n}\n";
 pc.shaderChunks.normalSkinnedVS = "vec3 getNormal() {\n    dNormalMatrix = mat3(dModelMatrix[0].xyz, dModelMatrix[1].xyz, dModelMatrix[2].xyz);\n    return normalize(dNormalMatrix * vertex_normal);\n}\n";
-pc.shaderChunks.normalVertexPS = "void getNormal() {\n    dNormalW = normalize(vNormalW);\n}\n";
+pc.shaderChunks.normalVertexPS = "void getNormal() {\n    dNormalW = normalize(dVertexNormalW);\n}\n";
 pc.shaderChunks.normalXYPS = "vec3 unpackNormal(vec4 nmap) {\n    vec3 normal;\n    normal.xy = nmap.wy * 2.0 - 1.0;\n    normal.z = sqrt(1.0 - saturate(dot(normal.xy, normal.xy)));\n    return normal;\n}\n";
 pc.shaderChunks.normalXYZPS = "vec3 unpackNormal(vec4 nmap) {\n    return nmap.xyz * 2.0 - 1.0;\n}\n";
 pc.shaderChunks.opacityConstPS = "uniform float material_opacity;\nvoid getOpacity() {\n    dAlpha = material_opacity;\n}\n";
@@ -6527,10 +6549,10 @@ pc.shaderChunks.reflectionSpherePS = "uniform mat4 matrix_view;\nuniform sampler
 pc.shaderChunks.reflectionSphereLowPS = "uniform sampler2D texture_sphereMap;\nuniform float material_reflectivity;\nvoid addReflection() {\n    vec3 reflDirV = vNormalV;\n    vec2 sphereMapUv = reflDirV.xy * 0.5 + 0.5;\n    dReflection += vec4($texture2DSAMPLE(texture_sphereMap, sphereMapUv).rgb, material_reflectivity);\n}\n";
 pc.shaderChunks.refractionPS = "uniform float material_refraction, material_refractionIndex;\nvec3 refract2(vec3 viewVec, vec3 Normal, float IOR) {\n    float vn = dot(viewVec, Normal);\n    float k = 1.0 - IOR * IOR * (1.0 - vn * vn);\n    vec3 refrVec = IOR * viewVec - (IOR * vn + sqrt(k)) * Normal;\n    return refrVec;\n}\nvoid addRefraction() {\n    // use same reflection code with refraction vector\n    vec3 tmp = dReflDirW;\n    vec4 tmp2 = dReflection;\n    dReflection = vec4(0.0);\n    dReflDirW = refract2(-dViewDirW, dNormalW, material_refractionIndex);\n    addReflection();\n    dDiffuseLight = mix(dDiffuseLight, dReflection.rgb * dAlbedo, material_refraction);\n    dReflDirW = tmp;\n    dReflection = tmp2;\n}\n";
 pc.shaderChunks.rgbmPS = "vec3 decodeRGBM(vec4 rgbm) {\n    vec3 color = (8.0 * rgbm.a) * rgbm.rgb;\n    return color * color;\n}\nvec3 texture2DRGBM(sampler2D tex, vec2 uv) {\n    return decodeRGBM(texture2D(tex, uv));\n}\nvec3 textureCubeRGBM(samplerCube tex, vec3 uvw) {\n    return decodeRGBM(textureCube(tex, uvw));\n}\n";
-pc.shaderChunks.shadowCommonPS = "void normalOffsetPointShadow(vec4 shadowParams) {\n    float distScale = length(dLightDirW);\n    vec3 wPos = vPositionW + vNormalW * shadowParams.y * clamp(1.0 - dot(vNormalW, -dLightDirNormW), 0.0, 1.0) * distScale; //0.02\n    vec3 dir = wPos - dLightPosW;\n    dLightDirW = dir;\n}\n";
-pc.shaderChunks.shadowCoordPS = "void _getShadowCoordOrtho(mat4 shadowMatrix, vec3 shadowParams, vec3 wPos) {\n    dShadowCoord = (shadowMatrix * vec4(wPos, 1.0)).xyz;\n    dShadowCoord.z = saturate(dShadowCoord.z) - 0.0001;\n    #ifdef SHADOWBIAS\n        dShadowCoord.z += getShadowBias(shadowParams.x, shadowParams.z);\n    #endif\n}\nvoid _getShadowCoordPersp(mat4 shadowMatrix, vec4 shadowParams, vec3 wPos) {\n    vec4 projPos = shadowMatrix * vec4(wPos, 1.0);\n    projPos.xy /= projPos.w;\n    dShadowCoord.xy = projPos.xy;\n    dShadowCoord.z = length(dLightDirW) * shadowParams.w;\n    #ifdef SHADOWBIAS\n        dShadowCoord.z += getShadowBias(shadowParams.x, shadowParams.z);\n    #endif\n}\nvoid getShadowCoordOrtho(mat4 shadowMatrix, vec3 shadowParams) {\n    _getShadowCoordOrtho(shadowMatrix, shadowParams, vPositionW);\n}\nvoid getShadowCoordPersp(mat4 shadowMatrix, vec4 shadowParams) {\n    _getShadowCoordPersp(shadowMatrix, shadowParams, vPositionW);\n}\nvoid getShadowCoordPerspNormalOffset(mat4 shadowMatrix, vec4 shadowParams) {\n    float distScale = abs(dot(vPositionW - dLightPosW, dLightDirNormW)); // fov?\n    vec3 wPos = vPositionW + vNormalW * shadowParams.y * clamp(1.0 - dot(vNormalW, -dLightDirNormW), 0.0, 1.0) * distScale;\n    _getShadowCoordPersp(shadowMatrix, shadowParams, wPos);\n}\nvoid getShadowCoordOrthoNormalOffset(mat4 shadowMatrix, vec3 shadowParams) {\n    vec3 wPos = vPositionW + vNormalW * shadowParams.y * clamp(1.0 - dot(vNormalW, -dLightDirNormW), 0.0, 1.0); //0.08\n    _getShadowCoordOrtho(shadowMatrix, shadowParams, wPos);\n}\n";
+pc.shaderChunks.shadowCommonPS = "void normalOffsetPointShadow(vec4 shadowParams) {\n    float distScale = length(dLightDirW);\n    vec3 wPos = vPositionW + dVertexNormalW * shadowParams.y * clamp(1.0 - dot(dVertexNormalW, -dLightDirNormW), 0.0, 1.0) * distScale; //0.02\n    vec3 dir = wPos - dLightPosW;\n    dLightDirW = dir;\n}\n";
+pc.shaderChunks.shadowCoordPS = "void _getShadowCoordOrtho(mat4 shadowMatrix, vec3 shadowParams, vec3 wPos) {\n    dShadowCoord = (shadowMatrix * vec4(wPos, 1.0)).xyz;\n    dShadowCoord.z = saturate(dShadowCoord.z) - 0.0001;\n    #ifdef SHADOWBIAS\n        dShadowCoord.z += getShadowBias(shadowParams.x, shadowParams.z);\n    #endif\n}\nvoid _getShadowCoordPersp(mat4 shadowMatrix, vec4 shadowParams, vec3 wPos) {\n    vec4 projPos = shadowMatrix * vec4(wPos, 1.0);\n    projPos.xy /= projPos.w;\n    dShadowCoord.xy = projPos.xy;\n    dShadowCoord.z = length(dLightDirW) * shadowParams.w;\n    #ifdef SHADOWBIAS\n        dShadowCoord.z += getShadowBias(shadowParams.x, shadowParams.z);\n    #endif\n}\nvoid getShadowCoordOrtho(mat4 shadowMatrix, vec3 shadowParams) {\n    _getShadowCoordOrtho(shadowMatrix, shadowParams, vPositionW);\n}\nvoid getShadowCoordPersp(mat4 shadowMatrix, vec4 shadowParams) {\n    _getShadowCoordPersp(shadowMatrix, shadowParams, vPositionW);\n}\nvoid getShadowCoordPerspNormalOffset(mat4 shadowMatrix, vec4 shadowParams) {\n    float distScale = abs(dot(vPositionW - dLightPosW, dLightDirNormW)); // fov?\n    vec3 wPos = vPositionW + dVertexNormalW * shadowParams.y * clamp(1.0 - dot(dVertexNormalW, -dLightDirNormW), 0.0, 1.0) * distScale;\n    _getShadowCoordPersp(shadowMatrix, shadowParams, wPos);\n}\nvoid getShadowCoordOrthoNormalOffset(mat4 shadowMatrix, vec3 shadowParams) {\n    vec3 wPos = vPositionW + dVertexNormalW * shadowParams.y * clamp(1.0 - dot(dVertexNormalW, -dLightDirNormW), 0.0, 1.0); //0.08\n    _getShadowCoordOrtho(shadowMatrix, shadowParams, wPos);\n}\n";
 pc.shaderChunks.shadowCoordVS = "void getLightDirPoint(vec3 lightPosW) {\n    vec3 lightDirW = vPositionW - lightPosW;\n    dLightDirNormW = normalize(lightDirW);\n    dLightPosW = lightPosW;\n}\nvoid _getShadowCoordOrtho(mat4 shadowMatrix, vec3 shadowParams, vec3 wPos) {\n    vec4 projPos = shadowMatrix * vec4(wPos, 1.0);\n    vMainShadowUv = projPos;\n}\nvoid _getShadowCoordPersp(mat4 shadowMatrix, vec3 shadowParams, vec3 wPos) {\n    vec4 projPos = shadowMatrix * vec4(wPos, 1.0);\n    vMainShadowUv = projPos;\n}\nvoid getShadowCoordOrtho(mat4 shadowMatrix, vec3 shadowParams) {\n    _getShadowCoordOrtho(shadowMatrix, shadowParams, vPositionW);\n}\nvoid getShadowCoordPersp(mat4 shadowMatrix, vec3 shadowParams) {\n    _getShadowCoordPersp(shadowMatrix, shadowParams, vPositionW);\n}\nvoid getShadowCoordPerspNormalOffset(mat4 shadowMatrix, vec3 shadowParams) {\n    float distScale = abs(dot(vPositionW - dLightPosW, dLightDirNormW)); // fov?\n    vec3 wPos = vPositionW + dNormalW * shadowParams.y * clamp(1.0 - dot(dNormalW, -dLightDirNormW), 0.0, 1.0) * distScale;\n    _getShadowCoordPersp(shadowMatrix, shadowParams, wPos);\n}\nvoid getShadowCoordOrthoNormalOffset(mat4 shadowMatrix, vec3 shadowParams) {\n    vec3 wPos = vPositionW + dNormalW * shadowParams.y * clamp(1.0 - dot(dNormalW, -dLightDirNormW), 0.0, 1.0); //0.08\n    _getShadowCoordOrtho(shadowMatrix, shadowParams, wPos);\n}\n";
-pc.shaderChunks.shadowCoordPerspZbufferPS = "void _getShadowCoordPerspZbuffer(mat4 shadowMatrix, vec4 shadowParams, vec3 wPos) {\n    vec4 projPos = shadowMatrix * vec4(wPos, 1.0);\n    projPos.xyz /= projPos.w;\n    dShadowCoord = projPos.xyz;\n    // depth bias is already applied on render\n}\nvoid getShadowCoordPerspZbufferNormalOffset(mat4 shadowMatrix, vec4 shadowParams) {\n    float distScale = abs(dot(vPositionW - dLightPosW, dLightDirNormW)); // fov?\n    vec3 wPos = vPositionW + vNormalW * shadowParams.y * clamp(1.0 - dot(vNormalW, -dLightDirNormW), 0.0, 1.0) * distScale;\n    _getShadowCoordPerspZbuffer(shadowMatrix, shadowParams, wPos);\n}\nvoid getShadowCoordPerspZbuffer(mat4 shadowMatrix, vec4 shadowParams) {\n    _getShadowCoordPerspZbuffer(shadowMatrix, shadowParams, vPositionW);\n}\n";
+pc.shaderChunks.shadowCoordPerspZbufferPS = "void _getShadowCoordPerspZbuffer(mat4 shadowMatrix, vec4 shadowParams, vec3 wPos) {\n    vec4 projPos = shadowMatrix * vec4(wPos, 1.0);\n    projPos.xyz /= projPos.w;\n    dShadowCoord = projPos.xyz;\n    // depth bias is already applied on render\n}\nvoid getShadowCoordPerspZbufferNormalOffset(mat4 shadowMatrix, vec4 shadowParams) {\n    float distScale = abs(dot(vPositionW - dLightPosW, dLightDirNormW)); // fov?\n    vec3 wPos = vPositionW + dVertexNormalW * shadowParams.y * clamp(1.0 - dot(dVertexNormalW, -dLightDirNormW), 0.0, 1.0) * distScale;\n    _getShadowCoordPerspZbuffer(shadowMatrix, shadowParams, wPos);\n}\nvoid getShadowCoordPerspZbuffer(mat4 shadowMatrix, vec4 shadowParams) {\n    _getShadowCoordPerspZbuffer(shadowMatrix, shadowParams, vPositionW);\n}\n";
 pc.shaderChunks.shadowEVSMPS = "float VSM$(sampler2D tex, vec2 texCoords, float resolution, float Z, float vsmBias, float exponent) {\n    vec3 moments = texture2D(tex, texCoords).xyz;\n    return calculateEVSM(moments, Z, vsmBias, exponent);\n}\nfloat getShadowVSM$(sampler2D shadowMap, vec3 shadowParams, float exponent) {\n    return VSM$(shadowMap, dShadowCoord.xy, shadowParams.x, dShadowCoord.z, shadowParams.y, exponent);\n}\nfloat getShadowSpotVSM$(sampler2D shadowMap, vec4 shadowParams, float exponent) {\n    return VSM$(shadowMap, dShadowCoord.xy, shadowParams.x, length(dLightDirW) * shadowParams.w + shadowParams.z, shadowParams.y, exponent);\n}\n";
 pc.shaderChunks.shadowEVSMnPS = "float VSM$(sampler2D tex, vec2 texCoords, float resolution, float Z, float vsmBias, float exponent) {\n    float pixelSize = 1.0 / resolution;\n    texCoords -= vec2(pixelSize);\n    vec3 s00 = texture2D(tex, texCoords).xyz;\n    vec3 s10 = texture2D(tex, texCoords + vec2(pixelSize, 0)).xyz;\n    vec3 s01 = texture2D(tex, texCoords + vec2(0, pixelSize)).xyz;\n    vec3 s11 = texture2D(tex, texCoords + vec2(pixelSize)).xyz;\n    vec2 fr = fract(texCoords * resolution);\n    vec3 h0 = mix(s00, s10, fr.x);\n    vec3 h1 = mix(s01, s11, fr.x);\n    vec3 moments = mix(h0, h1, fr.y);\n    return calculateEVSM(moments, Z, vsmBias, exponent);\n}\nfloat getShadowVSM$(sampler2D shadowMap, vec3 shadowParams, float exponent) {\n    return VSM$(shadowMap, dShadowCoord.xy, shadowParams.x, dShadowCoord.z, shadowParams.y, exponent);\n}\nfloat getShadowSpotVSM$(sampler2D shadowMap, vec4 shadowParams, float exponent) {\n    return VSM$(shadowMap, dShadowCoord.xy, shadowParams.x, length(dLightDirW) * shadowParams.w + shadowParams.z, shadowParams.y, exponent);\n}\n";
 pc.shaderChunks.shadowStandardPS = "vec3 lessThan2(vec3 a, vec3 b) {\n    return clamp((b - a)*1000.0, 0.0, 1.0); // softer version\n}\nfloat unpackFloat(vec4 rgbaDepth) {\n    const vec4 bitShift = vec4(1.0 / (256.0 * 256.0 * 256.0), 1.0 / (256.0 * 256.0), 1.0 / 256.0, 1.0);\n    return dot(rgbaDepth, bitShift);\n}\n// ----- Direct/Spot Sampling -----\n#ifdef GL2\n    float _getShadowPCF3x3(sampler2DShadow shadowMap, vec3 shadowParams) {\n        float z = dShadowCoord.z;\n        vec2 uv = dShadowCoord.xy * shadowParams.x; // 1 unit - 1 texel\n        float shadowMapSizeInv = 1.0 / shadowParams.x;\n        vec2 base_uv = floor(uv + 0.5);\n        float s = (uv.x + 0.5 - base_uv.x);\n        float t = (uv.y + 0.5 - base_uv.y);\n        base_uv -= vec2(0.5);\n        base_uv *= shadowMapSizeInv;\n        float sum = 0.0;\n        float uw0 = (3.0 - 2.0 * s);\n        float uw1 = (1.0 + 2.0 * s);\n        float u0 = (2.0 - s) / uw0 - 1.0;\n        float u1 = s / uw1 + 1.0;\n        float vw0 = (3.0 - 2.0 * t);\n        float vw1 = (1.0 + 2.0 * t);\n        float v0 = (2.0 - t) / vw0 - 1.0;\n        float v1 = t / vw1 + 1.0;\n        u0 = u0 * shadowMapSizeInv + base_uv.x;\n        v0 = v0 * shadowMapSizeInv + base_uv.y;\n        u1 = u1 * shadowMapSizeInv + base_uv.x;\n        v1 = v1 * shadowMapSizeInv + base_uv.y;\n        sum += uw0 * vw0 * texture(shadowMap, vec3(u0, v0, z));\n        sum += uw1 * vw0 * texture(shadowMap, vec3(u1, v0, z));\n        sum += uw0 * vw1 * texture(shadowMap, vec3(u0, v1, z));\n        sum += uw1 * vw1 * texture(shadowMap, vec3(u1, v1, z));\n        sum *= 1.0f / 16.0;\n        return sum;\n    }\n    float getShadowPCF3x3(sampler2DShadow shadowMap, vec3 shadowParams) {\n        return _getShadowPCF3x3(shadowMap, shadowParams);\n    }\n    float getShadowSpotPCF3x3(sampler2DShadow shadowMap, vec4 shadowParams) {\n        return _getShadowPCF3x3(shadowMap, shadowParams.xyz);\n    }\n#else\n    float _xgetShadowPCF3x3(mat3 depthKernel, sampler2D shadowMap, vec3 shadowParams) {\n        mat3 shadowKernel;\n        vec3 shadowCoord = dShadowCoord;\n        vec3 shadowZ = vec3(shadowCoord.z);\n        shadowKernel[0] = vec3(greaterThan(depthKernel[0], shadowZ));\n        shadowKernel[1] = vec3(greaterThan(depthKernel[1], shadowZ));\n        shadowKernel[2] = vec3(greaterThan(depthKernel[2], shadowZ));\n        vec2 fractionalCoord = fract( shadowCoord.xy * shadowParams.x );\n        shadowKernel[0] = mix(shadowKernel[0], shadowKernel[1], fractionalCoord.x);\n        shadowKernel[1] = mix(shadowKernel[1], shadowKernel[2], fractionalCoord.x);\n        vec4 shadowValues;\n        shadowValues.x = mix(shadowKernel[0][0], shadowKernel[0][1], fractionalCoord.y);\n        shadowValues.y = mix(shadowKernel[0][1], shadowKernel[0][2], fractionalCoord.y);\n        shadowValues.z = mix(shadowKernel[1][0], shadowKernel[1][1], fractionalCoord.y);\n        shadowValues.w = mix(shadowKernel[1][1], shadowKernel[1][2], fractionalCoord.y);\n        return dot( shadowValues, vec4( 1.0 ) ) * 0.25;\n    }\n    float _getShadowPCF3x3(sampler2D shadowMap, vec3 shadowParams) {\n        vec3 shadowCoord = dShadowCoord;\n        float xoffset = 1.0 / shadowParams.x; // 1/shadow map width\n        float dx0 = -xoffset;\n        float dx1 = xoffset;\n        mat3 depthKernel;\n        depthKernel[0][0] = unpackFloat(texture2D(shadowMap, shadowCoord.xy + vec2(dx0, dx0)));\n        depthKernel[0][1] = unpackFloat(texture2D(shadowMap, shadowCoord.xy + vec2(dx0, 0.0)));\n        depthKernel[0][2] = unpackFloat(texture2D(shadowMap, shadowCoord.xy + vec2(dx0, dx1)));\n        depthKernel[1][0] = unpackFloat(texture2D(shadowMap, shadowCoord.xy + vec2(0.0, dx0)));\n        depthKernel[1][1] = unpackFloat(texture2D(shadowMap, shadowCoord.xy));\n        depthKernel[1][2] = unpackFloat(texture2D(shadowMap, shadowCoord.xy + vec2(0.0, dx1)));\n        depthKernel[2][0] = unpackFloat(texture2D(shadowMap, shadowCoord.xy + vec2(dx1, dx0)));\n        depthKernel[2][1] = unpackFloat(texture2D(shadowMap, shadowCoord.xy + vec2(dx1, 0.0)));\n        depthKernel[2][2] = unpackFloat(texture2D(shadowMap, shadowCoord.xy + vec2(dx1, dx1)));\n        return _xgetShadowPCF3x3(depthKernel, shadowMap, shadowParams);\n    }\n    float getShadowPCF3x3(sampler2D shadowMap, vec3 shadowParams) {\n        return _getShadowPCF3x3(shadowMap, shadowParams);\n    }\n    float getShadowSpotPCF3x3(sampler2D shadowMap, vec4 shadowParams) {\n        return _getShadowPCF3x3(shadowMap, shadowParams.xyz);\n    }\n#endif\n// ----- Point Sampling -----\nfloat _getShadowPoint(samplerCube shadowMap, vec4 shadowParams, vec3 dir) {\n    vec3 tc = normalize(dir);\n    vec3 tcAbs = abs(tc);\n    vec4 dirX = vec4(1,0,0, tc.x);\n    vec4 dirY = vec4(0,1,0, tc.y);\n    float majorAxisLength = tc.z;\n    if ((tcAbs.x > tcAbs.y) && (tcAbs.x > tcAbs.z)) {\n        dirX = vec4(0,0,1, tc.z);\n        dirY = vec4(0,1,0, tc.y);\n        majorAxisLength = tc.x;\n    } else if ((tcAbs.y > tcAbs.x) && (tcAbs.y > tcAbs.z)) {\n        dirX = vec4(1,0,0, tc.x);\n        dirY = vec4(0,0,1, tc.z);\n        majorAxisLength = tc.y;\n    }\n    float shadowParamsInFaceSpace = ((1.0/shadowParams.x) * 2.0) * abs(majorAxisLength);\n    vec3 xoffset = (dirX.xyz * shadowParamsInFaceSpace);\n    vec3 yoffset = (dirY.xyz * shadowParamsInFaceSpace);\n    vec3 dx0 = -xoffset;\n    vec3 dy0 = -yoffset;\n    vec3 dx1 = xoffset;\n    vec3 dy1 = yoffset;\n    mat3 shadowKernel;\n    mat3 depthKernel;\n    depthKernel[0][0] = unpackFloat(textureCube(shadowMap, tc + dx0 + dy0));\n    depthKernel[0][1] = unpackFloat(textureCube(shadowMap, tc + dx0));\n    depthKernel[0][2] = unpackFloat(textureCube(shadowMap, tc + dx0 + dy1));\n    depthKernel[1][0] = unpackFloat(textureCube(shadowMap, tc + dy0));\n    depthKernel[1][1] = unpackFloat(textureCube(shadowMap, tc));\n    depthKernel[1][2] = unpackFloat(textureCube(shadowMap, tc + dy1));\n    depthKernel[2][0] = unpackFloat(textureCube(shadowMap, tc + dx1 + dy0));\n    depthKernel[2][1] = unpackFloat(textureCube(shadowMap, tc + dx1));\n    depthKernel[2][2] = unpackFloat(textureCube(shadowMap, tc + dx1 + dy1));\n    vec3 shadowZ = vec3(length(dir) * shadowParams.w + shadowParams.z);\n    shadowKernel[0] = vec3(lessThan2(depthKernel[0], shadowZ));\n    shadowKernel[1] = vec3(lessThan2(depthKernel[1], shadowZ));\n    shadowKernel[2] = vec3(lessThan2(depthKernel[2], shadowZ));\n    vec2 uv = (vec2(dirX.w, dirY.w) / abs(majorAxisLength)) * 0.5;\n    vec2 fractionalCoord = fract( uv * shadowParams.x );\n    shadowKernel[0] = mix(shadowKernel[0], shadowKernel[1], fractionalCoord.x);\n    shadowKernel[1] = mix(shadowKernel[1], shadowKernel[2], fractionalCoord.x);\n    vec4 shadowValues;\n    shadowValues.x = mix(shadowKernel[0][0], shadowKernel[0][1], fractionalCoord.y);\n    shadowValues.y = mix(shadowKernel[0][1], shadowKernel[0][2], fractionalCoord.y);\n    shadowValues.z = mix(shadowKernel[1][0], shadowKernel[1][1], fractionalCoord.y);\n    shadowValues.w = mix(shadowKernel[1][1], shadowKernel[1][2], fractionalCoord.y);\n    return 1.0 - dot( shadowValues, vec4( 1.0 ) ) * 0.25;\n}\nfloat getShadowPointPCF3x3(samplerCube shadowMap, vec4 shadowParams) {\n    return _getShadowPoint(shadowMap, shadowParams, dLightDirW);\n}\n";
@@ -6540,6 +6562,8 @@ pc.shaderChunks.shadowStandardVSPS = "#ifdef GL2\n#define SHADOW_SAMPLERVS sampl
 pc.shaderChunks.shadowVSM8PS = "float calculateVSM8(vec3 moments, float Z, float vsmBias) {\n    float VSMBias = vsmBias;//0.01 * 0.25;\n    float depthScale = VSMBias * Z;\n    float minVariance1 = depthScale * depthScale;\n    return chebyshevUpperBound(moments.xy, Z, minVariance1, 0.1);\n}\nfloat decodeFloatRG(vec2 rg) {\n    return rg.y*(1.0/255.0) + rg.x;\n}\nfloat VSM8(sampler2D tex, vec2 texCoords, float resolution, float Z, float vsmBias, float exponent) {\n    vec4 c = texture2D(tex, texCoords);\n    vec3 moments = vec3(decodeFloatRG(c.xy), decodeFloatRG(c.zw), 0.0);\n    return calculateVSM8(moments, Z, vsmBias);\n}\nfloat getShadowVSM8(sampler2D shadowMap, vec3 shadowParams, float exponent) {\n    return VSM8(shadowMap, dShadowCoord.xy, shadowParams.x, dShadowCoord.z, shadowParams.y, 0.0);\n}\nfloat getShadowSpotVSM8(sampler2D shadowMap, vec4 shadowParams, float exponent) {\n    return VSM8(shadowMap, dShadowCoord.xy, shadowParams.x, length(dLightDirW) * shadowParams.w + shadowParams.z, shadowParams.y, 0.0);\n}\n";
 pc.shaderChunks.shadowVSMVSPS = "float getShadowVSM$VS(sampler2D shadowMap, vec3 shadowParams, float exponent) {\n    dShadowCoord = vMainShadowUv.xyz;\n    dShadowCoord.z += shadowParams.z;\n    dShadowCoord.xyz /= vMainShadowUv.w;\n    dShadowCoord.z = min(dShadowCoord.z, 1.0);\n    return $VSM(shadowMap, dShadowCoord.xy, shadowParams.x, dShadowCoord.z, shadowParams.y, exponent);\n}\n";
 pc.shaderChunks.shadowVSM_commonPS = "float linstep(float a, float b, float v) {\n    return saturate((v - a) / (b - a));\n}\nfloat reduceLightBleeding(float pMax, float amount) {\n  // Remove the [0, amount] tail and linearly rescale (amount, 1].\n   return linstep(amount, 1.0, pMax);\n}\nfloat chebyshevUpperBound(vec2 moments, float mean, float minVariance, float lightBleedingReduction) {\n    // Compute variance\n    float variance = moments.y - (moments.x * moments.x);\n    variance = max(variance, minVariance);\n    // Compute probabilistic upper bound\n    float d = mean - moments.x;\n    float pMax = variance / (variance + (d * d));\n    pMax = reduceLightBleeding(pMax, lightBleedingReduction);\n    // One-tailed Chebyshev\n    return (mean <= moments.x ? 1.0 : pMax);\n}\nfloat calculateEVSM(vec3 moments, float Z, float vsmBias, float exponent) {\n    Z = 2.0 * Z - 1.0;\n    float warpedDepth = exp(exponent * Z);\n    moments.xy += vec2(warpedDepth, warpedDepth*warpedDepth) * (1.0 - moments.z);\n    float VSMBias = vsmBias;//0.01 * 0.25;\n    float depthScale = VSMBias * exponent * warpedDepth;\n    float minVariance1 = depthScale * depthScale;\n    return chebyshevUpperBound(moments.xy, warpedDepth, minVariance1, 0.1);\n}\n";
+pc.shaderChunks.skinBatchConstVS = "attribute float vertex_boneIndices;\nuniform mat4 matrix_pose[BONE_LIMIT];\nmat4 getBoneMatrix(const in float i) {\n    mat4 bone = matrix_pose[int(i)];\n    return bone;\n}\n";
+pc.shaderChunks.skinBatchTexVS = "attribute float vertex_boneIndices;\nuniform sampler2D texture_poseMap;\nuniform vec2 texture_poseMapSize;\nmat4 getBoneMatrix(const in float i) {\n    float j = i * 4.0;\n    float x = mod(j, float(texture_poseMapSize.x));\n    float y = floor(j / float(texture_poseMapSize.x));\n    float dx = 1.0 / float(texture_poseMapSize.x);\n    float dy = 1.0 / float(texture_poseMapSize.y);\n    y = dy * (y + 0.5);\n    vec4 v1 = texture2D(texture_poseMap, vec2(dx * (x + 0.5), y));\n    vec4 v2 = texture2D(texture_poseMap, vec2(dx * (x + 1.5), y));\n    vec4 v3 = texture2D(texture_poseMap, vec2(dx * (x + 2.5), y));\n    vec4 v4 = texture2D(texture_poseMap, vec2(dx * (x + 3.5), y));\n    mat4 bone = mat4(v1, v2, v3, v4);\n    return bone;\n}\n";
 pc.shaderChunks.skinConstVS = "attribute vec4 vertex_boneWeights;\nattribute vec4 vertex_boneIndices;\nuniform mat4 matrix_pose[BONE_LIMIT];\nuniform vec3 skinPosOffset;\nmat4 getBoneMatrix(const in float i)\n{\n    mat4 bone = matrix_pose[int(i)];\n    return bone;\n}\n";
 pc.shaderChunks.skinTexVS = "attribute vec4 vertex_boneWeights;\nattribute vec4 vertex_boneIndices;\nuniform sampler2D texture_poseMap;\nuniform vec2 texture_poseMapSize;\nuniform vec3 skinPosOffset;\nmat4 getBoneMatrix(const in float i)\n{\n    float j = i * 4.0;\n    float x = mod(j, float(texture_poseMapSize.x));\n    float y = floor(j / float(texture_poseMapSize.x));\n    float dx = 1.0 / float(texture_poseMapSize.x);\n    float dy = 1.0 / float(texture_poseMapSize.y);\n    y = dy * (y + 0.5);\n    vec4 v1 = texture2D(texture_poseMap, vec2(dx * (x + 0.5), y));\n    vec4 v2 = texture2D(texture_poseMap, vec2(dx * (x + 1.5), y));\n    vec4 v3 = texture2D(texture_poseMap, vec2(dx * (x + 2.5), y));\n    vec4 v4 = texture2D(texture_poseMap, vec2(dx * (x + 3.5), y));\n    mat4 bone = mat4(v1, v2, v3, v4);\n    return bone;\n}\n";
 pc.shaderChunks.skyboxPS = "varying vec3 vViewDir;\nuniform samplerCube texture_cubeMap;\nvoid main(void) {\n    gl_FragColor = textureCube(texture_cubeMap, fixSeams(vViewDir));\n}\n";
@@ -6566,9 +6590,11 @@ pc.shaderChunks.tonemappingHejlPS = "uniform float exposure;\nvec3 toneMap(vec3 
 pc.shaderChunks.tonemappingLinearPS = "uniform float exposure;\nvec3 toneMap(vec3 color) {\n    return color * exposure;\n}\n";
 pc.shaderChunks.tonemappingNonePS = "vec3 toneMap(vec3 color) {\n    return color;\n}\n";
 pc.shaderChunks.transformVS = "mat4 getModelMatrix() {\n    return matrix_model;\n}\nvec4 getPosition() {\n    dModelMatrix = getModelMatrix();\n    vec4 posW = dModelMatrix * vec4(vertex_position, 1.0);\n    dPositionW = posW.xyz;\n    return matrix_viewProjection * posW;\n}\nvec3 getWorldPosition() {\n    return dPositionW;\n}\n";
+pc.shaderChunks.transformBatchSkinnedVS = "mat4 getModelMatrix() {\n    return getBoneMatrix(vertex_boneIndices);\n}\nvec4 getPosition() {\n    dModelMatrix = getModelMatrix();\n    vec4 posW = dModelMatrix * vec4(vertex_position, 1.0);\n    dPositionW = posW.xyz;\n    return matrix_viewProjection * posW;\n}\nvec3 getWorldPosition() {\n    return dPositionW;\n}\n";
 pc.shaderChunks.transformDeclVS = "attribute vec3 vertex_position;\nuniform mat4 matrix_model;\nuniform mat4 matrix_viewProjection;\nvec3 dPositionW;\nmat4 dModelMatrix;\n";
 pc.shaderChunks.transformInstancedVS = "mat4 getModelMatrix() {\n    return mat4(instance_line1, instance_line2, instance_line3, instance_line4);\n}\nvec4 getPosition() {\n    dModelMatrix = getModelMatrix();\n    vec4 posW = dModelMatrix * vec4(vertex_position, 1.0);\n    dPositionW = posW.xyz;\n    return matrix_viewProjection * posW;\n}\nvec3 getWorldPosition() {\n    return dPositionW;\n}\n";
 pc.shaderChunks.transformScreenSpaceVS = "mat4 getModelMatrix() {\n    return matrix_model;\n}\nvec4 getPosition() {\n    vec4 posW = vec4((getModelMatrix() * vec4(vertex_position, 1.0)).xy, 0.0, 1.0);\n    dPositionW = posW.xyz;\n    return posW;\n}\nvec3 getWorldPosition() {\n    return dPositionW;\n}\n";
+pc.shaderChunks.transformScreenSpaceBatchSkinnedVS = "mat4 getModelMatrix() {\n    return getBoneMatrix(vertex_boneIndices);\n}\nvec4 getPosition() {\n    vec4 posW = vec4((getModelMatrix() * vec4(vertex_position, 1.0)).xy, 0.0, 1.0);\n    dPositionW = posW.xyz;\n    return posW;\n}\nvec3 getWorldPosition() {\n    return dPositionW;\n}\n";
 pc.shaderChunks.transformSkinnedVS = "mat4 getModelMatrix() {\n    return getBoneMatrix(vertex_boneIndices.x) * vertex_boneWeights.x +\n           getBoneMatrix(vertex_boneIndices.y) * vertex_boneWeights.y +\n           getBoneMatrix(vertex_boneIndices.z) * vertex_boneWeights.z +\n           getBoneMatrix(vertex_boneIndices.w) * vertex_boneWeights.w;\n}\nvec4 getPosition() {\n    dModelMatrix = getModelMatrix();\n    vec4 posW = dModelMatrix * vec4(vertex_position, 1.0);\n    //posW.xyz /= posW.w;\n    posW.xyz += skinPosOffset;\n    dPositionW = posW.xyz;// / posW.w;\n    return matrix_viewProjection * posW;\n}\nvec3 getWorldPosition() {\n    return dPositionW;\n}\n";
 pc.shaderChunks.transformUv1VS = "mat4 getModelMatrix() {\n    return matrix_model;\n}\nvec4 getPosition() {\n    dModelMatrix = getModelMatrix();\n    vec4 posW = dModelMatrix * vec4(vertex_position, 1.0);\n    dPositionW = posW.xyz;\n    return vec4(vertex_texCoord1.xy * 2.0 - 1.0, 0.5, 1);\n}\nvec3 getWorldPosition() {\n    return dPositionW;\n}\n";
 pc.shaderChunks.uv0VS = "\nvec2 getUv0() {\n    return vertex_texCoord0;\n}\n";
@@ -6619,11 +6645,14 @@ pc.programlib = {gammaCode:function(value) {
       }
     }
   }
-}, skinCode:function(device) {
+}, skinCode:function(device, chunks) {
+  if (!chunks) {
+    chunks = pc.shaderChunks;
+  }
   if (device.supportsBoneTextures) {
-    return pc.shaderChunks.skinTexVS;
+    return chunks.skinTexVS;
   } else {
-    return "#define BONE_LIMIT " + device.getBoneLimit() + "\n" + pc.shaderChunks.skinConstVS;
+    return "#define BONE_LIMIT " + device.getBoneLimit() + "\n" + chunks.skinConstVS;
   }
 }, precisionCode:function(device) {
   var pcode = "precision " + device.precision + " float;\n";
@@ -6812,7 +6841,18 @@ pc.programlib.depth = {generateKey:function(device, options) {
   var fshader = code;
   return {attributes:attributes, vshader:vshader, fshader:fshader};
 }};
-pc.programlib.depthrgba = {generateKey:function(device, options) {
+pc.programlib.depthrgba = {hashCode:function(str) {
+  var hash = 0;
+  if (str.length === 0) {
+    return hash;
+  }
+  for (var i = 0;i < str.length;i++) {
+    var char = str.charCodeAt(i);
+    hash = (hash << 5) - hash + char;
+    hash = hash & hash;
+  }
+  return hash;
+}, generateKey:function(device, options) {
   var key = "depthrgba";
   if (options.skin) {
     key += "_skin";
@@ -6827,6 +6867,15 @@ pc.programlib.depthrgba = {generateKey:function(device, options) {
     key += "_inst";
   }
   key += "_" + options.shadowType;
+  if (options.chunks) {
+    var str = "";
+    for (var p in options.chunks) {
+      if (options.chunks.hasOwnProperty(p)) {
+        str += p + options.chunks[p];
+      }
+    }
+    key += this.hashCode(str);
+  }
   return key;
 }, createShaderDefinition:function(device, options) {
   var attributes = {vertex_position:pc.SEMANTIC_POSITION};
@@ -6838,10 +6887,53 @@ pc.programlib.depthrgba = {generateKey:function(device, options) {
     attributes.vertex_texCoord0 = pc.SEMANTIC_TEXCOORD0;
   }
   var chunks = pc.shaderChunks;
+  if (options.chunks) {
+    var customChunks = [];
+    for (var p in chunks) {
+      if (chunks.hasOwnProperty(p)) {
+        if (!options.chunks[p]) {
+          customChunks[p] = chunks[p];
+        } else {
+          customChunks[p] = options.chunks[p];
+        }
+      }
+    }
+    chunks = customChunks;
+  }
   var code = "";
   code += chunks.transformDeclVS;
+  if (options.chunks && options.attributes) {
+    for (var p in options.attributes) {
+      if (options.attributes.hasOwnProperty(p)) {
+        attributes[p] = options.attributes[p];
+      }
+    }
+  }
+  var uvAdded = false;
+  if (attributes.vertex_normal) {
+    code += "attribute vec3 vertex_normal;\n";
+  }
+  if (attributes.vertex_tangent) {
+    code += "attribute vec4 vertex_tangent;\n";
+  }
+  if (attributes.vertex_texCoord0) {
+    uvAdded = true;
+    code += "attribute vec2 vertex_texCoord0;\n";
+  }
+  if (attributes.vertex_texCoord1) {
+    code += "attribute vec2 vertex_texCoord1;\n";
+  }
+  if (attributes.vertex_color) {
+    code += "attribute vec4 vertex_color;\n";
+  }
+  if (!options.skin && attributes.vertex_boneWeights) {
+    code += "attribute vec4 vertex_boneWeights;\n";
+  }
+  if (!options.skin && attributes.vertex_boneIndices) {
+    code += "attribute vec4 vertex_boneIndices;\n";
+  }
   if (options.skin) {
-    code += pc.programlib.skinCode(device);
+    code += pc.programlib.skinCode(device, chunks);
     code += chunks.transformSkinnedVS;
   } else {
     if (options.instancing) {
@@ -6860,7 +6952,9 @@ pc.programlib.depthrgba = {generateKey:function(device, options) {
     }
   }
   if (options.opacityMap) {
-    code += "attribute vec2 vertex_texCoord0;\n\n";
+    if (!uvAdded) {
+      code += "attribute vec2 vertex_texCoord0;\n\n";
+    }
     code += "varying vec2 vUv0;\n\n";
   }
   if (options.type !== pc.LIGHTTYPE_DIRECTIONAL) {
@@ -6909,7 +7003,12 @@ pc.programlib.depthrgba = {generateKey:function(device, options) {
     code += chunks.packDepthPS;
   } else {
     if (options.shadowType === pc.SHADOW_VSM8) {
-      code += "vec2 encodeFloatRG( float v ) {\n\r\n                     vec2 enc = vec2(1.0, 255.0) * v;\n\r\n                     enc = fract(enc);\n\r\n                     enc -= enc.yy * vec2(1.0/255.0, 1.0/255.0);\n\r\n                     return enc;\n\r\n                    }\n";
+      code += "vec2 encodeFloatRG( float v ) {\n";
+      code += "    vec2 enc = vec2(1.0, 255.0) * v;\n";
+      code += "    enc = fract(enc);\n";
+      code += "    enc -= enc.yy * vec2(1.0/255.0, 1.0/255.0);\n";
+      code += "    return enc;\n";
+      code += "}\n\n";
     }
   }
   code += pc.programlib.begin();
@@ -7295,7 +7394,7 @@ pc.programlib.standard = {hashCode:function(str) {
   }
   code += chunks.baseVS;
   var mainShadowLight = -1;
-  if (!options.noShadow) {
+  if (!options.noShadow && !options.twoSidedLighting) {
     for (i = 0;i < options.lights.length;i++) {
       lightType = options.lights[i]._type;
       if (options.lights[i].castShadows) {
@@ -7407,7 +7506,7 @@ pc.programlib.standard = {hashCode:function(str) {
     if (options.skin) {
       attributes.vertex_boneWeights = pc.SEMANTIC_BLENDWEIGHT;
       attributes.vertex_boneIndices = pc.SEMANTIC_BLENDINDICES;
-      code += pc.programlib.skinCode(device);
+      code += pc.programlib.skinCode(device, chunks);
       code += chunks.transformSkinnedVS;
       if (needsNormal) {
         code += chunks.normalSkinnedVS;
@@ -7782,6 +7881,22 @@ pc.programlib.standard = {hashCode:function(str) {
   var usesCookie = false;
   var usesCookieNow;
   code += chunks.startPS;
+  if (needsNormal) {
+    if (options.twoSidedLighting) {
+      code += "   dVertexNormalW = gl_FrontFacing ? vNormalW : -vNormalW;\n";
+    } else {
+      code += "   dVertexNormalW = vNormalW;\n";
+    }
+    if (options.heightMap || options.normalMap) {
+      if (options.twoSidedLighting) {
+        code += "   dTangentW = gl_FrontFacing ? vTangentW : -vTangentW;\n";
+        code += "   dBinormalW = gl_FrontFacing ? vBinormalW : -vBinormalW;\n";
+      } else {
+        code += "   dTangentW = vTangentW;\n";
+        code += "   dBinormalW = vBinormalW;\n";
+      }
+    }
+  }
   var opacityParallax = false;
   if (options.blendType === pc.BLEND_NONE && !options.alphaTest && !options.alphaToCoverage) {
     code += "   dAlpha = 1.0;\n";
@@ -8002,6 +8117,15 @@ pc.programlib.standard = {hashCode:function(str) {
   if (code.includes("dNormalW")) {
     structCode += "vec3 dNormalW;\n";
   }
+  if (code.includes("dVertexNormalW")) {
+    structCode += "vec3 dVertexNormalW;\n";
+  }
+  if (code.includes("dTangentW")) {
+    structCode += "vec3 dTangentW;\n";
+  }
+  if (code.includes("dBinormalW")) {
+    structCode += "vec3 dBinormalW;\n";
+  }
   if (code.includes("dViewDirW")) {
     structCode += "vec3 dViewDirW;\n";
   }
@@ -8139,7 +8263,7 @@ pc.extend(pc, function() {
   PostEffect.prototype = {render:function(inputTarget, outputTarget, rect) {
   }};
   function createFullscreenQuad(device) {
-    var vertexFormat = new pc.VertexFormat(device, [{semantic:pc.SEMANTIC_POSITION, components:2, type:pc.ELEMENTTYPE_FLOAT32}]);
+    var vertexFormat = new pc.VertexFormat(device, [{semantic:pc.SEMANTIC_POSITION, components:2, type:pc.TYPE_FLOAT32}]);
     var vertexBuffer = new pc.VertexBuffer(device, vertexFormat, 4);
     var iterator = new pc.VertexIterator(vertexBuffer);
     iterator.element[pc.SEMANTIC_POSITION].set(-1, -1);
@@ -8593,6 +8717,7 @@ pc.extend(pc, function() {
     this._skyboxModel = null;
   };
   Scene.prototype.setSkybox = function(cubemaps) {
+    var i;
     if (!cubemaps) {
       cubemaps = [null, null, null, null, null, null, null];
     }
@@ -8601,7 +8726,7 @@ pc.extend(pc, function() {
       different = true;
     }
     if (!different) {
-      for (var i = 0;i < 6 && !different;i++) {
+      for (i = 0;i < 6 && !different;i++) {
         if (this._skyboxPrefiltered[i] !== cubemaps[i + 1]) {
           different = true;
         }
@@ -8610,7 +8735,7 @@ pc.extend(pc, function() {
     if (!different) {
       return;
     }
-    for (var i = 0;i < 6;i++) {
+    for (i = 0;i < 6;i++) {
       this._skyboxPrefiltered[i] = cubemaps[i + 1];
     }
     this.skybox = cubemaps[0];
@@ -9817,13 +9942,17 @@ pc.extend(pc, function() {
       device.draw(mesh.primitive[style]);
       return 0;
     }
-  }, findShadowShader:function(meshInstance, type, shadowType) {
+  }, findShadowShader:function(meshInstance, type, shadowType, scene) {
     if (shadowType >= numShadowModes) {
       shadowType -= numShadowModes;
     }
     var material = meshInstance.material;
-    return this.library.getProgram("depthrgba", {skin:!!meshInstance.skinInstance, opacityMap:!!material.opacityMap, opacityChannel:material.opacityMap ? material.opacityMapChannel || "r" : null, shadowType:shadowType, instancing:meshInstance.instancingData, type:type});
-  }, renderShadows:function(device, camera, drawCalls, lights) {
+    var smode = shadowType + type * numShadowModes;
+    if (!material.shader) {
+      material.updateShader(this.device, scene, meshInstance._shaderDefs, meshInstance._staticLightList);
+    }
+    return this.library.getProgram("depthrgba", {skin:!!meshInstance.skinInstance, opacityMap:!!material.opacityMap, opacityChannel:material.opacityMap ? material.opacityMapChannel || "r" : null, shadowType:shadowType, instancing:meshInstance.instancingData, type:type, chunks:material.chunks, attributes:material.shader.definition.attributes});
+  }, renderShadows:function(device, camera, drawCalls, lights, scene) {
     var i, j, light, shadowShader, type, shadowCam, shadowCamNode, lightNode, passes, pass, frustumSize, shadowType, smode;
     var unitPerTexel, delta, p;
     var minx, miny, minz, maxx, maxy, maxz, centerx, centery;
@@ -9833,6 +9962,8 @@ pc.extend(pc, function() {
     var style;
     var emptyAabb;
     var drawCallAabb;
+    var passFlag = 1 << pc.SHADER_SHADOW;
+    var paramName, parameter, parameters;
     for (i = 0;i < lights.length;i++) {
       light = lights[i];
       type = light._type;
@@ -10036,9 +10167,31 @@ pc.extend(pc, function() {
             material = meshInstance.material;
             this.setBaseConstants(device, material);
             this.setSkinning(device, meshInstance, material);
+            if (material.chunks) {
+              parameters = material.parameters;
+              for (paramName in parameters) {
+                parameter = parameters[paramName];
+                if (parameter.passFlags & passFlag) {
+                  if (!parameter.scopeId) {
+                    parameter.scopeId = device.scope.resolve(paramName);
+                  }
+                  parameter.scopeId.setValue(parameter.data);
+                }
+              }
+              parameters = meshInstance.parameters;
+              for (paramName in parameters) {
+                parameter = parameters[paramName];
+                if (parameter.passFlags & passFlag) {
+                  if (!parameter.scopeId) {
+                    parameter.scopeId = device.scope.resolve(paramName);
+                  }
+                  parameter.scopeId.setValue(parameter.data);
+                }
+              }
+            }
             shadowShader = meshInstance._shader[pc.SHADER_SHADOW + smode];
             if (!shadowShader) {
-              shadowShader = this.findShadowShader(meshInstance, type, shadowType);
+              shadowShader = this.findShadowShader(meshInstance, type, shadowType, scene);
               meshInstance._shader[pc.SHADER_SHADOW + smode] = shadowShader;
               meshInstance._key[pc.SORTKEY_DEPTH] = getDepthKey(meshInstance);
             }
@@ -10194,6 +10347,7 @@ pc.extend(pc, function() {
       }
     }
   }, renderForward:function(device, camera, drawCalls, scene, pass) {
+    var passFlag = 1 << pass;
     var drawCallsCount = drawCalls.length;
     var vrDisplay = camera.vrDisplay;
     this.sortDrawCalls(drawCalls, this.frontToBack ? this.sortCompare : this.sortCompareMesh, pc.SORTKEY_FORWARD);
@@ -10267,10 +10421,12 @@ pc.extend(pc, function() {
           parameters = material.parameters;
           for (paramName in parameters) {
             parameter = parameters[paramName];
-            if (!parameter.scopeId) {
-              parameter.scopeId = device.scope.resolve(paramName);
+            if (parameter.passFlags & passFlag) {
+              if (!parameter.scopeId) {
+                parameter.scopeId = device.scope.resolve(paramName);
+              }
+              parameter.scopeId.setValue(parameter.data);
             }
-            parameter.scopeId.setValue(parameter.data);
           }
           if (!prevMaterial || lightMask !== prevLightMask) {
             usedDirLights = this.dispatchDirectLights(scene, lightMask);
@@ -10330,10 +10486,12 @@ pc.extend(pc, function() {
         parameters = drawCall.parameters;
         for (paramName in parameters) {
           parameter = parameters[paramName];
-          if (!parameter.scopeId) {
-            parameter.scopeId = device.scope.resolve(paramName);
+          if (parameter.passFlags & passFlag) {
+            if (!parameter.scopeId) {
+              parameter.scopeId = device.scope.resolve(paramName);
+            }
+            parameter.scopeId.setValue(parameter.data);
           }
-          parameter.scopeId.setValue(parameter.data);
         }
         device.setVertexBuffer(drawCall.morphInstance && drawCall.morphInstance._vertexBuffer ? drawCall.morphInstance._vertexBuffer : mesh.vertexBuffer, 0);
         style = drawCall.renderStyle;
@@ -10398,7 +10556,7 @@ pc.extend(pc, function() {
     return lights;
   }, setupInstancing:function(device) {
     if (!pc._instanceVertexFormat) {
-      var formatDesc = [{semantic:pc.SEMANTIC_TEXCOORD2, components:4, type:pc.ELEMENTTYPE_FLOAT32}, {semantic:pc.SEMANTIC_TEXCOORD3, components:4, type:pc.ELEMENTTYPE_FLOAT32}, {semantic:pc.SEMANTIC_TEXCOORD4, components:4, type:pc.ELEMENTTYPE_FLOAT32}, {semantic:pc.SEMANTIC_TEXCOORD5, components:4, type:pc.ELEMENTTYPE_FLOAT32}];
+      var formatDesc = [{semantic:pc.SEMANTIC_TEXCOORD2, components:4, type:pc.TYPE_FLOAT32}, {semantic:pc.SEMANTIC_TEXCOORD3, components:4, type:pc.TYPE_FLOAT32}, {semantic:pc.SEMANTIC_TEXCOORD4, components:4, type:pc.TYPE_FLOAT32}, {semantic:pc.SEMANTIC_TEXCOORD5, components:4, type:pc.TYPE_FLOAT32}];
       pc._instanceVertexFormat = new pc.VertexFormat(device, formatDesc);
     }
     if (device.enableAutoInstancing) {
@@ -10694,7 +10852,7 @@ pc.extend(pc, function() {
     this.updateCameraFrustum(camera);
     this.updateCpuSkinMatrices(drawCalls);
     this.updateMorphedBounds(drawCalls);
-    this.renderShadows(device, camera, shadowCasters, lights);
+    this.renderShadows(device, camera, shadowCasters, lights, scene);
     drawCalls = this.cull(camera, drawCalls);
     this.calculateSortDistances(drawCalls, camPos, camFwd, this.frontToBack);
     this.updateGpuSkinMatrices(drawCalls);
@@ -11211,6 +11369,7 @@ pc.extend(pc, function() {
         this.worldTransform.copy(this.localTransform);
       } else {
         if (this.scaleCompensation) {
+          var parentWorldScale;
           var parent = this._parent;
           var scale = this.localScale;
           var parentToUseScaleFrom = parent;
@@ -11221,7 +11380,7 @@ pc.extend(pc, function() {
             if (parentToUseScaleFrom) {
               parentToUseScaleFrom = parentToUseScaleFrom._parent;
               if (parentToUseScaleFrom) {
-                var parentWorldScale = parentToUseScaleFrom.worldTransform.getScale();
+                parentWorldScale = parentToUseScaleFrom.worldTransform.getScale();
                 scaleCompensateScale.mul2(parentWorldScale, this.localScale);
                 scale = scaleCompensateScale;
               }
@@ -11348,6 +11507,8 @@ pc.extend(pc, function() {
 pc.extend(pc, function() {
   var _deviceCoord = new pc.Vec3;
   var _far = new pc.Vec3;
+  var _farW = new pc.Vec3;
+  var _invViewProjMat = new pc.Mat4;
   var Camera = function() {
     this._projection = pc.PROJECTION_PERSPECTIVE;
     this._nearClip = .1;
@@ -11413,18 +11574,18 @@ pc.extend(pc, function() {
     var wtm = this._node.getWorldTransform();
     this._viewMat.copy(wtm).invert();
     this._viewProjMat.mul2(projMat, this._viewMat);
-    var invViewProjMat = this._viewProjMat.clone().invert();
+    _invViewProjMat.copy(this._viewProjMat).invert();
     if (this._projection === pc.PROJECTION_PERSPECTIVE) {
       _far.set(x / cw * 2 - 1, (ch - y) / ch * 2 - 1, 1);
-      var farW = invViewProjMat.transformPoint(_far);
-      var w = _far.x * invViewProjMat.data[3] + _far.y * invViewProjMat.data[7] + _far.z * invViewProjMat.data[11] + invViewProjMat.data[15];
-      farW.scale(1 / w);
+      _invViewProjMat.transformPoint(_far, _farW);
+      var w = _far.x * _invViewProjMat.data[3] + _far.y * _invViewProjMat.data[7] + _far.z * _invViewProjMat.data[11] + _invViewProjMat.data[15];
+      _farW.scale(1 / w);
       var alpha = z / this._farClip;
-      worldCoord.lerp(this._node.getPosition(), farW, alpha);
+      worldCoord.lerp(this._node.getPosition(), _farW, alpha);
     } else {
       var range = this._farClip - this._nearClip;
       _deviceCoord.set(x / cw * 2 - 1, (ch - y) / ch * 2 - 1, (this._farClip - z) / range * 2 - 1);
-      invViewProjMat.transformPoint(_deviceCoord, worldCoord);
+      _invViewProjMat.transformPoint(_deviceCoord, worldCoord);
     }
     return worldCoord;
   }, getClearOptions:function() {
@@ -12204,7 +12365,10 @@ pc.extend(pc, function() {
   Material.prototype.getParameter = function(name) {
     return this.parameters[name];
   };
-  Material.prototype.setParameter = function(arg, data) {
+  Material.prototype.setParameter = function(arg, data, passFlags) {
+    if (passFlags === undefined) {
+      passFlags = 1 << pc.SHADER_FORWARD | 1 << pc.SHADER_FORWARDHDR;
+    }
     var name;
     if (data === undefined && typeof arg === "object") {
       var uniformObject = arg;
@@ -12223,8 +12387,9 @@ pc.extend(pc, function() {
     var param = this.parameters[name];
     if (param) {
       param.data = data;
+      param.passFlags = passFlags;
     } else {
-      this.parameters[name] = {scopeId:null, data:data};
+      this.parameters[name] = {scopeId:null, data:data, passFlags:passFlags};
     }
   };
   Material.prototype.deleteParameter = function(name) {
@@ -12880,6 +13045,7 @@ pc.extend(pc, function() {
     }
     this._processColor();
   }, _processColor:function() {
+    var c, i;
     if (!this.dirtyColor) {
       return;
     }
@@ -12890,10 +13056,10 @@ pc.extend(pc, function() {
     if (this.useGammaTonemap) {
       gammaCorrection = this._scene.gammaCorrection;
     }
-    for (var i = 0;i < _propsColor.length;i++) {
+    for (i = 0;i < _propsColor.length;i++) {
       var clr = this["_" + _propsColor[i]];
       var arr = this[_propsColor[i] + "Uniform"];
-      for (var c = 0;c < 3;c++) {
+      for (c = 0;c < 3;c++) {
         if (gammaCorrection) {
           arr[c] = Math.pow(clr.data[c], 2.2);
         } else {
@@ -13008,7 +13174,7 @@ pc.extend(pc, function() {
     1 && this.blendType !== pc.BLEND_NONE, alphaTest:this.alphaTest > 0, alphaToCoverage:this.alphaToCoverage, needsNormalFloat:this.normalizeNormalMap, sphereMap:!!this.sphereMap, cubeMap:!!this.cubeMap, dpAtlas:!!this.dpAtlas, ambientSH:!!this.ambientSH, useSpecular:useSpecular, rgbmReflection:rgbmReflection, hdrReflection:hdrReflection, fixSeams:prefilteredCubeMap128 ? prefilteredCubeMap128.fixCubemapSeams : this.cubeMap ? this.cubeMap.fixCubemapSeams : false, prefilteredCubemap:!!prefilteredCubeMap128, 
     emissiveFormat:this.emissiveMap ? this.emissiveMap.rgbm ? 1 : this.emissiveMap.format === pc.PIXELFORMAT_RGBA32F ? 2 : 0 : null, lightMapFormat:this.lightMap ? this.lightMap.rgbm ? 1 : this.lightMap.format === pc.PIXELFORMAT_RGBA32F ? 2 : 0 : null, useRgbm:rgbmReflection || (this.emissiveMap ? this.emissiveMap.rgbm : 0) || (this.lightMap ? this.lightMap.rgbm : 0), specularAA:this.specularAntialias, conserveEnergy:this.conserveEnergy, occludeSpecular:this.occludeSpecular, occludeSpecularFloat:this.occludeSpecularIntensity !== 
     1, occludeDirect:this.occludeDirect, shadingModel:this.shadingModel, fresnelModel:this.fresnelModel, packedNormal:this.normalMap ? this.normalMap.format === pc.PIXELFORMAT_DXT5 : false, forceFragmentPrecision:this.forceFragmentPrecision, fastTbn:this.fastTbn, cubeMapProjection:this.cubeMapProjection, chunks:this.chunks, customFragmentShader:this.customFragmentShader, refraction:!!this.refraction, useMetalness:this.useMetalness, blendType:this.blendType, skyboxIntensity:prefilteredCubeMap128 === 
-    globalSky128 && prefilteredCubeMap128 && scene.skyboxIntensity !== 1, forceUv1:this.forceUv1, useTexCubeLod:useTexCubeLod, msdf:!!this.msdfMap};
+    globalSky128 && prefilteredCubeMap128 && scene.skyboxIntensity !== 1, forceUv1:this.forceUv1, useTexCubeLod:useTexCubeLod, msdf:!!this.msdfMap, twoSidedLighting:this.twoSidedLighting};
     if (pass === pc.SHADER_FORWARDHDR) {
       if (options.gamma) {
         options.gamma = pc.GAMMA_SRGBHDR;
@@ -13162,6 +13328,7 @@ pc.extend(pc, function() {
     _defineFlag(obj, "useGammaTonemap", true);
     _defineFlag(obj, "useSkybox", true);
     _defineFlag(obj, "forceUv1", false);
+    _defineFlag(obj, "twoSidedLighting", false);
     _defineTex2D(obj, "diffuse", 0, 3);
     _defineTex2D(obj, "specular", 0, 3);
     _defineTex2D(obj, "emissive", 0, 3);
@@ -13263,7 +13430,7 @@ pc.extend(pc, function() {
     }
     if (this.skinInstance) {
       var numBones = this.mesh.skin.boneNames.length;
-      var i;
+      var boneUsed, i;
       if (!this.mesh.boneAabb) {
         this.mesh.boneAabb = [];
         this.mesh.boneUsed = [];
@@ -13295,7 +13462,7 @@ pc.extend(pc, function() {
         var x, y, z;
         var boneMin = [];
         var boneMax = [];
-        var boneUsed = this.mesh.boneUsed;
+        boneUsed = this.mesh.boneUsed;
         for (i = 0;i < numBones;i++) {
           boneMin[i] = new pc.Vec3(Number.MAX_VALUE, Number.MAX_VALUE, Number.MAX_VALUE);
           boneMax[i] = new pc.Vec3(-Number.MAX_VALUE, -Number.MAX_VALUE, -Number.MAX_VALUE);
@@ -13424,7 +13591,7 @@ pc.extend(pc, function() {
           this._boneAabb[i] = new pc.BoundingBox;
         }
       }
-      var boneUsed = this.mesh.boneUsed;
+      boneUsed = this.mesh.boneUsed;
       for (i = 0;i < this.mesh.boneAabb.length;i++) {
         if (!boneUsed[i]) {
           continue;
@@ -14893,6 +15060,7 @@ pc.extend(pc, function() {
       randomPos.normalize();
       randomPosTformed.copy(emitterPos).add(randomPos.scale(rW * this.spawnBounds));
     }
+    var particleRate, startSpawnTime;
     if (this.pack8) {
       var packX = (randomPosTformed.data[0] - this.worldBounds.center.data[0]) / this.worldBoundsSize.data[0] + .5;
       var packY = (randomPosTformed.data[1] - this.worldBounds.center.data[1]) / this.worldBoundsSize.data[1] + .5;
@@ -14913,8 +15081,8 @@ pc.extend(pc, function() {
       this.particleTex[i * particleTexChannels + 3 + this.numParticlesPot * particleTexChannels] = ba1[1];
       var a2 = 1;
       this.particleTex[i * particleTexChannels + 3 + this.numParticlesPot * particleTexChannels * 2] = a2;
-      var particleRate = pc.math.lerp(this.rate, this.rate2, rX);
-      var startSpawnTime = -particleRate * i;
+      particleRate = pc.math.lerp(this.rate, this.rate2, rX);
+      startSpawnTime = -particleRate * i;
       var maxNegLife = Math.max(this.lifetime, (this.numParticles - 1) * Math.max(this.rate, this.rate2));
       var maxPosLife = this.lifetime + 1;
       startSpawnTime = (startSpawnTime + maxNegLife) / (maxNegLife + maxPosLife);
@@ -14928,8 +15096,8 @@ pc.extend(pc, function() {
       this.particleTex[i * particleTexChannels + 1] = randomPosTformed.data[1];
       this.particleTex[i * particleTexChannels + 2] = randomPosTformed.data[2];
       this.particleTex[i * particleTexChannels + 3] = pc.math.lerp(this.startAngle * pc.math.DEG_TO_RAD, this.startAngle2 * pc.math.DEG_TO_RAD, rX);
-      var particleRate = pc.math.lerp(this.rate, this.rate2, rX);
-      var startSpawnTime = -particleRate * i;
+      particleRate = pc.math.lerp(this.rate, this.rate2, rX);
+      startSpawnTime = -particleRate * i;
       this.particleTex[i * particleTexChannels + 3 + this.numParticlesPot * particleTexChannels] = startSpawnTime;
     }
   }, rebuildGraphs:function() {
@@ -15071,12 +15239,12 @@ pc.extend(pc, function() {
     var i;
     if (this.vertexBuffer === undefined || this.vertexBuffer.getNumVertices() !== psysVertCount) {
       if (!this.useCpu) {
-        elements = [{semantic:pc.SEMANTIC_ATTR0, components:4, type:pc.ELEMENTTYPE_FLOAT32}];
+        elements = [{semantic:pc.SEMANTIC_ATTR0, components:4, type:pc.TYPE_FLOAT32}];
         particleFormat = new pc.VertexFormat(this.graphicsDevice, elements);
         this.vertexBuffer = new pc.VertexBuffer(this.graphicsDevice, particleFormat, psysVertCount, pc.BUFFER_DYNAMIC);
         this.indexBuffer = new pc.IndexBuffer(this.graphicsDevice, pc.INDEXFORMAT_UINT16, psysIndexCount);
       } else {
-        elements = [{semantic:pc.SEMANTIC_ATTR0, components:4, type:pc.ELEMENTTYPE_FLOAT32}, {semantic:pc.SEMANTIC_ATTR1, components:4, type:pc.ELEMENTTYPE_FLOAT32}, {semantic:pc.SEMANTIC_ATTR2, components:4, type:pc.ELEMENTTYPE_FLOAT32}, {semantic:pc.SEMANTIC_ATTR3, components:2, type:pc.ELEMENTTYPE_FLOAT32}];
+        elements = [{semantic:pc.SEMANTIC_ATTR0, components:4, type:pc.TYPE_FLOAT32}, {semantic:pc.SEMANTIC_ATTR1, components:4, type:pc.TYPE_FLOAT32}, {semantic:pc.SEMANTIC_ATTR2, components:4, type:pc.TYPE_FLOAT32}, {semantic:pc.SEMANTIC_ATTR3, components:2, type:pc.TYPE_FLOAT32}];
         particleFormat = new pc.VertexFormat(this.graphicsDevice, elements);
         this.vertexBuffer = new pc.VertexBuffer(this.graphicsDevice, particleFormat, psysVertCount, pc.BUFFER_DYNAMIC);
         this.indexBuffer = new pc.IndexBuffer(this.graphicsDevice, pc.INDEXFORMAT_UINT16, psysIndexCount);
@@ -15182,7 +15350,7 @@ pc.extend(pc, function() {
       this.vertexBuffer.unlock();
     }
   }, addTime:function(delta, isOnStop) {
-    var i, j;
+    var a, b, c, i, j;
     var device = this.graphicsDevice;
     this.simTimeTotal += delta;
     this.calculateWorldBounds();
@@ -15205,7 +15373,7 @@ pc.extend(pc, function() {
       }
       var dirs = this.scene._globalLights;
       for (i = 0;i < dirs.length;i++) {
-        for (var c = 0;c < 6;c++) {
+        for (c = 0;c < 6;c++) {
           var weight = Math.max(this.lightCubeDir[c].dot(dirs[i]._direction), 0) * dirs[i]._intensity;
           this.lightCube[c * 3] += dirs[i]._color.data[0] * weight;
           this.lightCube[c * 3 + 1] += dirs[i]._color.data[1] * weight;
@@ -15311,7 +15479,6 @@ pc.extend(pc, function() {
       emitterPos = this.meshInstance.node === null || this.localSpace ? pc.Vec3.ZERO : this.meshInstance.node.getPosition();
       var posCam = this.camera ? this.camera._node.getPosition() : pc.Vec3.ZERO;
       var vertSize = 14;
-      var a, b, c;
       var cf, cc;
       var rotSpeed, rotSpeed2, scale2, alpha, alpha2;
       var precision1 = this.precision - 1;
@@ -15866,27 +16033,27 @@ pc.createMesh = function(device, positions, opts) {
   var indices = opts && opts.indices !== undefined ? opts.indices : null;
   var blendIndices = opts && opts.blendIndices !== undefined ? opts.blendIndices : null;
   var blendWeights = opts && opts.blendWeights !== undefined ? opts.blendWeights : null;
-  var vertexDesc = [{semantic:pc.SEMANTIC_POSITION, components:3, type:pc.ELEMENTTYPE_FLOAT32}];
+  var vertexDesc = [{semantic:pc.SEMANTIC_POSITION, components:3, type:pc.TYPE_FLOAT32}];
   if (normals !== null) {
-    vertexDesc.push({semantic:pc.SEMANTIC_NORMAL, components:3, type:pc.ELEMENTTYPE_FLOAT32});
+    vertexDesc.push({semantic:pc.SEMANTIC_NORMAL, components:3, type:pc.TYPE_FLOAT32});
   }
   if (tangents !== null) {
-    vertexDesc.push({semantic:pc.SEMANTIC_TANGENT, components:4, type:pc.ELEMENTTYPE_FLOAT32});
+    vertexDesc.push({semantic:pc.SEMANTIC_TANGENT, components:4, type:pc.TYPE_FLOAT32});
   }
   if (colors !== null) {
-    vertexDesc.push({semantic:pc.SEMANTIC_COLOR, components:4, type:pc.ELEMENTTYPE_UINT8, normalize:true});
+    vertexDesc.push({semantic:pc.SEMANTIC_COLOR, components:4, type:pc.TYPE_UINT8, normalize:true});
   }
   if (uvs !== null) {
-    vertexDesc.push({semantic:pc.SEMANTIC_TEXCOORD0, components:2, type:pc.ELEMENTTYPE_FLOAT32});
+    vertexDesc.push({semantic:pc.SEMANTIC_TEXCOORD0, components:2, type:pc.TYPE_FLOAT32});
   }
   if (uvs1 !== null) {
-    vertexDesc.push({semantic:pc.SEMANTIC_TEXCOORD1, components:2, type:pc.ELEMENTTYPE_FLOAT32});
+    vertexDesc.push({semantic:pc.SEMANTIC_TEXCOORD1, components:2, type:pc.TYPE_FLOAT32});
   }
   if (blendIndices !== null) {
-    vertexDesc.push({semantic:pc.SEMANTIC_BLENDINDICES, components:2, type:pc.ELEMENTTYPE_UINT8});
+    vertexDesc.push({semantic:pc.SEMANTIC_BLENDINDICES, components:2, type:pc.TYPE_UINT8});
   }
   if (blendWeights !== null) {
-    vertexDesc.push({semantic:pc.SEMANTIC_BLENDWEIGHT, components:2, type:pc.ELEMENTTYPE_FLOAT32});
+    vertexDesc.push({semantic:pc.SEMANTIC_BLENDWEIGHT, components:2, type:pc.TYPE_FLOAT32});
   }
   var vertexFormat = new pc.VertexFormat(device, vertexDesc);
   var numVertices = positions.length / 3;
@@ -16820,6 +16987,7 @@ pc.extend(pc, function() {
       if (this._state !== STATE_PLAYING || !this.source) {
         return false;
       }
+      this._updateCurrentTime();
       this._state = STATE_PAUSED;
       this._suspendEndEvent = true;
       this.source.stop(0);
@@ -16936,6 +17104,8 @@ pc.extend(pc, function() {
         }
       }
       return this.source;
+    }, _updateCurrentTime:function() {
+      this._currentTime = capTime((this._manager.context.currentTime - this._startedAt) * this.pitch + this._currentOffset, this.duration);
     }, _onManagerDestroy:function() {
       if (this.source && this.isPlaying) {
         this.source.stop(0);
@@ -16990,7 +17160,7 @@ pc.extend(pc, function() {
       if (this.isStopped || !this.source) {
         return 0;
       }
-      this._currentTime = capTime((this._manager.context.currentTime - this._startedAt) * this.pitch + this._currentOffset, this.duration);
+      this._updateCurrentTime();
       return this._currentTime;
     }, set:function(value) {
       if (value < 0) {
@@ -18144,10 +18314,20 @@ pc.extend(pc, function() {
   "PAD_R_SHOULDER_2", "PAD_SELECT", "PAD_START", "PAD_L_STICK_BUTTON", "PAD_R_STICK_BUTTON", "PAD_UP", "PAD_DOWN", "PAD_LEFT", "PAD_RIGHT", "PAD_VENDOR"], axes:["PAD_L_STICK_X", "PAD_L_STICK_Y", "PAD_R_STICK_X", "PAD_R_STICK_Y"]}};
   var PRODUCT_CODES = {"Product: 0268":"PS3"};
   GamePads.prototype = {update:function(dt) {
+    var i, j, l;
+    var buttons, buttonsLen;
+    for (i = 0, l = this.current.length;i < l;i++) {
+      buttons = this.current[i].pad.buttons;
+      buttonsLen = buttons.length;
+      for (j = 0;j < buttonsLen;j++) {
+        if (this.previous[i] === undefined) {
+          this.previous[i] = [];
+        }
+        this.previous[i][j] = buttons[j].pressed;
+      }
+    }
     var pads = this.poll();
-    var i, len = pads.length;
-    for (i = 0;i < len;i++) {
-      this.previous[i] = this.current[i];
+    for (i = 0, l = pads.length;i < l;i++) {
       this.current[i] = pads[i];
     }
   }, poll:function() {
@@ -18181,7 +18361,7 @@ pc.extend(pc, function() {
     }
     var key = this.current[index].map.buttons[button];
     var i = pc[key];
-    return this.current[index].pad.buttons[i].pressed && !this.previous[index].pad.buttons[i].pressed;
+    return this.current[index].pad.buttons[i].pressed && !this.previous[index][i];
   }, getAxis:function(index, axes) {
     if (!this.current[index]) {
       return false;
@@ -18639,6 +18819,9 @@ pc.extend(pc, function() {
     this._hoveredElement = null;
     this._pressedElement = null;
     this._touchedElements = {};
+    if ("ontouchstart" in window) {
+      this._clickedEntities = {};
+    }
     this.attach(domElement);
   };
   ElementInput.prototype = {attach:function(domElement) {
@@ -18648,18 +18831,16 @@ pc.extend(pc, function() {
     }
     this._target = domElement;
     this._attached = true;
-    var touch = !!("ontouchstart" in window);
-    if (touch) {
-      this._target.addEventListener("touchstart", this._touchstartHandler, false);
-      this._target.addEventListener("touchend", this._touchendHandler, false);
+    window.addEventListener("mouseup", this._upHandler, {passive:true});
+    window.addEventListener("mousedown", this._downHandler, {passive:true});
+    window.addEventListener("mousemove", this._moveHandler, {passive:true});
+    window.addEventListener("mousewheel", this._wheelHandler, {passive:true});
+    window.addEventListener("DOMMouseScroll", this._wheelHandler, {passive:true});
+    if ("ontouchstart" in window) {
+      this._target.addEventListener("touchstart", this._touchstartHandler, {passive:true});
+      this._target.addEventListener("touchend", this._touchendHandler, {passive:true});
       this._target.addEventListener("touchmove", this._touchmoveHandler, false);
-      this._target.addEventListener("touchcancel", this._touchcancelHandler, false);
-    } else {
-      window.addEventListener("mouseup", this._upHandler, false);
-      window.addEventListener("mousedown", this._downHandler, false);
-      window.addEventListener("mousemove", this._moveHandler, false);
-      window.addEventListener("mousewheel", this._wheelHandler, false);
-      window.addEventListener("DOMMouseScroll", this._wheelHandler, false);
+      this._target.addEventListener("touchcancel", this._touchcancelHandler, {passive:true});
     }
   }, detach:function() {
     if (!this._attached) {
@@ -18741,7 +18922,9 @@ pc.extend(pc, function() {
     }
   }, _handleTouchEnd:function(event) {
     var cameras = this.app.systems.camera.cameras;
-    var firedClick = null;
+    for (var key in this._clickedEntities) {
+      delete this._clickedEntities[key];
+    }
     for (var i = 0, len = event.changedTouches.length;i < len;i++) {
       var touch = event.changedTouches[i];
       var element = this._touchedElements[touch.identifier];
@@ -18755,12 +18938,9 @@ pc.extend(pc, function() {
         for (var c = cameras.length - 1;c >= 0;c--) {
           var hovered = this._getTargetElement(cameras[c], coords.x, coords.y);
           if (hovered === element) {
-            if (!firedClick) {
-              firedClick = {};
-            }
-            if (!firedClick[element.entity.getGuid()]) {
+            if (!this._clickedEntities[element.entity.getGuid()]) {
               this._fireEvent("click", new ElementTouchEvent(event, element, this));
-              firedClick[element.entity.getGuid()] = true;
+              this._clickedEntities[element.entity.getGuid()] = true;
             }
           }
         }
@@ -18804,7 +18984,9 @@ pc.extend(pc, function() {
     if (event.type === pc.EVENT_MOUSEUP && this._pressedElement) {
       if (this._pressedElement === this._hoveredElement) {
         this._pressedElement = null;
-        this._fireEvent("click", new ElementMouseEvent(event, this._hoveredElement, targetX, targetY, this._lastX, this._lastY));
+        if (!this._clickedEntities || !this._clickedEntities[this._hoveredElement.entity.getGuid()]) {
+          this._fireEvent("click", new ElementMouseEvent(event, this._hoveredElement, targetX, targetY, this._lastX, this._lastY));
+        }
       } else {
         this._pressedElement = null;
       }
@@ -18832,8 +19014,8 @@ pc.extend(pc, function() {
       targetX = null;
       targetY = null;
     } else {
-      targetX = (event.clientX - left) * this.app.graphicsDevice.width / this._target.clientWidth;
-      targetY = (event.clientY - top) * this.app.graphicsDevice.height / this._target.clientHeight;
+      targetX = event.clientX - left;
+      targetY = event.clientY - top;
     }
   }, _calcTouchCoords:function(touch) {
     var totalOffsetX = 0;
@@ -18850,7 +19032,7 @@ pc.extend(pc, function() {
       totalOffsetY += currentElement.offsetTop - currentElement.scrollTop;
       currentElement = currentElement.offsetParent;
     } while (currentElement);
-    return {x:(touch.pageX - totalOffsetX) * this.app.graphicsDevice.width / this._target.clientWidth, y:(touch.pageY - totalOffsetY) * this.app.graphicsDevice.height / this._target.clientHeight};
+    return {x:touch.pageX - totalOffsetX, y:touch.pageY - totalOffsetY};
   }, _sortElements:function(a, b) {
     if (a.screen && !b.screen) {
       return -1;
@@ -18873,43 +19055,65 @@ pc.extend(pc, function() {
     this._elements.sort(this._sortElements);
     for (var i = 0, len = this._elements.length;i < len;i++) {
       var element = this._elements[i];
-      var sw = this.app.graphicsDevice.width;
-      var sh = this.app.graphicsDevice.height;
-      var cameraLeft = camera.rect.x * sw;
-      var cameraBottom = camera.rect.y * sh;
-      var cameraWidth = camera.rect.z * sw;
-      var cameraHeight = camera.rect.w * sh;
-      var _x = x;
-      var _y = y;
       if (element.screen && element.screen.screen.screenSpace) {
-        _y = sh - y;
-        if (x >= cameraLeft && x <= cameraLeft + cameraWidth && _y >= cameraBottom && _y <= cameraBottom + cameraHeight) {
-          _x = sw * (x - cameraLeft) / cameraWidth;
-          _y = sh * (_y - cameraBottom) / cameraHeight;
-          var screenCorners = element.screenCorners;
-          vecA.set(_x, _y, 1);
-          vecB.set(_x, _y, -1);
-          if (intersectLineQuad(vecA, vecB, screenCorners)) {
-            result = element;
-            break;
-          }
+        if (this._checkElement2d(x, y, element, camera)) {
+          result = element;
+          break;
         }
       } else {
-        if (x >= cameraLeft && x <= cameraLeft + cameraWidth && y >= cameraBottom && _y <= cameraBottom + cameraHeight) {
-          _x = sw * (x - cameraLeft) / cameraWidth;
-          _y = sh * (y - cameraBottom) / cameraHeight;
-          var worldCorners = element.worldCorners;
-          var start = camera.entity.getPosition();
-          var end = vecA;
-          camera.screenToWorld(_x, _y, camera.farClip, end);
-          if (intersectLineQuad(start, end, worldCorners)) {
-            result = element;
-            break;
-          }
+        if (this._checkElement3d(x, y, element, camera)) {
+          result = element;
+          break;
         }
       }
     }
     return result;
+  }, _checkElement2d:function(x, y, element, camera) {
+    var sw = this.app.graphicsDevice.width;
+    var sh = this.app.graphicsDevice.height;
+    var cameraWidth = camera.rect.z * sw;
+    var cameraHeight = camera.rect.w * sh;
+    var cameraLeft = camera.rect.x * sw;
+    var cameraRight = cameraLeft + cameraWidth;
+    var cameraBottom = (1 - camera.rect.y) * sh;
+    var cameraTop = cameraBottom - cameraHeight;
+    var _x = x * sw / this._target.clientWidth;
+    var _y = y * sh / this._target.clientHeight;
+    if (_x >= cameraLeft && _x <= cameraRight && _y <= cameraBottom && _y >= cameraTop) {
+      _x = sw * (_x - cameraLeft) / cameraWidth;
+      _y = sh * (_y - cameraTop) / cameraHeight;
+      _y = sh - _y;
+      var screenCorners = element.screenCorners;
+      vecA.set(_x, _y, 1);
+      vecB.set(_x, _y, -1);
+      if (intersectLineQuad(vecA, vecB, screenCorners)) {
+        return true;
+      }
+    }
+    return false;
+  }, _checkElement3d:function(x, y, element, camera) {
+    var sw = this._target.clientWidth;
+    var sh = this._target.clientHeight;
+    var cameraWidth = camera.rect.z * sw;
+    var cameraHeight = camera.rect.w * sh;
+    var cameraLeft = camera.rect.x * sw;
+    var cameraRight = cameraLeft + cameraWidth;
+    var cameraBottom = (1 - camera.rect.y) * sh;
+    var cameraTop = cameraBottom - cameraHeight;
+    var _x = x;
+    var _y = y;
+    if (x >= cameraLeft && x <= cameraRight && y <= cameraBottom && _y >= cameraTop) {
+      _x = sw * (_x - cameraLeft) / cameraWidth;
+      _y = sh * (_y - cameraTop) / cameraHeight;
+      var worldCorners = element.worldCorners;
+      var start = camera.entity.getPosition();
+      var end = vecA;
+      camera.screenToWorld(_x, _y, camera.farClip, end);
+      if (intersectLineQuad(start, end, worldCorners)) {
+        return true;
+      }
+    }
+    return false;
   }};
   Object.defineProperty(ElementInput.prototype, "app", {get:function() {
     return this._app || pc.app;
@@ -18990,9 +19194,19 @@ pc.extend(pc, function() {
     }
     this.fire("displayconnect", display);
   }, _onDisplayConnect:function(e) {
-    this._addDisplay(e.display);
+    if (e.detail && e.detail.display) {
+      this._addDisplay(e.detail.display);
+    } else {
+      this._addDisplay(e.display);
+    }
   }, _onDisplayDisconnect:function(e) {
-    var display = this._index[e.display.displayId];
+    var id;
+    if (e.detail && e.detail.display) {
+      id = e.detail.display.displayId;
+    } else {
+      id = e.display.displayId;
+    }
+    var display = this._index[id];
     if (!display) {
       return;
     }
@@ -19297,9 +19511,9 @@ pc.extend(pc, function() {
                   }
                 }
                 break;
-              case Http.ContentType.JSON:
-              ;
               default:
+              ;
+              case Http.ContentType.JSON:
                 if (contentType == null) {
                   options.headers["Content-Type"] = Http.ContentType.JSON;
                 }
@@ -19527,10 +19741,10 @@ pc.extend(pc, function() {
 }());
 pc.extend(pc, function() {
   var rawToValue = function(app, args, value, old) {
+    var i;
     switch(args.type) {
       case "boolean":
         return !!value;
-        break;
       case "number":
         if (typeof value === "number") {
           return value;
@@ -19565,7 +19779,7 @@ pc.extend(pc, function() {
         if (args.array) {
           var result = [];
           if (value instanceof Array) {
-            for (var i = 0;i < value.length;i++) {
+            for (i = 0;i < value.length;i++) {
               if (value[i] instanceof pc.Asset) {
                 result.push(value[i]);
               } else {
@@ -19621,7 +19835,7 @@ pc.extend(pc, function() {
           }
         } else {
           if (value instanceof Array && value.length >= 3 && value.length <= 4) {
-            for (var i = 0;i < value.length;i++) {
+            for (i = 0;i < value.length;i++) {
               if (typeof value[i] !== "number") {
                 return null;
               }
@@ -19629,7 +19843,7 @@ pc.extend(pc, function() {
             if (!old) {
               old = new pc.Color;
             }
-            for (var i = 0;i < 4;i++) {
+            for (i = 0;i < 4;i++) {
               old.data[i] = i === 4 && value.length === 3 ? 1 : value[i];
             }
             return old;
@@ -19661,7 +19875,7 @@ pc.extend(pc, function() {
           }
         } else {
           if (value instanceof Array && value.length === len) {
-            for (var i = 0;i < value.length;i++) {
+            for (i = 0;i < value.length;i++) {
               if (typeof value[i] !== "number") {
                 return null;
               }
@@ -19669,7 +19883,7 @@ pc.extend(pc, function() {
             if (!old) {
               old = new pc["Vec" + len];
             }
-            for (var i = 0;i < len;i++) {
+            for (i = 0;i < len;i++) {
               old.data[i] = value[i];
             }
             return old;
@@ -19785,8 +19999,9 @@ pc.extend(pc, function() {
     Object.defineProperty(script.prototype, "enabled", {get:function() {
       return this._enabled && this.entity.script.enabled && this.entity.enabled;
     }, set:function(value) {
-      if (this._enabled !== !!value) {
-        this._enabled = !!value;
+      value = !!value;
+      if (this._enabled !== value) {
+        this._enabled = value;
       }
       if (this.enabled !== this._enabledOld) {
         this._enabledOld = this.enabled;
@@ -19801,13 +20016,14 @@ pc.extend(pc, function() {
   };
   createScript.reservedScripts = ["system", "entity", "create", "destroy", "swap", "move", "scripts", "_scripts", "_scriptsIndex", "_scriptsData", "enabled", "_oldState", "onEnable", "onDisable", "onPostStateChange", "_onSetEnabled", "_checkState", "_onBeforeRemove", "_onInitializeAttributes", "_onInitialize", "_onPostInitialize", "_onUpdate", "_onPostUpdate", "_callbacks", "has", "on", "off", "fire", "once", "hasEvent"];
   var reservedScripts = {};
-  for (var i = 0;i < createScript.reservedScripts.length;i++) {
+  var i;
+  for (i = 0;i < createScript.reservedScripts.length;i++) {
     reservedScripts[createScript.reservedScripts[i]] = 1;
   }
   createScript.reservedScripts = reservedScripts;
   createScript.reservedAttributes = ["app", "entity", "enabled", "_enabled", "_enabledOld", "__attributes", "__attributesRaw", "__scriptType", "_callbacks", "has", "on", "off", "fire", "once", "hasEvent"];
   var reservedAttributes = {};
-  for (var i = 0;i < createScript.reservedAttributes.length;i++) {
+  for (i = 0;i < createScript.reservedAttributes.length;i++) {
     reservedAttributes[createScript.reservedAttributes[i]] = 1;
   }
   createScript.reservedAttributes = reservedAttributes;
@@ -19878,6 +20094,8 @@ pc.extend(pc, function() {
     this.renderer = new pc.ForwardRenderer(this.graphicsDevice);
     this.lightmapper = new pc.Lightmapper(this.graphicsDevice, this.root, this.scene, this.renderer, this.assets);
     this.once("prerender", this._firstBake, this);
+    this.batcher = new pc.BatchManager(this.graphicsDevice, this.root, this.scene);
+    this.once("prerender", this._firstBatch, this);
     this.keyboard = options.keyboard || null;
     this.mouse = options.mouse || null;
     this.touch = options.touch || null;
@@ -19977,10 +20195,10 @@ pc.extend(pc, function() {
         callback(err);
         return;
       }
-      var props = response["application_properties"];
-      var assets = response["assets"];
-      var scripts = response["scripts"];
-      var priorityScripts = response["priority_scripts"];
+      var props = response.application_properties;
+      var assets = response.assets;
+      var scripts = response.scripts;
+      var priorityScripts = response.priority_scripts;
       self._parseApplicationProperties(props, function(err) {
         self._onVrChange(props.vr);
         self._parseAssets(assets);
@@ -20170,6 +20388,12 @@ pc.extend(pc, function() {
         props.libraries.push(props.vrPolyfillUrl);
       }
     }
+    if (props.batchGroups) {
+      for (var i = 0, len = props.batchGroups.length;i < len;i++) {
+        var grp = props.batchGroups[i];
+        this.batcher.addGroup(grp.name, grp.dynamic, grp.maxAabbSize, grp.id);
+      }
+    }
     this._loadLibraries(props.libraries, callback);
   }, _loadLibraries:function(urls, callback) {
     var len = urls.length;
@@ -20199,30 +20423,31 @@ pc.extend(pc, function() {
       callback(null);
     }
   }, _parseAssets:function(assets) {
+    var i, id;
     var scripts = [];
     var list = [];
     var scriptsIndex = {};
     if (!pc.script.legacy) {
-      for (var i = 0;i < this.scriptsOrder.length;i++) {
-        var id = this.scriptsOrder[i];
+      for (i = 0;i < this.scriptsOrder.length;i++) {
+        id = this.scriptsOrder[i];
         if (!assets[id]) {
           continue;
         }
         scriptsIndex[id] = true;
         list.push(assets[id]);
       }
-      for (var id in assets) {
+      for (id in assets) {
         if (scriptsIndex[id]) {
           continue;
         }
         list.push(assets[id]);
       }
     } else {
-      for (var id in assets) {
+      for (id in assets) {
         list.push(assets[id]);
       }
     }
-    for (var i = 0;i < list.length;i++) {
+    for (i = 0;i < list.length;i++) {
       var data = list[i];
       var asset = new pc.Asset(data.name, data.type, data.file, data.data);
       asset.id = parseInt(data.id);
@@ -20296,6 +20521,7 @@ pc.extend(pc, function() {
     var camera = null;
     var renderer = this.renderer;
     this.root.syncHierarchy();
+    this.batcher.updateAll();
     for (var i = 0, len = cameras.length;i < len;i++) {
       camera = cameras[i];
       camera.frameBegin();
@@ -20536,6 +20762,12 @@ pc.extend(pc, function() {
     this._skyboxLast = null;
   }, _firstBake:function() {
     this.lightmapper.bake(null, this.scene.lightmapMode);
+  }, _firstBatch:function() {
+    if (this.scene._needsStaticPrepare) {
+      this.renderer.prepareStaticMeshes(this.graphicsDevice, this.scene);
+      this.scene._needsStaticPrepare = false;
+    }
+    this.batcher.generate();
   }, destroy:function() {
     Application._applications[this.graphicsDevice.canvas.id] = null;
     this.off("librariesloaded");
@@ -20642,6 +20874,9 @@ pc.ApplicationStats = function(device) {
   }});
   Object.defineProperty(this, "lightmapper", {get:function() {
     return pc.Application._currentApplication.lightmapper._stats;
+  }});
+  Object.defineProperty(this, "batcher", {get:function() {
+    return pc.Application._currentApplication.batcher._stats;
   }});
   pc.events.attach(this);
 };
@@ -21045,6 +21280,7 @@ pc.extend(pc, function() {
     properties = ["activate", "enabled", "loop", "speed", "assets"];
     AnimationComponentSystem._super.initializeComponentData.call(this, component, data, properties);
   }, cloneComponent:function(entity, clone) {
+    var key;
     var component = this.addComponent(clone, {});
     clone.animation.data.assets = pc.extend([], entity.animation.assets);
     clone.animation.data.speed = entity.animation.speed;
@@ -21053,7 +21289,7 @@ pc.extend(pc, function() {
     clone.animation.data.enabled = entity.animation.enabled;
     var clonedAnimations = {};
     var animations = entity.animation.animations;
-    for (var key in animations) {
+    for (key in animations) {
       if (animations.hasOwnProperty(key)) {
         clonedAnimations[key] = animations[key];
       }
@@ -21061,7 +21297,7 @@ pc.extend(pc, function() {
     clone.animation.animations = clonedAnimations;
     var clonedAnimationsIndex = {};
     var animationsIndex = entity.animation.animationsIndex;
-    for (var key in animationsIndex) {
+    for (key in animationsIndex) {
       if (animationsIndex.hasOwnProperty(key)) {
         clonedAnimationsIndex[key] = animationsIndex[key];
       }
@@ -21139,6 +21375,7 @@ pc.extend(pc, function() {
     this.on("set_model", this.onSetModel, this);
     this.on("set_material", this.onSetMaterial, this);
     this.on("set_mapping", this.onSetMapping, this);
+    this.on("set_batchGroupId", this.onSetBatchGroupId, this);
     Object.defineProperty(this, "materialAsset", {set:this.setMaterialAsset.bind(this), get:this.getMaterialAsset.bind(this)});
     this._assetOld = 0;
     this._materialEvents = null;
@@ -21332,6 +21569,16 @@ pc.extend(pc, function() {
         m = rcv[i];
         m.isStatic = newValue;
       }
+    }
+  }, onSetBatchGroupId:function(name, oldValue, newValue) {
+    if (oldValue >= 0) {
+      this.system.app.batcher._markGroupDirty(oldValue);
+    }
+    if (newValue >= 0) {
+      this.system.app.batcher._markGroupDirty(newValue);
+    }
+    if (newValue < 0 && oldValue >= 0 && this.enabled && this.entity.enabled) {
+      this.system.app.scene.addModel(this.model);
     }
   }, onSetModel:function(name, oldValue, newValue) {
     if (oldValue) {
@@ -21572,6 +21819,7 @@ pc.extend(pc, function() {
     }
   }, onEnable:function() {
     ModelComponent._super.onEnable.call(this);
+    var asset;
     var model = this.data.model;
     var isAsset = this.data.type === "asset";
     if (model) {
@@ -21581,7 +21829,7 @@ pc.extend(pc, function() {
       }
     } else {
       if (isAsset && this._dirtyModelAsset) {
-        var asset = this.data.asset;
+        asset = this.data.asset;
         if (!asset) {
           return;
         }
@@ -21605,7 +21853,7 @@ pc.extend(pc, function() {
       if (mapping) {
         for (var index in mapping) {
           if (mapping[index]) {
-            var asset = this._getAssetByIdOrPath(mapping[index]);
+            asset = this._getAssetByIdOrPath(mapping[index]);
             if (asset && !asset.resource) {
               this.system.app.assets.load(asset);
             }
@@ -21655,7 +21903,7 @@ pc.extend(pc, function() {
   return {ModelComponent:ModelComponent};
 }());
 pc.extend(pc, function() {
-  var _schema = ["enabled", "type", "asset", "materialAsset", "castShadows", "receiveShadows", "castShadowsLightmap", "lightmapped", "lightmapSizeMultiplier", "isStatic", "material", "model", "mapping"];
+  var _schema = ["enabled", "type", "asset", "materialAsset", "castShadows", "receiveShadows", "castShadowsLightmap", "lightmapped", "lightmapSizeMultiplier", "isStatic", "material", "model", "mapping", "batchGroupId"];
   var ModelComponentSystem = function ModelComponentSystem(app) {
     this.id = "model";
     this.description = "Renders a 3D model at the location of the Entity.";
@@ -21677,7 +21925,10 @@ pc.extend(pc, function() {
   pc.Component._buildAccessors(pc.ModelComponent.prototype, _schema);
   pc.extend(ModelComponentSystem.prototype, {initializeComponentData:function(component, data, properties) {
     data.material = this.defaultMaterial;
-    properties = ["enabled", "material", "materialAsset", "asset", "castShadows", "receiveShadows", "castShadowsLightmap", "lightmapped", "lightmapSizeMultiplier", "type", "mapping", "isStatic"];
+    if (data.batchGroupId === null || data.batchGroupId === undefined) {
+      data.batchGroupId = -1;
+    }
+    properties = ["enabled", "material", "materialAsset", "asset", "castShadows", "receiveShadows", "castShadowsLightmap", "lightmapped", "lightmapSizeMultiplier", "type", "mapping", "isStatic", "batchGroupId"];
     ModelComponentSystem._super.initializeComponentData.call(this, component, data, properties);
   }, removeComponent:function(entity) {
     var data = entity.model.data;
@@ -21689,7 +21940,7 @@ pc.extend(pc, function() {
     }
     ModelComponentSystem._super.removeComponent.call(this, entity);
   }, cloneComponent:function(entity, clone) {
-    var data = {type:entity.model.type, asset:entity.model.asset, castShadows:entity.model.castShadows, receiveShadows:entity.model.receiveShadows, castShadowsLightmap:entity.model.castShadowsLightmap, lightmapped:entity.model.lightmapped, lightmapSizeMultiplier:entity.model.lightmapSizeMultiplier, isStatic:entity.model.isStatic, enabled:entity.model.enabled, mapping:pc.extend({}, entity.model.mapping)};
+    var data = {type:entity.model.type, asset:entity.model.asset, castShadows:entity.model.castShadows, receiveShadows:entity.model.receiveShadows, castShadowsLightmap:entity.model.castShadowsLightmap, lightmapped:entity.model.lightmapped, lightmapSizeMultiplier:entity.model.lightmapSizeMultiplier, isStatic:entity.model.isStatic, enabled:entity.model.enabled, batchGroupId:entity.model.batchGroupId, mapping:pc.extend({}, entity.model.mapping)};
     var materialAsset = entity.model.materialAsset;
     if (!(materialAsset instanceof pc.Asset) && materialAsset != null) {
       materialAsset = this.app.assets.get(materialAsset);
@@ -21707,6 +21958,9 @@ pc.extend(pc, function() {
       var meshInstancesClone = component.model.meshInstances;
       for (var i = 0;i < meshInstances.length;i++) {
         meshInstancesClone[i].mask = meshInstances[i].mask;
+        meshInstancesClone[i].material = meshInstances[i].material;
+        meshInstancesClone[i].layer = meshInstances[i].layer;
+        meshInstancesClone[i].receiveShadow = meshInstances[i].receiveShadow;
       }
     }
   }, onRemove:function(entity, component) {
@@ -21727,6 +21981,7 @@ pc.extend(pc, function() {
     this.lightmapped = false;
     this.lightmapSizeMultiplier = 1;
     this.isStatic = false;
+    this.batchGroupId = -1;
     this.material = null;
     this.model = null;
   };
@@ -21946,8 +22201,8 @@ pc.extend(pc, function() {
       data.rect = new pc.Vec4(rect[0], rect[1], rect[2], rect[3]);
     }
     if (data.scissorRect && pc.type(data.scissorRect) === "array") {
-      var rect = data.scissorRect;
-      data.scissorRect = new pc.Vec4(rect[0], rect[1], rect[2], rect[3]);
+      var scissorRect = data.scissorRect;
+      data.scissorRect = new pc.Vec4(scissorRect[0], scissorRect[1], scissorRect[2], scissorRect[3]);
     }
     if (data.activate) {
       console.warn("WARNING: activate: Property is deprecated. Set enabled property instead.");
@@ -22452,7 +22707,7 @@ pc.extend(pc, function() {
       this.onCookieAssetLoad();
     }
   }, onCookieAssetAdd:function(asset) {
-    if (!this._cookieAssetId === asset.id) {
+    if (this._cookieAssetId !== asset.id) {
       return;
     }
     this._cookieAsset = asset;
@@ -22612,7 +22867,7 @@ pc.extend(pc, function() {
       return;
     }
     this._oldState = state;
-    this.fire("enable");
+    this.fire(this.enabled ? "enable" : "disable");
     this.fire("state", this.enabled);
     var script;
     for (var i = 0, len = this.scripts.length;i < len;i++) {
@@ -22878,19 +23133,20 @@ pc.extend(pc, function() {
       }
     }
   }, cloneComponent:function(entity, clone) {
+    var i, key;
     var order = [];
     var scripts = {};
-    for (var i = 0;i < entity.script._scripts.length;i++) {
+    for (i = 0;i < entity.script._scripts.length;i++) {
       var scriptInstance = entity.script._scripts[i];
       var scriptName = scriptInstance.__scriptType.__name;
       order.push(scriptName);
       var attributes = {};
-      for (var key in scriptInstance.__attributes) {
+      for (key in scriptInstance.__attributes) {
         attributes[key] = scriptInstance.__attributes[key];
       }
       scripts[scriptName] = {enabled:scriptInstance._enabled, attributes:attributes};
     }
-    for (var key in entity.script._scriptsIndex) {
+    for (key in entity.script._scriptsIndex) {
       var scriptData = entity.script._scriptsIndex[key];
       if (key.awayting) {
         order.splice(key.ind, 0, key);
@@ -23818,13 +24074,14 @@ pc.extend(pc, function() {
   };
   SoundComponent = pc.inherits(SoundComponent, pc.Component);
   pc.extend(SoundComponent.prototype, {onSetSlots:function(name, oldValue, newValue) {
+    var key;
     if (oldValue) {
-      for (var key in oldValue) {
+      for (key in oldValue) {
         oldValue[key].stop();
       }
     }
     var slots = {};
-    for (var key in newValue) {
+    for (key in newValue) {
       if (!(newValue[key] instanceof pc.SoundSlot)) {
         if (newValue[key].name) {
           slots[newValue[key].name] = new pc.SoundSlot(this, newValue[key].name, newValue[key]);
@@ -24056,15 +24313,16 @@ pc.extend(pc, function() {
     properties = ["volume", "pitch", "positional", "refDistance", "maxDistance", "rollOffFactor", "distanceModel", "slots", "enabled"];
     SoundComponentSystem._super.initializeComponentData.call(this, component, data, properties);
   }, cloneComponent:function(entity, clone) {
+    var key;
     var oldData = entity.sound.data;
     var newData = {};
-    for (var key in oldData) {
+    for (key in oldData) {
       if (oldData.hasOwnProperty(key)) {
         newData[key] = oldData[key];
       }
     }
     newData.slots = {};
-    for (var key in oldData.slots) {
+    for (key in oldData.slots) {
       var oldSlot = oldData.slots[key];
       if (oldSlot instanceof pc.SoundSlot) {
         newData.slots[key] = {name:oldSlot.name, volume:oldSlot.volume, pitch:oldSlot.pitch, loop:oldSlot.loop, duration:oldSlot.duration, startTime:oldSlot.startTime, overlap:oldSlot.overlap, autoPlay:oldSlot.autoPlay, asset:oldSlot.asset};
@@ -25503,19 +25761,20 @@ pc.extend(pc, function() {
       pc.ComponentSystem.off("update", this.onUpdate, this);
     }
   }, initializeComponentData:function(component, _data, properties) {
+    var idx;
     var data = {};
     properties = ["type", "halfExtents", "radius", "axis", "height", "shape", "model", "asset", "enabled"];
     properties.forEach(function(prop) {
       data[prop] = _data[prop];
     });
     if (_data.hasOwnProperty("asset")) {
-      var idx = properties.indexOf("model");
+      idx = properties.indexOf("model");
       if (idx !== -1) {
         properties.splice(idx, 1);
       }
     } else {
       if (_data.hasOwnProperty("model")) {
-        var idx = properties.indexOf("asset");
+        idx = properties.indexOf("asset");
         if (idx !== -1) {
           properties.splice(idx, 1);
         }
@@ -26395,6 +26654,8 @@ pc.extend(pc, function() {
       this._resolution.set(width, height);
       this.resolution = this._resolution;
     }
+  }, onRemove:function() {
+    this.system.app.graphicsDevice.off("resizecanvas", this._onResize, this);
   }});
   Object.defineProperty(ScreenComponent.prototype, "resolution", {set:function(value) {
     if (!this._screenSpace) {
@@ -26477,6 +26738,7 @@ pc.extend(pc, function() {
     this.windowResolution = new pc.Vec2;
     this.app.graphicsDevice.on("resizecanvas", this._onResize, this);
     pc.ComponentSystem.on("update", this._onUpdate, this);
+    this.on("beforeremove", this.onRemoveComponent, this);
   };
   ScreenComponentSystem = pc.inherits(ScreenComponentSystem, pc.ComponentSystem);
   pc.Component._buildAccessors(pc.ScreenComponent.prototype, _schema);
@@ -26520,6 +26782,8 @@ pc.extend(pc, function() {
   }, cloneComponent:function(entity, clone) {
     var screen = entity.screen;
     return this.addComponent(clone, {enabled:screen.enabled, screenSpace:screen.screenSpace, scaleMode:screen.scaleMode, resolution:screen.resolution.clone(), referenceResolution:screen.referenceResolution.clone()});
+  }, onRemoveComponent:function(entity, component) {
+    component.onRemove();
   }});
   return {ScreenComponentSystem:ScreenComponentSystem};
 }());
@@ -26534,7 +26798,6 @@ pc.extend(pc, function() {
   pc.ELEMENTTYPE_GROUP = "group";
   pc.ELEMENTTYPE_IMAGE = "image";
   pc.ELEMENTTYPE_TEXT = "text";
-  var _warning = false;
   var vecA = new pc.Vec3;
   var vecB = new pc.Vec3;
   var matA = new pc.Mat4;
@@ -26568,10 +26831,7 @@ pc.extend(pc, function() {
     this._text = null;
     this._group = null;
     this._useInput = false;
-    if (!_warning) {
-      console.warn("Message from PlayCanvas: The element component is currently in Beta. APIs may change without notice.");
-      _warning = true;
-    }
+    this._batchGroupId = -1;
   };
   ElementComponent = pc.inherits(ElementComponent, pc.Component);
   pc.extend(ElementComponent.prototype, {_patch:function() {
@@ -26619,6 +26879,33 @@ pc.extend(pc, function() {
     }
   }, _sync:function() {
     var element = this.element;
+    var screen = element.screen;
+    if (screen) {
+      if (element._anchorDirty) {
+        var resx = 0;
+        var resy = 0;
+        var px = 0;
+        var py = 1;
+        if (this._parent && this._parent.element) {
+          resx = this._parent.element.width;
+          resy = this._parent.element.height;
+          px = this._parent.element.pivot.x;
+          py = this._parent.element.pivot.y;
+        } else {
+          if (screen) {
+            var resolution = screen.screen.resolution;
+            resx = resolution.x / screen.screen.scale;
+            resy = resolution.y / screen.screen.scale;
+          }
+        }
+        element._anchorTransform.setTranslate(resx * (element.anchor.x - px), -(resy * (py - element.anchor.y)), 0);
+        element._anchorDirty = false;
+        element._calculateLocalAnchors();
+      }
+      if (element._sizeDirty) {
+        element._calculateSize();
+      }
+    }
     if (this._dirtyLocal) {
       this.localTransform.setTRS(this.localPosition, this.localRotation, this.localScale);
       var p = this.localPosition.data;
@@ -26629,38 +26916,13 @@ pc.extend(pc, function() {
       element._margin.data[3] = element._localAnchor.data[3] - element._localAnchor.data[1] - element._height - element._margin.data[1];
       this._dirtyLocal = false;
     }
-    if (!this.element.screen) {
+    if (!screen) {
       if (this._dirtyWorld) {
         element._cornersDirty = true;
         element._canvasCornersDirty = true;
         element._worldCornersDirty = true;
       }
       return pc.Entity.prototype._sync.call(this);
-    }
-    var resx = 0;
-    var resy = 0;
-    var screen = element.screen;
-    if (element._anchorDirty) {
-      var px = 0;
-      var py = 1;
-      if (this._parent && this._parent.element) {
-        resx = this._parent.element.width;
-        resy = this._parent.element.height;
-        px = this._parent.element.pivot.x;
-        py = this._parent.element.pivot.y;
-      } else {
-        if (screen) {
-          var resolution = screen.screen.resolution;
-          resx = resolution.x / screen.screen.scale;
-          resy = resolution.y / screen.screen.scale;
-        }
-      }
-      element._anchorTransform.setTranslate(resx * (element.anchor.x - px), -(resy * (py - element.anchor.y)), 0);
-      element._anchorDirty = false;
-      element._calculateLocalAnchors();
-    }
-    if (element._sizeDirty) {
-      this.element._calculateSize();
     }
     if (this._dirtyWorld) {
       if (this._parent === null) {
@@ -26678,7 +26940,7 @@ pc.extend(pc, function() {
             element._screenToWorld.mul2(screen.worldTransform, element._screenToWorld);
           }
           this.worldTransform.mul2(element._screenToWorld, this.localTransform);
-          var parentWorldTransform = this.element._parentWorldTransform;
+          var parentWorldTransform = element._parentWorldTransform;
           parentWorldTransform.setIdentity();
           var parent = this._parent;
           if (parent && parent.element && parent !== screen) {
@@ -26797,6 +27059,7 @@ pc.extend(pc, function() {
       this.system.app.elementInput.removeElement(this);
     }
   }, onRemove:function() {
+    this.entity.off("insert", this._onInsert, this);
     this._unpatch();
     if (this._image) {
       this._image.destroy();
@@ -26812,7 +27075,6 @@ pc.extend(pc, function() {
       return;
     }
     this._calculateLocalAnchors();
-    var anchor = this._anchor.data;
     var p = this.entity.getLocalPosition();
     this._setWidth(this._absRight - this._absLeft);
     this._setHeight(this._absTop - this._absBottom);
@@ -27108,6 +27370,29 @@ pc.extend(pc, function() {
     }
     this.fire("set:useInput", value);
   }});
+  Object.defineProperty(ElementComponent.prototype, "batchGroupId", {get:function() {
+    return this._batchGroupId;
+  }, set:function(value) {
+    if (this._batchGroupId === value) {
+      return;
+    }
+    if (this._batchGroupId >= 0) {
+      this.system.app.batcher._markGroupDirty(this._batchGroupId);
+    }
+    if (value >= 0) {
+      this.system.app.batcher._markGroupDirty(value);
+    }
+    if (value < 0 && this._batchGroupId >= 0 && this.enabled && this.entity.enabled) {
+      if (this._image._model) {
+        this.system.app.scene.addModel(this._image._model);
+      } else {
+        if (this._text._model) {
+          this.system.app.scene.addModel(this._text._model);
+        }
+      }
+    }
+    this._batchGroupId = value;
+  }});
   var _define = function(name) {
     Object.defineProperty(ElementComponent.prototype, name, {get:function() {
       if (this._text) {
@@ -27166,6 +27451,7 @@ pc.extend(pc, function() {
     pixels.set(pixelData);
     this._defaultTexture.unlock();
     this.defaultImageMaterial = new pc.StandardMaterial;
+    this.defaultImageMaterial.diffuse = new pc.Color(0, 0, 0, 1);
     this.defaultImageMaterial.emissive = new pc.Color(.5, .5, .5, 1);
     this.defaultImageMaterial.emissiveMap = this._defaultTexture;
     this.defaultImageMaterial.emissiveMapTint = true;
@@ -27181,6 +27467,7 @@ pc.extend(pc, function() {
     this.defaultImageMaterial.depthWrite = false;
     this.defaultImageMaterial.update();
     this.defaultScreenSpaceImageMaterial = new pc.StandardMaterial;
+    this.defaultScreenSpaceImageMaterial.diffuse = new pc.Color(0, 0, 0, 1);
     this.defaultScreenSpaceImageMaterial.emissive = new pc.Color(.5, .5, .5, 1);
     this.defaultScreenSpaceImageMaterial.emissiveMap = this._defaultTexture;
     this.defaultScreenSpaceImageMaterial.emissiveMapTint = true;
@@ -27202,6 +27489,7 @@ pc.extend(pc, function() {
     this.defaultTextMaterial.useGammaTonemap = false;
     this.defaultTextMaterial.useFog = false;
     this.defaultTextMaterial.useSkybox = false;
+    this.defaultTextMaterial.diffuse = new pc.Color(0, 0, 0, 1);
     this.defaultTextMaterial.emissive = new pc.Color(1, 1, 1, 1);
     this.defaultTextMaterial.opacity = .5;
     this.defaultTextMaterial.blendType = pc.BLEND_PREMULTIPLIED;
@@ -27213,6 +27501,7 @@ pc.extend(pc, function() {
     this.defaultScreenSpaceTextMaterial.useGammaTonemap = false;
     this.defaultScreenSpaceTextMaterial.useFog = false;
     this.defaultScreenSpaceTextMaterial.useSkybox = false;
+    this.defaultScreenSpaceTextMaterial.diffuse = new pc.Color(0, 0, 0, 1);
     this.defaultScreenSpaceTextMaterial.emissive = new pc.Color(1, 1, 1, 1);
     this.defaultScreenSpaceTextMaterial.opacity = .5;
     this.defaultScreenSpaceTextMaterial.blendType = pc.BLEND_PREMULTIPLIED;
@@ -27280,6 +27569,7 @@ pc.extend(pc, function() {
     if (data.useInput !== undefined) {
       component.useInput = data.useInput;
     }
+    component.batchGroupId = data.batchGroupId === undefined || data.batchGroupId === null ? -1 : data.batchGroupId;
     component.type = data.type;
     if (component.type === pc.ELEMENTTYPE_IMAGE) {
       if (data.rect !== undefined) {
@@ -27314,6 +27604,12 @@ pc.extend(pc, function() {
       }
     } else {
       if (component.type === pc.ELEMENTTYPE_TEXT) {
+        if (data.autoWidth !== undefined) {
+          component.autoWidth = data.autoWidth;
+        }
+        if (data.autoHeight !== undefined) {
+          component.autoHeight = data.autoHeight;
+        }
         if (data.text !== undefined) {
           component.text = data.text;
         }
@@ -27349,12 +27645,6 @@ pc.extend(pc, function() {
         if (data.alignment !== undefined) {
           component.alignment = data.alignment;
         }
-        if (data.autoWidth !== undefined) {
-          component.autoWidth = data.autoWidth;
-        }
-        if (data.autoHeight !== undefined) {
-          component.autoHeight = data.autoHeight;
-        }
       } else {
       }
     }
@@ -27368,7 +27658,7 @@ pc.extend(pc, function() {
   }, cloneComponent:function(entity, clone) {
     var source = entity.element;
     return this.addComponent(clone, {enabled:source.enabled, width:source.width, height:source.height, anchor:source.anchor.clone(), pivot:source.pivot.clone(), margin:source.margin.clone(), alignment:source.alignment && source.alignment.clone() || source.alignment, autoWidth:source.autoWidth, autoHeight:source.autoHeight, type:source.type, rect:source.rect && source.rect.clone() || source.rect, materialAsset:source.materialAsset, material:source.material, color:source.color && source.color.clone() || 
-    source.color, opacity:source.opacity, textureAsset:source.textureAsset, texture:source.texture, text:source.text, spacing:source.spacing, lineHeight:source.lineHeight, fontSize:source.fontSize, fontAsset:source.fontAsset, font:source.font, useInput:source.useInput});
+    source.color, opacity:source.opacity, textureAsset:source.textureAsset, texture:source.texture, text:source.text, spacing:source.spacing, lineHeight:source.lineHeight, fontSize:source.fontSize, fontAsset:source.fontAsset, font:source.font, useInput:source.useInput, batchGroupId:source.batchGroupId});
   }});
   return {ElementComponentSystem:ElementComponentSystem};
 }());
@@ -27441,16 +27731,18 @@ pc.extend(pc, function() {
     if (this._meshInstance) {
       this._meshInstance.drawOrder = order;
     }
+  }, _hasUserMaterial:function() {
+    return !!this._materialAsset || !!this._material && this._material !== this._system.defaultScreenSpaceImageMaterial && this._material !== this._system.defaultImageMaterial;
   }, _updateMaterial:function(screenSpace) {
     if (screenSpace) {
-      if (!this._materialAsset) {
+      if (!this._hasUserMaterial()) {
         this._material = this._system.defaultScreenSpaceImageMaterial;
       }
       if (this._meshInstance) {
         this._meshInstance.layer = pc.scene.LAYER_HUD;
       }
     } else {
-      if (!this._materialAsset) {
+      if (!this._hasUserMaterial()) {
         this._material = this._system.defaultImageMaterial;
       }
       if (this._meshInstance) {
@@ -27499,6 +27791,7 @@ pc.extend(pc, function() {
     this._updateMesh(mesh);
     return mesh;
   }, _updateMesh:function(mesh) {
+    var i;
     var w = this._element.width;
     var h = this._element.height;
     if (this._element.screen) {
@@ -27520,7 +27813,7 @@ pc.extend(pc, function() {
     this._positions[11] = 0;
     var hp = this._element.pivot.data[0];
     var vp = this._element.pivot.data[1];
-    for (var i = 0;i < this._positions.length;i += 3) {
+    for (i = 0;i < this._positions.length;i += 3) {
       this._positions[i] -= hp * w;
       this._positions[i + 1] -= vp * h;
     }
@@ -27535,7 +27828,7 @@ pc.extend(pc, function() {
     var vb = mesh.vertexBuffer;
     var it = new pc.VertexIterator(vb);
     var numVertices = 4;
-    for (var i = 0;i < numVertices;i++) {
+    for (i = 0;i < numVertices;i++) {
       it.element[pc.SEMANTIC_POSITION].set(this._positions[i * 3 + 0], this._positions[i * 3 + 1], this._positions[i * 3 + 2]);
       it.element[pc.SEMANTIC_NORMAL].set(this._normals[i * 3 + 0], this._normals[i * 3 + 1], this._normals[i * 3 + 2]);
       it.element[pc.SEMANTIC_TEXCOORD0].set(this._uvs[i * 2 + 0], this._uvs[i * 2 + 1]);
@@ -27548,6 +27841,20 @@ pc.extend(pc, function() {
     }
   }, _onMaterialLoad:function(asset) {
     this.material = asset.resource;
+  }, _onMaterialAdded:function(asset) {
+    this._system.app.assets.off("add:" + asset.id, this._onMaterialAdded, this);
+    if (this._materialAsset === asset.id) {
+      this._bindMaterialAsset(asset);
+    }
+  }, _bindMaterialAsset:function(asset) {
+    asset.on("load", this._onMaterialLoad, this);
+    asset.on("change", this._onMaterialChange, this);
+    asset.on("remove", this._onMaterialRemove, this);
+    if (asset.resource) {
+      this._onMaterialLoad(asset);
+    } else {
+      this._system.app.assets.load(asset);
+    }
   }, _onMaterialChange:function() {
   }, _onMaterialRemove:function() {
   }, _onTextureAdded:function(asset) {
@@ -27635,20 +27942,20 @@ pc.extend(pc, function() {
     if (this._materialAsset !== _id) {
       if (this._materialAsset) {
         var _prev = assets.get(this._materialAsset);
-        _prev.off("load", this._onMaterialLoad, this);
-        _prev.off("change", this._onMaterialChange, this);
-        _prev.off("remove", this._onMaterialRemove, this);
+        if (_prev) {
+          _prev.off("load", this._onMaterialLoad, this);
+          _prev.off("change", this._onMaterialChange, this);
+          _prev.off("remove", this._onMaterialRemove, this);
+        }
       }
       this._materialAsset = _id;
       if (this._materialAsset) {
         var asset = assets.get(this._materialAsset);
-        asset.on("load", this._onMaterialLoad, this);
-        asset.on("change", this._onMaterialChange, this);
-        asset.on("remove", this._onMaterialRemove, this);
-        if (asset.resource) {
-          this._onMaterialLoad(asset);
+        if (!asset) {
+          this.material = null;
+          assets.on("add:" + this._materialAsset, this._onMaterialAdded, this);
         } else {
-          assets.load(asset);
+          this._bindMaterialAsset(asset);
         }
       } else {
         this.material = null;
@@ -27680,14 +27987,17 @@ pc.extend(pc, function() {
     if (this._textureAsset !== _id) {
       if (this._textureAsset) {
         var _prev = assets.get(this._textureAsset);
-        _prev.off("load", this._onTextureLoad, this);
-        _prev.off("change", this._onTextureChange, this);
-        _prev.off("remove", this._onTextureRemove, this);
+        if (_prev) {
+          _prev.off("load", this._onTextureLoad, this);
+          _prev.off("change", this._onTextureChange, this);
+          _prev.off("remove", this._onTextureRemove, this);
+        }
       }
       this._textureAsset = _id;
       if (this._textureAsset) {
         var asset = assets.get(this._textureAsset);
         if (!asset) {
+          this.texture = null;
           assets.on("add:" + this._textureAsset, this._onTextureAdded, this);
         } else {
           this._bindTextureAsset(asset);
@@ -27850,12 +28160,12 @@ pc.extend(pc, function() {
     this._updateMesh(mesh, text);
     return mesh;
   }, _updateMesh:function(mesh, text) {
+    var char, data, i;
     var json = this._font.data;
     var vb = mesh.vertexBuffer;
     var it = new pc.VertexIterator(vb);
     this.width = 0;
     this.height = 0;
-    var minY = 0;
     var lineWidths = [];
     var l = text.length;
     var _x = 0;
@@ -27864,8 +28174,6 @@ pc.extend(pc, function() {
     this._positions.length = 0;
     this._normals.length = 0;
     this._uvs.length = 0;
-    var lastWordIndex = 0;
-    var lastSoftBreak = 0;
     var lines = 1;
     this._lines.length = 0;
     var lastLine = 0;
@@ -27873,44 +28181,37 @@ pc.extend(pc, function() {
     var fontMaxY = 0;
     var scale = 1;
     var MAGIC = 32;
-    for (var char in json.chars) {
-      var data = json.chars[char];
+    for (char in json.chars) {
+      data = json.chars[char];
       scale = data.height / MAGIC * this._fontSize / data.height;
       if (data.bounds) {
         fontMinY = Math.min(fontMinY, data.bounds[1] * scale);
         fontMaxY = Math.max(fontMaxY, data.bounds[3] * scale);
       }
     }
-    for (var i = 0;i < l;i++) {
-      var char = text.charCodeAt(i);
+    for (i = 0;i < l;i++) {
+      char = text.charCodeAt(i);
       if (char === 10 || char === 13) {
         _y -= this._lineHeight;
         _x = 0;
-        lastWordIndex = i;
-        lastSoftBreak = i;
         lines++;
-        continue;
-      }
-      if (lastLine !== lines) {
         lastLine = lines;
         this._lines.push(i);
-      } else {
-        this._lines[this._lines.length - 1] = i;
+        lineWidths.push(0);
+        continue;
       }
-      if (char === 32) {
-        lastWordIndex = i + 1;
-      }
+      this._lines[lines - 1] = i;
+      lineWidths[lines - 1] = 0;
       var x = 0;
       var y = 0;
       var advance = 0;
       var quadsize = 1;
       var glyphMinX = 0;
       var glyphWidth = 0;
-      lineWidths[lines - 1] = 0;
-      var data = json.chars[char];
+      data = json.chars[char];
       if (data && data.scale) {
         var size = (data.width + data.height) / 2;
-        var scale = size / MAGIC * this._fontSize / size;
+        scale = size / MAGIC * this._fontSize / size;
         quadsize = size / MAGIC * this._fontSize / data.scale;
         advance = data.xadvance * scale;
         x = data.xoffset * scale;
@@ -27980,7 +28281,7 @@ pc.extend(pc, function() {
       var index = this._lines[line];
       var hoffset = -hp * this._element.width + ha * (this._element.width - lineWidths[line]);
       var voffset = (1 - vp) * this._element.height - fontMaxY - (1 - va) * (this._element.height - this.height);
-      var i = line === 0 ? 0 : this._lines[line - 1] + 1;
+      i = line === 0 ? 0 : this._lines[line - 1] + 1;
       for (;i <= index;i++) {
         this._positions[i * 4 * 3] += hoffset;
         this._positions[i * 4 * 3 + 3] += hoffset;
@@ -27993,7 +28294,7 @@ pc.extend(pc, function() {
       }
     }
     var numVertices = l * 4;
-    for (var i = 0;i < numVertices;i++) {
+    for (i = 0;i < numVertices;i++) {
       it.element[pc.SEMANTIC_POSITION].set(this._positions[i * 3 + 0], this._positions[i * 3 + 1], this._positions[i * 3 + 2]);
       it.element[pc.SEMANTIC_NORMAL].set(this._normals[i * 3 + 0], this._normals[i * 3 + 1], this._normals[i * 3 + 2]);
       it.element[pc.SEMANTIC_TEXCOORD0].set(this._uvs[i * 2 + 0], this._uvs[i * 2 + 1]);
@@ -28034,7 +28335,6 @@ pc.extend(pc, function() {
   }, _onFontRemove:function(asset) {
   }, _getPxRange:function(font) {
     var keys = Object.keys(this._font.data.chars);
-    var i = 0;
     for (var i = 0;i < keys.length;i++) {
       var char = this._font.data.chars[keys[i]];
       if (char.scale && char.range) {
@@ -28429,7 +28729,15 @@ pc.extend(pc, function() {
       if (child instanceof pc.Entity) {
         child.destroy();
       }
+      child._parent = null;
       child = children.shift();
+    }
+    this.fire("destroy", this);
+    if (this._callbacks) {
+      this._callbacks = null;
+    }
+    if (this._callbackActive) {
+      this._callbackActive = null;
     }
   };
   Entity.prototype.clone = function() {
@@ -28733,9 +29041,13 @@ pc.extend(pc, function() {
         assetCubeMap._dds.fixCubemapSeams = true;
         assetCubeMap._dds.addressU = pc.ADDRESS_CLAMP_TO_EDGE;
         assetCubeMap._dds.addressV = pc.ADDRESS_CLAMP_TO_EDGE;
-        assetCubeMap.resources.push(assetCubeMap._dds);
-        for (var i = 1;i < 6;i++) {
-          var mip = new pc.Texture(this._device, {cubemap:true, fixCubemapSeams:true, mipmaps:false, format:assetCubeMap._dds.format, rgbm:assetCubeMap._dds.rgbm, width:Math.pow(2, 7 - i), height:Math.pow(2, 7 - i)});
+        var startIndex = 0;
+        if (this._device.useTexCubeLod) {
+          assetCubeMap.resources.push(assetCubeMap._dds);
+          startIndex = 1;
+        }
+        for (var i = startIndex;i < 6;i++) {
+          var mip = new pc.Texture(this._device, {cubemap:true, fixCubemapSeams:true, mipmaps:true, format:assetCubeMap._dds.format, rgbm:assetCubeMap._dds.rgbm, width:Math.pow(2, 7 - i), height:Math.pow(2, 7 - i)});
           mip._levels[0] = assetCubeMap._dds._levels[i];
           mip.upload();
           assetCubeMap.resources.push(mip);
@@ -28747,8 +29059,9 @@ pc.extend(pc, function() {
     if (cubemap.name !== assetCubeMap.name) {
       cubemap.name = assetCubeMap.name;
     }
-    if (assetCubeMap.data.hasOwnProperty("rgbm") && cubemap.rgbm !== !!assetCubeMap.data.rgbm) {
-      cubemap.rgbm = !!assetCubeMap.data.rgbm;
+    var rgbm = !!assetCubeMap.data.rgbm;
+    if (assetCubeMap.data.hasOwnProperty("rgbm") && cubemap.rgbm !== rgbm) {
+      cubemap.rgbm = rgbm;
     }
     cubemap.fixCubemapSeams = !!assetCubeMap._dds;
     if (assetCubeMap.data.hasOwnProperty("minFilter") && cubemap.minFilter !== assetCubeMap.data.minFilter) {
@@ -28862,7 +29175,6 @@ pc.extend(pc, function() {
         this[props[i]] = asset.resources[i];
       }
     }
-    console.log(this);
     this.update();
   };
   var MaterialHandler = function(app) {
@@ -29089,6 +29401,10 @@ pc.extend(pc, function() {
 pc.extend(pc, function() {
   var ModelHandler = function(device) {
     this._device = device;
+    this._parsers = [];
+    this.addParser(new pc.JsonModelParser(this._device), function(url, data) {
+      return pc.path.getExtension(url) === ".json";
+    });
   };
   ModelHandler.DEFAULT_MATERIAL = pc.Scene.defaultMaterial;
   ModelHandler.prototype = {load:function(url, callback) {
@@ -29103,17 +29419,13 @@ pc.extend(pc, function() {
       }
     });
   }, open:function(url, data) {
-    if (!data.model) {
-      return;
-    }
-    if (data.model.version <= 1) {
-      logERROR(pc.string.format("Asset: {0}, is an old model format. Upload source assets to re-import.", url));
-    } else {
-      if (data.model.version >= 2) {
-        var parser = new pc.JsonModelParser(this._device);
-        return parser.parse(data);
+    for (var i = 0;i < this._parsers.length;i++) {
+      var p = this._parsers[i];
+      if (p.decider(url, data)) {
+        return p.parser.parse(data);
       }
     }
+    logWARNING(pc.string.format("No model parser found for: {0}", url));
     return null;
   }, patch:function(asset, assets) {
     if (!asset.resource) {
@@ -29168,6 +29480,8 @@ pc.extend(pc, function() {
         }
       }
     });
+  }, addParser:function(parser, decider) {
+    this._parsers.push({parser:parser, decider:decider});
   }};
   return {ModelHandler:ModelHandler};
 }());
@@ -29298,6 +29612,7 @@ pc.extend(pc, function() {
   };
   TextureHandler.prototype = {load:function(url, callback) {
     var self = this;
+    var image;
     var urlWithoutParams = url.indexOf("?") >= 0 ? url.split("?")[0] : url;
     var ext = pc.path.getExtension(urlWithoutParams).toLowerCase();
     if (ext === ".dds" || ext === ".crn") {
@@ -29311,7 +29626,7 @@ pc.extend(pc, function() {
       });
     } else {
       if (ext === ".jpg" || ext === ".jpeg" || ext === ".gif" || ext === ".png") {
-        var image = new Image;
+        image = new Image;
         if (self.crossOrigin !== undefined && pc.ABSOLUTE_URL.test(url)) {
           image.crossOrigin = self.crossOrigin;
         }
@@ -29323,9 +29638,23 @@ pc.extend(pc, function() {
         };
         image.src = url;
       } else {
-        setTimeout(function() {
-          callback(pc.string.format("Error loading Texture: format not supported: '{0}'", ext));
-        }, 0);
+        var blobStart = urlWithoutParams.indexOf("blob:");
+        if (blobStart >= 0) {
+          urlWithoutParams = urlWithoutParams.substr(blobStart);
+          url = urlWithoutParams;
+          image = new Image;
+          image.onload = function() {
+            callback(null, image);
+          };
+          image.onerror = function(event) {
+            callback(pc.string.format("Error loading Texture from: '{0}'", url));
+          };
+          image.src = url;
+        } else {
+          setTimeout(function() {
+            callback(pc.string.format("Error loading Texture: format not supported: '{0}'", ext));
+          }, 0);
+        }
       }
     }
   }, open:function(url, data) {
@@ -29496,8 +29825,9 @@ pc.extend(pc, function() {
     if (asset.data.hasOwnProperty("anisotropy") && texture.anisotropy !== asset.data.anisotropy) {
       texture.anisotropy = asset.data.anisotropy;
     }
-    if (asset.data.hasOwnProperty("rgbm") && texture.rgbm !== !!asset.data.rgbm) {
-      texture.rgbm = !!asset.data.rgbm;
+    var rgbm = !!asset.data.rgbm;
+    if (asset.data.hasOwnProperty("rgbm") && texture.rgbm !== rgbm) {
+      texture.rgbm = rgbm;
     }
   }};
   return {TextureHandler:TextureHandler};
@@ -29654,7 +29984,7 @@ pc.extend(pc, function() {
             }
           });
         } else {
-          callback(pc.string.format("Error loading css resource: {0} [{1}]", url, err));
+          callback(pc.string.format("Error loading font resource: {0} [{1}]", url, err));
         }
       });
     } else {
@@ -29684,12 +30014,19 @@ pc.extend(pc, function() {
 }());
 pc.extend(pc, function() {
   var JSON_PRIMITIVE_TYPE = {"points":pc.PRIMITIVE_POINTS, "lines":pc.PRIMITIVE_LINES, "lineloop":pc.PRIMITIVE_LINELOOP, "linestrip":pc.PRIMITIVE_LINESTRIP, "triangles":pc.PRIMITIVE_TRIANGLES, "trianglestrip":pc.PRIMITIVE_TRISTRIP, "trianglefan":pc.PRIMITIVE_TRIFAN};
-  var JSON_VERTEX_ELEMENT_TYPE = {"int8":pc.ELEMENTTYPE_INT8, "uint8":pc.ELEMENTTYPE_UINT8, "int16":pc.ELEMENTTYPE_INT16, "uint16":pc.ELEMENTTYPE_UINT16, "int32":pc.ELEMENTTYPE_INT32, "uint32":pc.ELEMENTTYPE_UINT32, "float32":pc.ELEMENTTYPE_FLOAT32};
+  var JSON_VERTEX_ELEMENT_TYPE = {"int8":pc.TYPE_INT8, "uint8":pc.TYPE_UINT8, "int16":pc.TYPE_INT16, "uint16":pc.TYPE_UINT16, "int32":pc.TYPE_INT32, "uint32":pc.TYPE_UINT32, "float32":pc.TYPE_FLOAT32};
   var JsonModelParser = function(device) {
     this._device = device;
   };
   JsonModelParser.prototype = {parse:function(data) {
     var modelData = data.model;
+    if (!modelData) {
+      return null;
+    }
+    if (modelData.version <= 1) {
+      logERROR(pc.string.format("Trying to parse unsupported model format."));
+      return null;
+    }
     var nodes = this._parseNodes(data);
     var skins = this._parseSkins(data, nodes);
     var morphs = this._parseMorphs(data, nodes);
@@ -30345,7 +30682,10 @@ pc.extend(pc, function() {
   Object.defineProperty(Asset.prototype, "file", {get:function() {
     return this._file;
   }, set:function(value) {
-    if (!!value !== !!this._file || value && this._file && value.hash !== this._file) {
+    var key;
+    var valueAsBool = !!value;
+    var fileAsBool = !!this._file;
+    if (valueAsBool !== fileAsBool || value && this._file && value.hash !== this._file) {
       if (value) {
         if (!this._file) {
           this._file = {};
@@ -30358,7 +30698,7 @@ pc.extend(pc, function() {
         if (value.hasOwnProperty("variants")) {
           this.variants.clear();
           if (value.variants) {
-            for (var key in value.variants) {
+            for (key in value.variants) {
               if (!value.variants[key]) {
                 continue;
               }
@@ -30376,7 +30716,7 @@ pc.extend(pc, function() {
       if (value && this._file && value.hasOwnProperty("variants")) {
         this.variants.clear();
         if (value.variants) {
-          for (var key in value.variants) {
+          for (key in value.variants) {
             if (!value.variants[key]) {
               continue;
             }
@@ -30415,7 +30755,8 @@ pc.extend(pc, function() {
   Object.defineProperty(Asset.prototype, "preload", {get:function() {
     return this._preload;
   }, set:function(value) {
-    if (this._preload === !!value) {
+    value = !!value;
+    if (this._preload === value) {
       return;
     }
     this._preload = value;
@@ -30436,7 +30777,9 @@ pc.extend(pc, function() {
     Object.defineProperty(AssetVariants.prototype, name, {get:function() {
       return this[field] || null;
     }, set:function(value) {
-      if (!!this[field] !== !!value || this[field] && value && this[field].hash !== value.hash) {
+      var fieldAsBool = !!this[field];
+      var valueAsBool = !!value;
+      if (fieldAsBool !== valueAsBool || this[field] && value && this[field].hash !== value.hash) {
         var old = this[field];
         if (value) {
           this[field] = {url:value.url, filename:value.filename, size:value.size, hash:value.hash, opt:value.opt || 0};
@@ -30640,7 +30983,7 @@ pc.extend(pc, function() {
     var dir = pc.path.getDirectory(url);
     var basename = pc.path.getBasename(url);
     var name = basename.replace(".json", "");
-    var mappingUrl = pc.path.join(dir, basename.replace(".json", ".mapping.json"));
+    var ext = pc.path.getExtension(url);
     var _loadAsset = function(asset) {
       asset.once("load", function(asset) {
         callback(null, asset);
@@ -30650,17 +30993,22 @@ pc.extend(pc, function() {
       });
       self.load(asset);
     };
-    this._loader.load(mappingUrl, "json", function(err, data) {
-      if (err) {
-        asset.data = {mapping:[]};
-        _loadAsset(asset);
-        return;
-      }
-      self._loadMaterials(dir, data, function(err, materials) {
-        asset.data = data;
-        _loadAsset(asset);
+    if (ext === ".json") {
+      var mappingUrl = pc.path.join(dir, basename.replace(".json", ".mapping.json"));
+      this._loader.load(mappingUrl, "json", function(err, data) {
+        if (err) {
+          asset.data = {mapping:[]};
+          _loadAsset(asset);
+          return;
+        }
+        self._loadMaterials(dir, data, function(err, materials) {
+          asset.data = data;
+          _loadAsset(asset);
+        });
       });
-    });
+    } else {
+      _loadAsset(asset);
+    }
   }, _loadMaterials:function(dir, mapping, callback) {
     var self = this;
     var i;
@@ -30787,6 +31135,13 @@ pc.shape = {Aabb:pc.BoundingBox, Sphere:pc.BoundingSphere, Plane:pc.Plane};
 pc.time = {now:pc.now, Timer:pc.Timer};
 pc.PhongMaterial = pc.StandardMaterial;
 pc.BoundingSphere.prototype.intersectRay = pc.BoundingSphere.prototype.intersectsRay;
+pc.ELEMENTTYPE_INT8 = pc.TYPE_INT8;
+pc.ELEMENTTYPE_UINT8 = pc.TYPE_UINT8;
+pc.ELEMENTTYPE_INT16 = pc.TYPE_INT16;
+pc.ELEMENTTYPE_UINT16 = pc.TYPE_UINT16;
+pc.ELEMENTTYPE_INT32 = pc.TYPE_INT32;
+pc.ELEMENTTYPE_UINT32 = pc.TYPE_UINT32;
+pc.ELEMENTTYPE_FLOAT32 = pc.TYPE_FLOAT32;
 pc.extend(pc.Application.prototype, function() {
   var lineVertexFormat = null;
   var lineBatches = [];
@@ -30862,7 +31217,7 @@ pc.extend(pc.Application.prototype, function() {
   }};
   function _addLines(batchId, position, color) {
     if (!lineVertexFormat) {
-      lineVertexFormat = new pc.VertexFormat(this.graphicsDevice, [{semantic:pc.SEMANTIC_POSITION, components:3, type:pc.ELEMENTTYPE_FLOAT32}, {semantic:pc.SEMANTIC_COLOR, components:4, type:pc.ELEMENTTYPE_UINT8, normalize:true}]);
+      lineVertexFormat = new pc.VertexFormat(this.graphicsDevice, [{semantic:pc.SEMANTIC_POSITION, components:3, type:pc.TYPE_FLOAT32}, {semantic:pc.SEMANTIC_COLOR, components:4, type:pc.TYPE_UINT8, normalize:true}]);
       this.on("prerender", this._preRenderImmediate, this);
     }
     if (!lineBatches[batchId]) {
@@ -30946,7 +31301,7 @@ pc.extend(pc.Application.prototype, function() {
   }
   function renderQuad(matrix, material, layer) {
     if (!quadMesh) {
-      var format = new pc.VertexFormat(this.graphicsDevice, [{semantic:pc.SEMANTIC_POSITION, components:3, type:pc.ELEMENTTYPE_FLOAT32}]);
+      var format = new pc.VertexFormat(this.graphicsDevice, [{semantic:pc.SEMANTIC_POSITION, components:3, type:pc.TYPE_FLOAT32}]);
       var quadVb = new pc.VertexBuffer(this.graphicsDevice, format, 4);
       var iterator = new pc.VertexIterator(quadVb);
       iterator.element[pc.SEMANTIC_POSITION].set(-.5, -.5, 0);
@@ -31047,15 +31402,14 @@ pc.extend(pc, function() {
     this.scene = scene;
     this.renderer = renderer;
     this.assets = assets;
-    this._stats = {renderPasses:0, lightmapCount:0, totalRenderTime:0, forwardTime:0, fboTime:0, shadowMapTime:0, compileTime:0, shadersLinked:0};
   };
   Lightmapper.prototype = {calculateLightmapSize:function(node) {
+    var data, parent;
     var sizeMult = this.scene.lightmapSizeMultiplier || 16;
     var scale = tempVec;
-    var parent;
     var area = {x:1, y:1, z:1, uv:1};
     if (node.model.asset) {
-      var data = this.assets.get(node.model.asset).data;
+      data = this.assets.get(node.model.asset).data;
       if (data.area) {
         area.x = data.area.x;
         area.y = data.area.y;
@@ -31064,7 +31418,7 @@ pc.extend(pc, function() {
       }
     } else {
       if (node.model._area) {
-        var data = node.model;
+        data = node.model;
         if (data._area) {
           area.x = data._area.x;
           area.y = data._area.y;
@@ -31094,7 +31448,6 @@ pc.extend(pc, function() {
     var i, j;
     var device = this.device;
     var scene = this.scene;
-    var stats = this._stats;
     var passCount = 1;
     if (mode === undefined) {
       mode = pc.BAKE_COLORDIR;
@@ -31417,9 +31770,6 @@ pc.extend(pc, function() {
           this.renderer._forwardTime = 0;
           this.renderer._shadowMapTime = 0;
           this.renderer.render(scene, lmCamera);
-          stats.shadowMapTime += this.renderer._shadowMapTime;
-          stats.forwardTime += this.renderer._forwardTime;
-          stats.renderPasses++;
           lmaps[pass][node] = texTmp;
           nodeTarg[pass][node] = targTmp;
           texPool[lm.width] = targ;
@@ -31518,4 +31868,720 @@ pc.extend(pc, function() {
     }
   }};
   return {Lightmapper:Lightmapper, MASK_DYNAMIC:maskDynamic, MASK_BAKED:maskBaked, MASK_LIGHTMAP:maskLightmap};
+}());
+pc.extend(pc, function() {
+  var Batch = function(meshInstances, dynamic, batchGroupId) {
+    this.origMeshInstances = meshInstances;
+    this._aabb = new pc.BoundingBox;
+    this.meshInstance = null;
+    this.model = null;
+    this.dynamic = dynamic;
+    this.batchGroupId = batchGroupId;
+  };
+  var BatchGroup = function(id, name, dynamic, maxAabbSize) {
+    this.dynamic = dynamic;
+    this.maxAabbSize = maxAabbSize;
+    this.id = id;
+    this.name = name;
+  };
+  var SkinBatchInstance = function(device, nodes, rootNode) {
+    this.device = device;
+    this.rootNode = rootNode;
+    this._dirty = true;
+    this.bones = nodes;
+    var numBones = nodes.length;
+    if (device.supportsBoneTextures) {
+      var size;
+      if (numBones > 256) {
+        size = 64;
+      } else {
+        if (numBones > 64) {
+          size = 32;
+        } else {
+          if (numBones > 16) {
+            size = 16;
+          } else {
+            size = 8;
+          }
+        }
+      }
+      this.boneTexture = new pc.Texture(device, {width:size, height:size, format:pc.PIXELFORMAT_RGBA32F, mipmaps:false, minFilter:pc.FILTER_NEAREST, magFilter:pc.FILTER_NEAREST});
+      this.matrixPalette = this.boneTexture.lock();
+    } else {
+      this.matrixPalette = new Float32Array(numBones * 16);
+    }
+  };
+  SkinBatchInstance.prototype = {updateMatrices:function() {
+  }, updateMatrixPalette:function() {
+    var pe;
+    var mp = this.matrixPalette;
+    var base;
+    for (var i = this.bones.length - 1;i >= 0;i--) {
+      pe = this.bones[i].getWorldTransform().data;
+      base = i * 16;
+      mp[base] = pe[0];
+      mp[base + 1] = pe[1];
+      mp[base + 2] = pe[2];
+      mp[base + 3] = pe[3];
+      mp[base + 4] = pe[4];
+      mp[base + 5] = pe[5];
+      mp[base + 6] = pe[6];
+      mp[base + 7] = pe[7];
+      mp[base + 8] = pe[8];
+      mp[base + 9] = pe[9];
+      mp[base + 10] = pe[10];
+      mp[base + 11] = pe[11];
+      mp[base + 12] = pe[12];
+      mp[base + 13] = pe[13];
+      mp[base + 14] = pe[14];
+      mp[base + 15] = pe[15];
+    }
+    if (this.device.supportsBoneTextures) {
+      this.boneTexture.lock();
+      this.boneTexture.unlock();
+    }
+  }};
+  var BatchManager = function(device, root, scene) {
+    this.device = device;
+    this.rootNode = root;
+    this.scene = scene;
+    this._init = false;
+    this._batchGroups = {};
+    this._batchGroupCounter = 0;
+    this._batchList = [];
+    this._dirtyGroups = [];
+  };
+  BatchManager.prototype.addGroup = function(name, dynamic, maxAabbSize, id) {
+    if (id === undefined) {
+      id = this._batchGroupCounter;
+      this._batchGroupCounter++;
+    }
+    if (this._batchGroups[id]) {
+      return;
+    }
+    var group;
+    this._batchGroups[id] = group = new pc.BatchGroup(id, name, dynamic, maxAabbSize);
+    return group;
+  };
+  BatchManager.prototype.removeGroup = function(id) {
+    if (!this._batchGroups[id]) {
+      return;
+    }
+    var newBatchList = [];
+    for (var i = 0;i < this._batchList.length;i++) {
+      if (this._batchList[i].batchGroupId !== id) {
+        newBatchList.push(this._batchList[i]);
+        continue;
+      }
+      this._batchList[i].refCounter = 1;
+      this.destroy(this._batchList[i]);
+    }
+    this._batchList = newBatchList;
+    this._removeModelsFromBatchGroup(this.rootNode, id);
+    delete this._batchGroups[id];
+  };
+  BatchManager.prototype._removeModelsFromBatchGroup = function(node, id) {
+    if (!node.enabled) {
+      return;
+    }
+    if (node.model && node.model.batchGroupId === id) {
+      node.model.batchGroupId = -1;
+    }
+    if (node.element && node.element.batchGroupId === id) {
+      node.element.batchGroupId = -1;
+    }
+    for (var i = 0;i < node._children.length;i++) {
+      this._removeModelsFromBatchGroup(node._children[i], id);
+    }
+  };
+  BatchManager.prototype._collectAndRemoveModels = function(node, groupMeshInstances, groupIds) {
+    if (!node.enabled) {
+      return;
+    }
+    var i;
+    if (node.model && node.model.batchGroupId >= 0 && node.model.model && node.model.enabled) {
+      if (!groupIds || groupIds && groupIds.indexOf(node.model.batchGroupId) >= 0) {
+        var arr = groupMeshInstances[node.model.batchGroupId];
+        if (!arr) {
+          arr = groupMeshInstances[node.model.batchGroupId] = [];
+        }
+        if (node.model.isStatic) {
+          var drawCalls = this.scene.drawCalls;
+          var nodeMeshInstances = node.model.meshInstances;
+          for (i = 0;i < drawCalls.length;i++) {
+            if (!drawCalls[i]._staticSource) {
+              continue;
+            }
+            if (nodeMeshInstances.indexOf(drawCalls[i]._staticSource) < 0) {
+              continue;
+            }
+            groupMeshInstances[node.model.batchGroupId].push(drawCalls[i]);
+          }
+          for (i = 0;i < nodeMeshInstances.length;i++) {
+            if (drawCalls.indexOf(nodeMeshInstances[i]) >= 0) {
+              groupMeshInstances[node.model.batchGroupId].push(nodeMeshInstances[i]);
+            }
+          }
+        } else {
+          groupMeshInstances[node.model.batchGroupId] = arr.concat(node.model.meshInstances);
+        }
+        this.scene.removeModel(node.model.model);
+      }
+    }
+    if (node.element && node.element.batchGroupId >= 0 && node.element.enabled) {
+      if (!groupIds || groupIds && groupIds.indexOf(node.element.batchGroupId) >= 0) {
+        var arr = groupMeshInstances[node.element.batchGroupId];
+        if (!arr) {
+          arr = groupMeshInstances[node.element.batchGroupId] = [];
+        }
+        var valid = false;
+        if (node.element._text) {
+          groupMeshInstances[node.element.batchGroupId].push(node.element._text._model.meshInstances[0]);
+          this.scene.removeModel(node.element._text._model);
+          valid = true;
+        } else {
+          if (node.element._image) {
+            groupMeshInstances[node.element.batchGroupId].push(node.element._image._model.meshInstances[0]);
+            this.scene.removeModel(node.element._image._model);
+            valid = true;
+          }
+        }
+      }
+    }
+    for (i = 0;i < node._children.length;i++) {
+      this._collectAndRemoveModels(node._children[i], groupMeshInstances, groupIds);
+    }
+  };
+  BatchManager.prototype._markGroupDirty = function(id) {
+    if (this._dirtyGroups.indexOf(id) < 0) {
+      this._dirtyGroups.push(id);
+    }
+  };
+  BatchManager.prototype._registerEntities = function(batch, meshInstances) {
+    var node;
+    var ents = [];
+    for (var i = 0;i < meshInstances.length;i++) {
+      node = meshInstances[i].node;
+      while (!node._app && node._parent) {
+        node = node._parent;
+      }
+      if (!node._app) {
+        continue;
+      }
+      ents.push(node);
+    }
+    this.register(batch, ents);
+  };
+  BatchManager.prototype.generate = function(groupIds) {
+    var i;
+    var groupMeshInstances = {};
+    if (!groupIds) {
+      for (i = 0;i < this._batchList.length;i++) {
+        this._batchList[i].refCounter = 1;
+        this.destroy(this._batchList[i]);
+      }
+      this._batchList.length = 0;
+      this._collectAndRemoveModels(this.rootNode, groupMeshInstances);
+    } else {
+      var newBatchList = [];
+      for (i = 0;i < this._batchList.length;i++) {
+        if (groupIds.indexOf(this._batchList[i].batchGroupId) < 0) {
+          newBatchList.push(this._batchList[i]);
+          continue;
+        }
+        this._batchList[i].refCounter = 1;
+        this.destroy(this._batchList[i]);
+      }
+      this._batchList = newBatchList;
+      this._collectAndRemoveModels(this.rootNode, groupMeshInstances, groupIds);
+    }
+    var group, lists, groupData, batch;
+    for (var groupId in groupMeshInstances) {
+      if (!groupMeshInstances.hasOwnProperty(groupId)) {
+        continue;
+      }
+      group = groupMeshInstances[groupId];
+      groupData = this._batchGroups[groupId];
+      if (!groupData) {
+        continue;
+      }
+      lists = this.prepare(group, groupData.dynamic, groupData.maxAabbSize);
+      for (i = 0;i < lists.length;i++) {
+        batch = this.create(lists[i], groupData.dynamic, parseInt(groupId));
+        this.scene.addModel(batch.model);
+        this._registerEntities(batch, lists[i]);
+      }
+    }
+  };
+  BatchManager.prototype.getGroupByName = function(name) {
+    var groups = this._batchGroups;
+    for (var group in groups) {
+      if (!groups.hasOwnProperty(group)) {
+        continue;
+      }
+      if (groups[group].name === name) {
+        return groups[group];
+      }
+    }
+    return null;
+  };
+  function paramsIdentical(a, b) {
+    if (a && !b) {
+      return false;
+    }
+    if (!a && b) {
+      return false;
+    }
+    a = a.data;
+    b = b.data;
+    if (a === b) {
+      return true;
+    }
+    if (a instanceof Float32Array && b instanceof Float32Array) {
+      if (a.length !== b.length) {
+        return false;
+      }
+      for (var i = 0;i < a.length;i++) {
+        if (a[i] !== b[i]) {
+          return false;
+        }
+      }
+      return true;
+    }
+    return false;
+  }
+  BatchManager.prototype.prepare = function(meshInstances, dynamic, maxAabbSize) {
+    if (meshInstances.length === 0) {
+      return [];
+    }
+    if (maxAabbSize === undefined) {
+      maxAabbSize = Number.POSITIVE_INFINITY;
+    }
+    var halfMaxAabbSize = maxAabbSize * .5;
+    var maxInstanceCount = this.device.supportsBoneTextures ? 1024 : this.device.boneLimit;
+    var i;
+    var material, layer, vertCount, params, params2, param, paramFailed, lightList, defs;
+    var aabb = new pc.BoundingBox;
+    var testAabb = new pc.BoundingBox;
+    var lists = [];
+    var j = 0;
+    var meshInstancesLeftA = meshInstances;
+    var meshInstancesLeftB;
+    var k;
+    while (meshInstancesLeftA.length > 0) {
+      lists[j] = [];
+      meshInstancesLeftB = [];
+      material = meshInstancesLeftA[0].material;
+      layer = meshInstancesLeftA[0].layer;
+      defs = meshInstancesLeftA[0]._shaderDefs;
+      params = meshInstancesLeftA[0].parameters;
+      lightList = meshInstancesLeftA[0]._staticLightList;
+      vertCount = meshInstancesLeftA[0].mesh.vertexBuffer.getNumVertices();
+      aabb.copy(meshInstancesLeftA[0].aabb);
+      for (i = 0;i < meshInstancesLeftA.length;i++) {
+        if (i > 0) {
+          if (material !== meshInstancesLeftA[i].material) {
+            meshInstancesLeftB.push(meshInstancesLeftA[i]);
+            continue;
+          }
+          if (layer !== meshInstancesLeftA[i].layer) {
+            meshInstancesLeftB.push(meshInstancesLeftA[i]);
+            continue;
+          }
+          if (defs !== meshInstancesLeftA[i]._shaderDefs) {
+            meshInstancesLeftB.push(meshInstancesLeftA[i]);
+            continue;
+          }
+          if (vertCount + meshInstancesLeftA[i].mesh.vertexBuffer.getNumVertices() > 65535) {
+            meshInstancesLeftB.push(meshInstancesLeftA[i]);
+            continue;
+          }
+          testAabb.copy(aabb);
+          testAabb.add(meshInstancesLeftA[i].aabb);
+          if (testAabb.halfExtents.x > halfMaxAabbSize || testAabb.halfExtents.y > halfMaxAabbSize || testAabb.halfExtents.z > halfMaxAabbSize) {
+            meshInstancesLeftB.push(meshInstancesLeftA[i]);
+            continue;
+          }
+          params2 = meshInstancesLeftA[i].parameters;
+          paramFailed = false;
+          for (param in params) {
+            if (!params.hasOwnProperty(param)) {
+              continue;
+            }
+            if (!paramsIdentical(params[param], params2[param])) {
+              paramFailed = true;
+              break;
+            }
+          }
+          if (!paramFailed) {
+            for (param in params2) {
+              if (!params2.hasOwnProperty(param)) {
+                continue;
+              }
+              if (!paramsIdentical(params2[param], params[param])) {
+                paramFailed = true;
+                break;
+              }
+            }
+          }
+          if (paramFailed) {
+            meshInstancesLeftB.push(meshInstancesLeftA[i]);
+            continue;
+          }
+          params2 = meshInstancesLeftA[i]._staticLightList;
+          if (lightList && !params2 || !lightList && params2) {
+            meshInstancesLeftB.push(meshInstancesLeftA[i]);
+            continue;
+          }
+          if (lightList && params2) {
+            paramFailed = false;
+            for (k = 0;k < lightList.length;k++) {
+              if (params2.indexOf(lightList[k]) < 0) {
+                paramFailed = true;
+                break;
+              }
+            }
+            for (k = 0;k < params2.length;k++) {
+              if (lightList.indexOf(params2[k]) < 0) {
+                paramFailed = true;
+                break;
+              }
+            }
+            if (paramFailed) {
+              meshInstancesLeftB.push(meshInstancesLeftA[i]);
+              continue;
+            }
+          }
+        }
+        aabb.add(meshInstancesLeftA[i].aabb);
+        vertCount += meshInstancesLeftA[i].mesh.vertexBuffer.getNumVertices();
+        lists[j].push(meshInstancesLeftA[i]);
+        if (dynamic && lists[j].length === maxInstanceCount) {
+          if (i === meshInstancesLeftA.length) {
+            meshInstancesLeftB = [];
+          } else {
+            meshInstancesLeftB = meshInstancesLeftA.slice(i + 1);
+          }
+          break;
+        }
+      }
+      j++;
+      meshInstancesLeftA = meshInstancesLeftB;
+    }
+    return lists;
+  };
+  BatchManager.prototype.create = function(meshInstances, dynamic, batchGroupId) {
+    if (!this._init) {
+      var boneLimit = "#define BONE_LIMIT " + this.device.getBoneLimit() + "\n";
+      this.transformVS = boneLimit + pc.shaderChunks.transformBatchSkinnedVS;
+      this.transformElementVS = boneLimit + pc.shaderChunks.transformScreenSpaceBatchSkinnedVS;
+      this.skinTexVS = pc.shaderChunks.skinBatchTexVS;
+      this.skinConstVS = pc.shaderChunks.skinBatchConstVS;
+      this.vertexFormats = {};
+      this._init = true;
+    }
+    var i, j;
+    var batch = new pc.Batch(meshInstances, dynamic, batchGroupId);
+    this._batchList.push(batch);
+    var material = null;
+    var mesh, elems, numVerts, vertSize, index;
+    var hasPos, hasNormal, hasUv, hasUv2, hasTangent;
+    var batchNumVerts = 0;
+    var batchNumIndices = 0;
+    for (i = 0;i < meshInstances.length;i++) {
+      if (!material) {
+        material = meshInstances[i].material;
+      } else {
+        if (material !== meshInstances[i].material) {
+          return;
+        }
+      }
+      mesh = meshInstances[i].mesh;
+      elems = mesh.vertexBuffer.format.elements;
+      numVerts = mesh.vertexBuffer.numVertices;
+      batchNumVerts += numVerts;
+      for (j = 0;j < elems.length;j++) {
+        if (elems[j].name === pc.SEMANTIC_POSITION) {
+          hasPos = true;
+        } else {
+          if (elems[j].name === pc.SEMANTIC_NORMAL) {
+            hasNormal = true;
+          } else {
+            if (elems[j].name === pc.SEMANTIC_TEXCOORD0) {
+              hasUv = true;
+            } else {
+              if (elems[j].name === pc.SEMANTIC_TEXCOORD1) {
+                hasUv2 = true;
+              } else {
+                if (elems[j].name === pc.SEMANTIC_TANGENT) {
+                  hasTangent = true;
+                }
+              }
+            }
+          }
+        }
+      }
+      batchNumIndices += mesh.primitive[0].count;
+    }
+    if (!hasPos) {
+      return;
+    }
+    var entityIndexSizeF = dynamic ? 1 : 0;
+    var batchVertSizeF = 3 + (hasNormal ? 3 : 0) + (hasUv ? 2 : 0) + (hasUv2 ? 2 : 0) + (hasTangent ? 4 : 0) + entityIndexSizeF;
+    var batchOffsetNF = 3;
+    var batchOffsetUF = hasNormal ? 3 * 2 : 3;
+    var batchOffsetU2F = (hasNormal ? 3 * 2 : 3) + (hasUv ? 2 : 0);
+    var batchOffsetTF = (hasNormal ? 3 * 2 : 3) + (hasUv ? 2 : 0) + (hasUv2 ? 2 : 0);
+    var batchOffsetEF = (hasNormal ? 3 * 2 : 3) + (hasUv ? 2 : 0) + (hasUv2 ? 2 : 0) + (hasTangent ? 4 : 0);
+    var batchData = new Float32Array(new ArrayBuffer(batchNumVerts * batchVertSizeF * 4));
+    var indexBuffer = new pc.IndexBuffer(this.device, pc.INDEXFORMAT_UINT16, batchNumIndices, pc.BUFFER_STATIC);
+    var batchIndexData = new Uint16Array(indexBuffer.lock());
+    var matrices = new Float32Array(meshInstances.length * 16);
+    var vertSizeF;
+    var data, indexBase, numIndices, indexData, mtx;
+    var verticesOffset = 0;
+    var indexOffset = 0;
+    var vbOffset = 0;
+    var offsetPF, offsetNF, offsetUF, offsetU2F, offsetTF;
+    var transform, vec, vecData;
+    if (!dynamic) {
+      vec = new pc.Vec3;
+      vecData = vec.data;
+    }
+    for (i = 0;i < meshInstances.length;i++) {
+      mesh = meshInstances[i].mesh;
+      elems = mesh.vertexBuffer.format.elements;
+      numVerts = mesh.vertexBuffer.numVertices;
+      vertSize = mesh.vertexBuffer.format.size;
+      vertSizeF = vertSize / 4;
+      for (j = 0;j < elems.length;j++) {
+        if (elems[j].name === pc.SEMANTIC_POSITION) {
+          offsetPF = elems[j].offset / 4;
+        } else {
+          if (elems[j].name === pc.SEMANTIC_NORMAL) {
+            offsetNF = elems[j].offset / 4;
+          } else {
+            if (elems[j].name === pc.SEMANTIC_TEXCOORD0) {
+              offsetUF = elems[j].offset / 4;
+            } else {
+              if (elems[j].name === pc.SEMANTIC_TEXCOORD1) {
+                offsetU2F = elems[j].offset / 4;
+              } else {
+                if (elems[j].name === pc.SEMANTIC_TANGENT) {
+                  offsetTF = elems[j].offset / 4;
+                }
+              }
+            }
+          }
+        }
+      }
+      data = new Float32Array(mesh.vertexBuffer.storage);
+      if (dynamic) {
+        for (j = 0;j < numVerts;j++) {
+          batchData[j * batchVertSizeF + vbOffset] = data[j * vertSizeF + offsetPF];
+          batchData[j * batchVertSizeF + vbOffset + 1] = data[j * vertSizeF + offsetPF + 1];
+          batchData[j * batchVertSizeF + vbOffset + 2] = data[j * vertSizeF + offsetPF + 2];
+          if (hasNormal) {
+            batchData[j * batchVertSizeF + vbOffset + batchOffsetNF] = data[j * vertSizeF + offsetNF];
+            batchData[j * batchVertSizeF + vbOffset + batchOffsetNF + 1] = data[j * vertSizeF + offsetNF + 1];
+            batchData[j * batchVertSizeF + vbOffset + batchOffsetNF + 2] = data[j * vertSizeF + offsetNF + 2];
+          }
+          if (hasUv) {
+            batchData[j * batchVertSizeF + vbOffset + batchOffsetUF] = data[j * vertSizeF + offsetUF];
+            batchData[j * batchVertSizeF + vbOffset + batchOffsetUF + 1] = data[j * vertSizeF + offsetUF + 1];
+          }
+          if (hasUv2) {
+            batchData[j * batchVertSizeF + vbOffset + batchOffsetU2F] = data[j * vertSizeF + offsetU2F];
+            batchData[j * batchVertSizeF + vbOffset + batchOffsetU2F + 1] = data[j * vertSizeF + offsetU2F + 1];
+          }
+          if (hasTangent) {
+            batchData[j * batchVertSizeF + vbOffset + batchOffsetTF] = data[j * vertSizeF + offsetTF];
+            batchData[j * batchVertSizeF + vbOffset + batchOffsetTF + 1] = data[j * vertSizeF + offsetTF + 1];
+            batchData[j * batchVertSizeF + vbOffset + batchOffsetTF + 2] = data[j * vertSizeF + offsetTF + 2];
+            batchData[j * batchVertSizeF + vbOffset + batchOffsetTF + 3] = data[j * vertSizeF + offsetTF + 3];
+          }
+          batchData[j * batchVertSizeF + batchOffsetEF + vbOffset] = i;
+        }
+      } else {
+        transform = meshInstances[i].node.getWorldTransform();
+        for (j = 0;j < numVerts;j++) {
+          vec.set(data[j * vertSizeF + offsetPF], data[j * vertSizeF + offsetPF + 1], data[j * vertSizeF + offsetPF + 2]);
+          transform.transformPoint(vec, vec);
+          batchData[j * batchVertSizeF + vbOffset] = vecData[0];
+          batchData[j * batchVertSizeF + vbOffset + 1] = vecData[1];
+          batchData[j * batchVertSizeF + vbOffset + 2] = vecData[2];
+          if (hasNormal) {
+            vec.set(data[j * vertSizeF + offsetNF], data[j * vertSizeF + offsetNF + 1], data[j * vertSizeF + offsetNF + 2]);
+            transform.transformVector(vec, vec);
+            batchData[j * batchVertSizeF + vbOffset + batchOffsetNF] = vecData[0];
+            batchData[j * batchVertSizeF + vbOffset + batchOffsetNF + 1] = vecData[1];
+            batchData[j * batchVertSizeF + vbOffset + batchOffsetNF + 2] = vecData[2];
+          }
+          if (hasUv) {
+            batchData[j * batchVertSizeF + vbOffset + batchOffsetUF] = data[j * vertSizeF + offsetUF];
+            batchData[j * batchVertSizeF + vbOffset + batchOffsetUF + 1] = data[j * vertSizeF + offsetUF + 1];
+          }
+          if (hasUv2) {
+            batchData[j * batchVertSizeF + vbOffset + batchOffsetU2F] = data[j * vertSizeF + offsetU2F];
+            batchData[j * batchVertSizeF + vbOffset + batchOffsetU2F + 1] = data[j * vertSizeF + offsetU2F + 1];
+          }
+          if (hasTangent) {
+            vec.set(data[j * vertSizeF + offsetTF], data[j * vertSizeF + offsetTF + 1], data[j * vertSizeF + offsetTF + 2]);
+            transform.transformVector(vec, vec);
+            batchData[j * batchVertSizeF + vbOffset + batchOffsetTF] = vecData[0];
+            batchData[j * batchVertSizeF + vbOffset + batchOffsetTF + 1] = vecData[1];
+            batchData[j * batchVertSizeF + vbOffset + batchOffsetTF + 2] = vecData[2];
+            batchData[j * batchVertSizeF + vbOffset + batchOffsetTF + 3] = data[j * vertSizeF + offsetTF + 3];
+          }
+        }
+      }
+      indexBase = mesh.primitive[0].base;
+      numIndices = mesh.primitive[0].count;
+      indexData = new Uint16Array(mesh.indexBuffer[0].storage);
+      for (j = 0;j < numIndices;j++) {
+        batchIndexData[j + indexOffset] = indexData[indexBase + j] + verticesOffset;
+      }
+      indexOffset += numIndices;
+      verticesOffset += numVerts;
+      vbOffset = verticesOffset * batchVertSizeF;
+    }
+    var vertexFormatId = 0;
+    if (hasNormal) {
+      vertexFormatId |= 1 << 1;
+    }
+    if (hasUv) {
+      vertexFormatId |= 1 << 2;
+    }
+    if (hasUv2) {
+      vertexFormatId |= 1 << 3;
+    }
+    if (hasTangent) {
+      vertexFormatId |= 1 << 4;
+    }
+    if (dynamic) {
+      vertexFormatId |= 1 << 5;
+    }
+    var vertexFormat = this.vertexFormats[vertexFormatId];
+    if (!vertexFormat) {
+      var formatDesc = [];
+      formatDesc.push({semantic:pc.SEMANTIC_POSITION, components:3, type:pc.ELEMENTTYPE_FLOAT32, normalize:false});
+      if (hasNormal) {
+        formatDesc.push({semantic:pc.SEMANTIC_NORMAL, components:3, type:pc.ELEMENTTYPE_FLOAT32, normalize:false});
+      }
+      if (hasUv) {
+        formatDesc.push({semantic:pc.SEMANTIC_TEXCOORD0, components:2, type:pc.ELEMENTTYPE_FLOAT32, normalize:false});
+      }
+      if (hasUv2) {
+        formatDesc.push({semantic:pc.SEMANTIC_TEXCOORD1, components:2, type:pc.ELEMENTTYPE_FLOAT32, normalize:false});
+      }
+      if (hasTangent) {
+        formatDesc.push({semantic:pc.SEMANTIC_TANGENT, components:4, type:pc.ELEMENTTYPE_FLOAT32, normalize:false});
+      }
+      if (dynamic) {
+        formatDesc.push({semantic:pc.SEMANTIC_BLENDINDICES, components:1, type:pc.ELEMENTTYPE_FLOAT32, normalize:false});
+      }
+      vertexFormat = this.vertexFormats[vertexFormatId] = new pc.VertexFormat(this.device, formatDesc);
+    }
+    var vertexBuffer = new pc.VertexBuffer(this.device, vertexFormat, batchNumVerts, pc.BUFFER_STATIC, batchData.buffer);
+    indexBuffer.unlock();
+    mesh = new pc.Mesh;
+    mesh.vertexBuffer = vertexBuffer;
+    mesh.indexBuffer[0] = indexBuffer;
+    mesh.primitive[0].type = batch.origMeshInstances[0].mesh.primitive[0].type;
+    mesh.primitive[0].base = 0;
+    mesh.primitive[0].count = batchNumIndices;
+    mesh.primitive[0].indexed = true;
+    mesh.cull = false;
+    if (dynamic) {
+      material = material.clone();
+      material.chunks.transformSkinnedVS = batch.origMeshInstances[0]._shaderDefs & pc.SHADERDEF_SCREENSPACE ? this.transformElementVS : this.transformVS;
+      material.chunks.skinTexVS = this.skinTexVS;
+      material.chunks.skinConstVS = this.skinConstVS;
+      material.update();
+    }
+    var meshInstance = new pc.MeshInstance(this.rootNode, mesh, material);
+    meshInstance.castShadow = batch.origMeshInstances[0].castShadow;
+    meshInstance.parameters = batch.origMeshInstances[0].parameters;
+    meshInstance.isStatic = batch.origMeshInstances[0].isStatic;
+    meshInstance._staticLightList = batch.origMeshInstances[0]._staticLightList;
+    if (dynamic) {
+      var nodes = [];
+      for (i = 0;i < batch.origMeshInstances.length;i++) {
+        nodes.push(batch.origMeshInstances[i].node);
+      }
+      meshInstance.skinInstance = new SkinBatchInstance(this.device, nodes, this.rootNode);
+    }
+    meshInstance._updateAabb = false;
+    batch.meshInstance = meshInstance;
+    this.update(batch);
+    var newModel = new pc.Model;
+    newModel.meshInstances = [batch.meshInstance];
+    newModel.castShadows = batch.origMeshInstances[0].castShadows;
+    batch.model = newModel;
+    return batch;
+  };
+  BatchManager.prototype.update = function(batch) {
+    batch._aabb.copy(batch.origMeshInstances[0].aabb);
+    for (var i = 0;i < batch.origMeshInstances.length;i++) {
+      if (i > 0) {
+        batch._aabb.add(batch.origMeshInstances[i].aabb);
+      }
+    }
+    batch.meshInstance.aabb = batch._aabb;
+    batch._aabb._radiusVer = -1;
+    batch.meshInstance._aabbVer = 0;
+  };
+  BatchManager.prototype.updateAll = function() {
+    if (this._dirtyGroups.length > 0) {
+      this.generate(this._dirtyGroups);
+      this._dirtyGroups.length = 0;
+    }
+    for (var i = 0;i < this._batchList.length;i++) {
+      if (!this._batchList[i].dynamic) {
+        continue;
+      }
+      this.update(this._batchList[i]);
+    }
+  };
+  BatchManager.prototype.clone = function(batch, clonedMeshInstances) {
+    var batch2 = new pc.Batch(clonedMeshInstances, batch.dynamic, batch.batchGroupId);
+    this._batchList.push(batch2);
+    var nodes = [];
+    for (var i = 0;i < clonedMeshInstances.length;i++) {
+      nodes.push(clonedMeshInstances[i].node);
+    }
+    batch2.meshInstance = new pc.MeshInstance(batch.meshInstance.node, batch.meshInstance.mesh, batch.meshInstance.material);
+    batch2.meshInstance._updateAabb = false;
+    batch2.meshInstance.parameters = clonedMeshInstances[0].parameters;
+    batch2.meshInstance.isStatic = clonedMeshInstances[0].isStatic;
+    batch2.meshInstance._staticLightList = clonedMeshInstances[0]._staticLightList;
+    if (batch.dynamic) {
+      batch2.meshInstance.skinInstance = new SkinBatchInstance(this.device, nodes, this.rootNode);
+    }
+    batch2.meshInstance.castShadow = batch.meshInstance.castShadow;
+    batch2.meshInstance._shader = batch.meshInstance._shader;
+    var newModel = new pc.Model;
+    newModel.meshInstances = [batch2.meshInstance];
+    newModel.castShadows = batch.origMeshInstances[0].castShadows;
+    batch2.model = newModel;
+    return batch2;
+  };
+  BatchManager.prototype.destroy = function(batch) {
+    batch.refCounter--;
+    if (batch.refCounter === 0) {
+      this.scene.removeModel(batch.model);
+      batch.model.destroy();
+    }
+  };
+  BatchManager.prototype.register = function(batch, entities) {
+    batch.refCounter = entities.length;
+    var self = this;
+    var callback = function() {
+      self.destroy(batch);
+    };
+    for (var i = 0;i < entities.length;i++) {
+      entities[i].once("destroy", callback);
+    }
+  };
+  return {Batch:Batch, BatchGroup:BatchGroup, BatchManager:BatchManager};
 }());

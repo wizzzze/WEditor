@@ -2,9 +2,18 @@
 	height:100%;
 	width:320px;
 	background-color:#233A3A;
-
+	display:flex;
+	flex-direction: column;
 }
 
 .right_panel_header{
 	
+}
+
+.right_panel_container{
+	flex-grow: 1;
+}
+
+.right_panel_preview{
+
 }
