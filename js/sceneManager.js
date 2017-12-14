@@ -59,7 +59,12 @@ SceneManager.prototype = {
 			});
 			var dom = document.createElement('li');
 			var eventDom = document.createElement('div');
-			eventDom.innerHTML = '<i class=\"fa fa-cube\"></i> '+cube.name;
+			eventDom.innerHTML = '<i class=\"fa fa-cube\"></i> ';
+
+			var name = document.createElement('span');
+			name.innerText = cube.name;
+			eventDom.appendChild(name);
+			eventDom.nodeNameDom = name;
 			// dom.eventDom = eventDom;
 			dom.appendChild(eventDom);
 			var node = new SceneNode(dom, cube, this);
@@ -79,6 +84,9 @@ var SceneNode = function(dom, entity, manager){
 	var self = this;
 	this.dom = dom;
 	this.entity = entity;
+	this.entity.on('changeName', function(){
+		self.dom.childNodes[0].nodeNameDom.innerText = self.entity.name;
+	})
 	this.manager = manager;
 
 	this.eventDom = null;
@@ -129,8 +137,8 @@ var SceneNode = function(dom, entity, manager){
 	    	manager.currentSelectNode.unSelect();
 	    	manager.currentSelectNode = self;
 	    	self.select();
+			if(self == self.manager.root) return;
 	    	self.manager.editor.settingManager.load(self);
-
 	    }
 
 	});

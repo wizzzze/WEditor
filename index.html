@@ -27,6 +27,7 @@
 					<a><i class="fa fa-refresh"></i></a>
 					<a><i class="fa fa-cube"></i></a>
 					<a><i class="fa fa-globe"></i></a>
+					<a><i class="fa fa-lightbulb-o"></i></a>
 					<a><i class="fa fa-undo"></i></a>
 					<a><i class="fa fa-repeat"></i></a>
 					<hr />
@@ -53,7 +54,7 @@
 					<div class="scene_list_panel" id="sceneList">
 						<ul class="scene_list scene_root">
 							<li class="has_child" id="scene_root">
-								<div><i class='fa fa-code'></i>  ROOT </div>
+								<div><i class='fa fa-code'></i>  Scene </div>
 								<ul class="scene_list">
 								</ul>
 							</li>
@@ -122,48 +123,54 @@
 
 					</div>
 					<div class="setting_panel">
-						<div class="setting_panel_body" id="node_setting">
-							<div class="setting_panel_row">
-								<div class="input-label">Enable</div>
-								<div class="input-group">
-									<div><input type="checkbox" ></div>
-								</div>
-							</div>
-							<div class="setting_panel_row">
-								<div class="input-label">Name</div>
-								<div class="input-group">
-									<div><input type="text" ></div>
-								</div>
-							</div>
-							<div class="setting_panel_row">
-								<div class="input-label">Position</div>
-								<div class="input-group">
-									<div><input type="text" ></div>
-									<div><input type="text" ></div>
-									<div><input type="text" ></div>
-								</div>
-							</div>
-							<div class="setting_panel_row">
-								<div class="input-label">Rotation</div>
-								<div class="input-group">
-									<div><input type="text" ></div>
-									<div><input type="text" ></div>
-									<div><input type="text" ></div>
-								</div>
-							</div>
-							<div class="setting_panel_row">
-								<div class="input-label">Scale</div>
-								<div class="input-group">
-									<div><input type="text" ></div>
-									<div><input type="text" ></div>
-									<div><input type="text" ></div>
-								</div>
-							</div>
-						</div>
+						
 					</div>
 				</div>
 			</div>
 		</div>
+		<template id="scene_node">
+
+		</template>
+		<template id="entity_setting">
+			<div class="setting_panel_body" id="node_setting">
+				<div class="setting_panel_row">
+					<div class="input-label">Enable</div>
+					<div class="input-group">
+						<div><input type="checkbox" data-bind="enabled"></div>
+					</div>
+				</div>
+				<div class="setting_panel_row">
+					<div class="input-label">Name</div>
+					<div class="input-group">
+						<div><input type="text" data-bind="name"></div>
+					</div>
+				</div>
+				<div class="setting_panel_row">
+					<div class="input-label">Position</div>
+					<div class="input-group">
+						<div><input type="text" data-bind="position.x"><span>x</span></div>
+						<div><input type="text" data-bind="position.y"><span>y</span></div>
+						<div><input type="text" data-bind="position.z"><span>z</span></div>
+					</div>
+				</div>
+				<div class="setting_panel_row">
+					<div class="input-label">Rotation</div>
+					<div class="input-group">
+						<div><input type="text" data-bind="rotation.x"></div>
+						<div><input type="text" data-bind="rotation.y"></div>
+						<div><input type="text" data-bind="rotation.z"></div>
+					</div>
+				</div>
+				<div class="setting_panel_row">
+					<div class="input-label">Scale</div>
+					<div class="input-group">
+						<div><input type="text" data-bind="scale.x"></div>
+						<div><input type="text" data-bind="scale.y"></div>
+						<div><input type="text" data-bind="scale.z"></div>
+					</div>
+				</div>
+			</div>
+		</template>
 	</body>
     <script src="./js/vue.min.js"></script>
     <script src="./js/playcanvas-latest.js"></script>
@@ -180,5 +187,6 @@
     <script src="./js/sceneManager.js"></script>
     <script src="./js/settingManager.js"></script>
     <script src="./js/menu/menuManager.js"></script>
+    <script src="./js/helper/gridHelper.js"></script>
     <script src="./js/editor.js"></script>
 </html>

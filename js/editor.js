@@ -20,6 +20,10 @@ var Editor = function(){};
 	this.assetManager = new AssetManager(this, 'assets_hierarchy' ,'assets_container');
 	this.menuManager = new MenuManager(this);
 
+
+	this.gridHelper = new GridHelper(this.app.graphicsDevice, 14, 14);
+	app.scene.addModel(this.gridHelper);
+
 	assetManager.setData([
 			{
 				name : 'Textures',
@@ -50,27 +54,9 @@ var Editor = function(){};
 	
 	app.setCanvasResolution(pc.RESOLUTION_AUTO);
 	app.scene.ambientLight = new pc.Color(0.2, 0.2, 0.2);
-	// var box = new pc.Entity();
-	// box.addComponent("model", {
-	//     type: "box",
-	// });
 
-	// // Create an Entity with a point light component and a sphere model component.
-	// var light = new pc.Entity();
-	// light.addComponent("light", {
-	//     type: "point",
-	//     color: new pc.Color(1, 1, 1),
-	//     radius: 10
-	// });
-	// // Scale the sphere down to 0.1m
-	// light.range = 5;
-	// light.setLocalScale(0.1, 0.1, 0.1);
-	// light.setPosition(2, 2, 2);
-
-	// Create an Entity with a camera component
+	
 	var camera = new EditorCamera(app);
-
-	// Add the new Entities to the hierarchy
 	
 	app.root.addChild(camera);
 
