@@ -33,28 +33,28 @@ SceneManager.prototype = {
 			{
 				html : '<i class="fa fa-lightbulb-o"></i>  Point Light',
 				callback : function(){
-					self.addLight('point light');
+					self.addLight('point');
 				}
 			},
 			{
 				html : '<i class="fa fa-sun-o"></i>  Directional Light',
 				callback : function(){
-					self.addLight('directional light');
+					self.addLight('directional');
 				}
 			},
 			{
 				html : '<i class="fa fa-feed"></i>  Spot Light',
 				callback : function(){
-					self.addLight('spot light');
+					self.addLight('spot');
 				}
 			},
 		];
 	},
 	add : function(type){
+		var entity = new pc.Entity();
 		if(type == 'cube'){
-			var cube = new pc.Entity();
-			cube.name = "New Cube";
-			cube.addComponent("model", {
+			entity.name = "New Cube";
+			entity.addComponent("model", {
 			    type: "box",
 			});
 			var dom = document.createElement('li');
@@ -62,20 +62,47 @@ SceneManager.prototype = {
 			eventDom.innerHTML = '<i class=\"fa fa-cube\"></i> ';
 
 			var name = document.createElement('span');
-			name.innerText = cube.name;
+			name.innerText = entity.name;
 			eventDom.appendChild(name);
 			eventDom.nodeNameDom = name;
 			// dom.eventDom = eventDom;
 			dom.appendChild(eventDom);
-			var node = new SceneNode(dom, cube, this);
-			cube.node = node;
+			var node = new SceneNode(dom, entity, this);
+			entity.node = node;
 			this.currentSelectNode.addChild(node);
 		}
-
+		entity.selectedHandler = function(){
+			alert(entity.name+'clicked');
+		}
 		this.editor.menuManager.destroyMenu();
 	},
 	addLight : function(type){
+		var entity = new pc.Entity();
+		if(type == 'point'){
+			entity.name = "New Point Light";
+			entity.addComponent('light',{
+				type: "point",
+			    color: new pc.Color(1, 1, 1),
+			    range: 10
+			});
 
+			entity.addComponent('element',{
+
+			})
+			var dom = document.createElement('li');
+			var eventDom = document.createElement('div');
+			eventDom.innerHTML = '<i class=\"fa fa-lightbulb-o\"></i> ';
+
+			var name = document.createElement('span');
+			name.innerText = entity.name;
+			eventDom.appendChild(name);
+			eventDom.nodeNameDom = name;
+			// dom.eventDom = eventDom;
+			dom.appendChild(eventDom);
+			var node = new SceneNode(dom, entity, this);
+			entity.node = node;
+			this.currentSelectNode.addChild(node);
+		}
 	}
 };
 

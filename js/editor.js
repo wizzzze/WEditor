@@ -57,6 +57,10 @@ var Editor = function(){};
 
 	
 	var camera = new EditorCamera(app);
+
+	this.picker = new Picker(app, camera);
+
+	this.gizmo = new Gizmo(app);
 	
 	app.root.addChild(camera);
 

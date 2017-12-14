@@ -31,7 +31,6 @@ var GridHelper = function(device ,size, divisions){
     // console.log(colorArray.byteLength);
 
 
-	var positions = [],colors = [];
 	var vIndex = 0;
 	var cIndex = 0;
 	var i;
