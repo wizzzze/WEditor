@@ -20,6 +20,7 @@
 	border-right:3px solid #162B2B;
 	padding:10px;
 	padding-left:15px;
+	overflow: hidden;
 }
 
 .assets_hierarchy_header{

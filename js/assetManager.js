@@ -9,6 +9,26 @@ var AssetManager = function(editor, folder, container){
 	this.currentSelectNode = this.root;
 
 	this.uploadInput;
+
+
+	this.textureUploadInput;
+	this.textureUploadInput = document.createElement('input');
+	this.textureUploadInput.type = 'file';
+	this.textureUploadInput.multiple = "multiple";
+	this.uploadInput.onchange = function(){
+		var files = this.files;;
+		var i = 0;
+		while(i < files.length){
+			var file = files[i];
+			self.textureHandler(file);
+			i++;
+		}
+
+	};
+
+	this.textureUploadInput.accept = 'image/jpeg,image/png';
+
+
 	this.initialize();
 
 	this.queue = [];
@@ -133,7 +153,8 @@ AssetManager.prototype = {
 	},
 	showNode : function(){
 		var children = this.currentNode.children;
-	},	
+	},
+
 	add : function(type){
 		var self  = this;
 		if(type == 'folder'){
@@ -141,45 +162,37 @@ AssetManager.prototype = {
 			dom.innerHTML = "<div><i class='fa fa-folder'></i>  New Folder</div>";
 			var node = new FolderNode(dom, this);
 			this.currentSelectNode.add(node);
-			return ;
-		}
-
-		if(type == "material"){
-			var material = new pc.StandardMaterial();
+		}else if(type == "material"){
 
 			return;
-		}
-
-
-		if(!this.uploadInput){
-			this.uploadInput = document.createElement('input');
-			this.uploadInput.type = 'file';
-			this.uploadInput.multiple = "multiple";
-			this.uploadInput.onchange = function(){
-				var files = this.files;
-				console.log(files);
-				var i = 0;
-				while(i < files.length){
-					var file = files[i];
-					self.queue.push(file);
-					i++;
-				}
-
-				self.handlerQueue();
-			};
-		}else{
-			this.uploadInput.files.length = 0;
-		}
-
-		if(type == 'model'){
-			this.uploadInput.accept = '';
-
 		}else if(type == 'texture'){
-			this.uploadInput.accept = 'image/jpeg,image/png';
+
+		}else if(type == 'model'){
+			if(!this.uploadInput){
+				this.uploadInput = document.createElement('input');
+				this.uploadInput.type = 'file';
+				this.uploadInput.multiple = "multiple";
+				this.uploadInput.onchange = function(){
+					var files = this.files;;
+					var i = 0;
+					while(i < files.length){
+						var file = files[i];
+						self.queue.push(file);
+						i++;
+					}
+
+					self.handlerQueue();
+				};
+			}else{
+				this.uploadInput.files.length = 0;
+				this.uploadInput.accept = '';
+			}
+			// this.uploadInput.accept = 'image/jpeg,image/png';
+			
+
+			this.uploadInput.click();
 		}
 
-
-		this.uploadInput.click();
 		this.editor.menuManager.destroyMenu();
 	},
 
@@ -219,7 +232,9 @@ AssetManager.prototype = {
 		}
 
 	},
-
+	textureHandler : function(file){
+		
+	}
 }
 
 
