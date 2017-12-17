@@ -11,6 +11,7 @@
 	height: 320px;
 	background-color:#1c3030;
 	display:flex;
+	position: relative;
 }
 
 .assets_hierarchy{
@@ -22,14 +23,23 @@
 }
 
 .assets_hierarchy_header{
+	flex-grow:0;
+	flex-direction: row;
+	display: flex;
 	position: absolute;
-	bottom: 100%;
+	top: -30px;
 	left:4px;
 	right:0;
-	width: auto;
-	min-width: 600px;
+	width: 600px;
 }
 
+.assets_hierarchy_header>div:first-child{
+	flex-grow: 1;
+}
+.assets_hierarchy_header>div:first-child>i{
+	font-size:14px;
+	padding: 0 6px;
+}
 .assets_container{
 	flex-grow:1;
 	padding:10px;
@@ -93,9 +103,11 @@
 
 
 .folder_list>li>div{
-	height:25px;
-	line-height:25px;
+	height:22px;
+	line-height:22px;
 	cursor: pointer;
+	position: relative;
+	z-index:2;
 }
 
 .folder_list>li>div>i{
@@ -104,10 +116,10 @@
 
 .folder_list>li>div:before{
 	content : "";
-	width:20px;
+	width:10px;
 	position:absolute;
 	top:11px;
-	left:-20px;
+	left:-10px;
 	border-top:1px solid #999;
 }
 
@@ -116,7 +128,7 @@
 }
 
 .folder_list>li>div.selected{
-	color:#CA2C0B;
+	color:#F16524;
 }
 
 
@@ -130,12 +142,17 @@
 	position: absolute;
 	top:-13px;
 	bottom:13px;
-	left:-20px;
+	left:-10px;
 	border-left:1px solid #999;
 	width:1px;
 }
 .folder_list>li:first-child:before{
-	top:-8px;
+	/*top:-8px;*/
+}
+
+.folder_list>li:last-child:before{
+	bottom: auto;
+	height:24px;
 }
 
 .folder_list>li:after{
@@ -147,20 +164,20 @@
 
 
 .folder_list>li.has_child:after{
-	left:-25px;
+	left:-15px;
 	top:5px;
 	width:10px;
-	height: 12px;
+	height: 10px;
 	position:absolute;
 	content:"\f0fe";
 	font-family: FontAwesome;
 	color:#A7A7A7;
 	line-height: 12px;
-	background-color:#162B2B;
+	background-color:#1c3030;
 }
 
 .folder_list>li.has_child ul{
-	padding-left:25px;
+	padding-left:15px;
 }
 
 

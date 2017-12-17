@@ -28,7 +28,13 @@ var Editor = function(){};
 			{
 				name : 'Textures',
 				type : 'folder',
-				children : [],
+				children : [
+					{
+						name : 'Textures',
+						type : 'folder',
+						children : [],
+					},
+				],
 			},
 
 			{
@@ -46,7 +52,7 @@ var Editor = function(){};
 		]
 
 	);
-
+	// assetManager.initialize();
 
 	window.addEventListener('resize', function(){
 		app.setCanvasResolution(pc.RESOLUTION_AUTO);
@@ -62,12 +68,19 @@ var Editor = function(){};
 
 	this.gizmo = new Gizmo(app);
 	
+	// this.gizmo.root.enabled = false;
+	// app.root.addChild(this.gizmo.root);
 	app.root.addChild(camera);
+
+	app.on('update', function(dt){
+		// console.log(dt);
+	})
 
 })(Editor);
 
 
 Editor.defaultMaterial = new pc.StandardMaterial();
+Editor.defaultMaterial.name = 'Empty';
 
 
 

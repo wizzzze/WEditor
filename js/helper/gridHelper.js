@@ -16,8 +16,6 @@ var GridHelper = function(device ,size, divisions){
 
 	var vertexFormat = new pc.VertexFormat(device, vertexDesc);
 
-    console.log(vertexFormat.size);
-
 	var numVertices  = (divisions + 1) * 4;
     var vertexBuffer = new pc.VertexBuffer(device, vertexFormat, numVertices);
 

@@ -1,4 +1,28 @@
-var Gizmo = function(){
+var Gizmo = function(app){
+
+	var visible = true;
+    var moving = false;
+    var mouseTap = null;
+    var mouseTapMoved = false;
+    var posCameraLast = new pc.Vec3();
+    var visible = true;
+    var enabled = false;
+    var hover = false;
+    var hoverAxis = '';
+    var hoverPlane = false;
+    var hoverEntity = null;
+    var gizmoSize = .4;
+    var arrowRadius = .4;
+    var vecA = new pc.Vec3();
+    var vecB = new pc.Vec3();
+    var vecC = new pc.Vec3();
+    var vecD = new pc.Vec3();
+    var vecE = new pc.Vec3();
+    var quat = new pc.Quat();
+    var matA = new pc.Mat4();
+    var matB = new pc.Mat4();
+    var evtTapStart;
+
 	var obj = {
         root: null,
         plane: {
@@ -196,9 +220,14 @@ var Gizmo = function(){
     arrowZ.setLocalPosition(0, 0, 2.3);
     arrowZ.setLocalScale(arrowRadius, .6, arrowRadius);
     arrowZ.mat = arrowZ.model.material = createMaterial(new pc.Color(0, 0, 1, 1));
+    this.clone = function(){
+    	var copy = entity.clone();
+    	return copy;
 
+    }
     return obj;
 }
+
 
 var createMaterial = function(color) {
     var mat = new pc.BasicMaterial();

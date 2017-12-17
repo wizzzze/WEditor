@@ -39,8 +39,12 @@ Picker.prototype.doRayCast = function (screenPosition) {
         	var result = this.entityPicked(entity.model.meshInstances);
     	}
         
-        if (result && entity.selectedHandler) {
-        	entity.selectedHandler();
+        if (result) {
+        	if(entity.selectedHandler)
+        		entity.selectedHandler();
+        	break;
+        }else{
+
         }
     }    
 };

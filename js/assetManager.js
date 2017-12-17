@@ -1,12 +1,15 @@
 var AssetManager = function(editor, folder, container){
 	this.editor = editor;
 	this.folder = document.getElementById(folder);
+	this.folderScrollbar = new PerfectScrollbar(this.folder);
 	this.container = document.getElementById(container);
+	this.containerScrollbar = new PerfectScrollbar(this.container);
+
+	this.root = new FolderNode(document.getElementById('folder_root'), this);
+	this.currentSelectNode = this.root;
+
 	this.uploadInput;
 	this.initialize();
-	this.data;
-	this.folderData;
-	this.containerData;
 
 	this.queue = [];
 	this.reader = new FileReader();
@@ -51,7 +54,7 @@ AssetManager.prototype = {
 	initialize : function(){
 		var self = this;
 		var folderHeader = document.createElement('div');
-		folderHeader.innerHTML = '<i class="fa fa-chevron-circle-down" ></i> ASSETS';
+		folderHeader.innerHTML = '<div><i class="fa fa-chevron-circle-down" ></i> ASSETS</div>';
 		folderHeader.classList.add('assets_hierarchy_header','panel_header');
 
 		var folderToolbar = document.createElement('div');
@@ -97,46 +100,47 @@ AssetManager.prototype = {
 
 		folderHeader.appendChild(folderToolbar);
 
-		this.folder.appendChild(folderHeader);
+		document.querySelector('.center_bottom_panel').appendChild(folderHeader);
 	},
 	setData : function(data){
 		if(this.data !== data){
 			this.data = data;
-			this.dataChanged();
+			this.genNode(data, this.root);
 		}
 	},
-	dataChanged : function(){
-		var data = this.loadFromData(this.data);
-		this.folderData = data.folderData || {};
-		this.containerData = data.containerData || {};
-	},
-	loadFromData : function(data){
-		var floderData = [],containerData = [];
 
+	genNode : function(data ,currentNode){
 		for(var i in data){
 			var item = data[i];
 			if(item.type === 'folder'){
-				// folderData.push()
+				var dom = document.createElement('li');
+				dom.innerHTML = "<div><i class='fa fa-folder'></i>  "+item.name+"</div>";
+				var node = new FolderNode(dom, this);
+				console.log(currentNode);
+				currentNode.add(node);
+				if(item.children){
+					this.genNode(item.children, node);
+				}
+			}else if(item.type === 'material'){
+				// var material = 
+			}else if(item.type === 'texture'){
+
+			}else if(item.type === 'model'){
+				
 			}
-		}
-
-		return {floderData:floderData, containerData:containerData};
-	},
-
-	genFolder : function(){
-		if(!this.folderDOM){
-			this.folderDOM = document.createElement('ul');
-			this.folderDOM.classList.add('folder_list');
-		}
-		for(var i in this.data){
-			var item = this.data[i];
 
 		}
 	},
+	showNode : function(){
+		var children = this.currentNode.children;
+	},	
 	add : function(type){
 		var self  = this;
 		if(type == 'folder'){
-
+			var dom = document.createElement('li');
+			dom.innerHTML = "<div><i class='fa fa-folder'></i>  New Folder</div>";
+			var node = new FolderNode(dom, this);
+			this.currentSelectNode.add(node);
 			return ;
 		}
 
@@ -179,6 +183,10 @@ AssetManager.prototype = {
 		this.editor.menuManager.destroyMenu();
 	},
 
+	showChildren : function(){
+
+	},
+
 	handlerQueue : function(){
 		var file = this.queue.shift();
 		if(!file){
@@ -213,3 +221,60 @@ AssetManager.prototype = {
 	},
 
 }
+
+
+
+
+var FolderNode = function(dom, manager){
+	var self = this;
+
+	this.dom = dom;
+	this.manager = manager;
+	var childNodes = dom.childNodes;
+
+	this.childContainer = null;
+	for(var i in childNodes){
+		var child = childNodes[i];
+		if(child.tagName == 'DIV'){
+			this.eventDom = child;
+		}else if(child.tagName == "UL"){
+			this.childContainer = child;
+		}
+	}
+
+
+	this.eventDom.addEventListener('click', function(e){
+		self.select();
+	});
+
+	this.hasChildFolder = false;
+	this.children = [];
+
+};
+
+
+FolderNode.prototype = {
+	add : function(node){
+		if(! node instanceof FolderNode){
+			console.error('node must be instanceof FolderNode');
+		}
+
+		if(this.childContainer === null){
+			this.childContainer = document.createElement('ul');
+			this.childContainer.classList.add('folder_list');
+			this.dom.appendChild(this.childContainer);
+			this.dom.classList.add('has_child');
+		}
+		this.childContainer.appendChild(node.dom);
+		this.children.push(node);
+	},
+	select : function(){
+		this.manager.currentSelectNode.eventDom.classList.remove('selected');
+		this.eventDom.classList.add('selected');
+		this.manager.currentSelectNode = this;
+		this.manager.showChildren();
+	},
+	remove : function(){
+
+	}
+};

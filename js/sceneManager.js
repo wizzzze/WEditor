@@ -29,6 +29,12 @@ SceneManager.prototype = {
 					self.add('cube');
 				}
 			},
+			{
+				html : '<i class="fa fa-cube"></i>  Plane',
+				callback : function(){
+					self.add('plane');
+				}
+			},
 			'separate',
 			{
 				html : '<i class="fa fa-lightbulb-o"></i>  Point Light',
@@ -43,7 +49,7 @@ SceneManager.prototype = {
 				}
 			},
 			{
-				html : '<i class="fa fa-feed"></i>  Spot Light',
+				html : '<i class="fa fa-wifi fa-flip-vertical"></i>  Spot Light',
 				callback : function(){
 					self.addLight('spot');
 				}
@@ -51,28 +57,48 @@ SceneManager.prototype = {
 		];
 	},
 	add : function(type){
+		var self = this;
 		var entity = new pc.Entity();
+		var dom = document.createElement('li');
+		var eventDom = document.createElement('div');
+
 		if(type == 'cube'){
 			entity.name = "New Cube";
 			entity.addComponent("model", {
 			    type: "box",
 			});
-			var dom = document.createElement('li');
-			var eventDom = document.createElement('div');
 			eventDom.innerHTML = '<i class=\"fa fa-cube\"></i> ';
-
-			var name = document.createElement('span');
-			name.innerText = entity.name;
-			eventDom.appendChild(name);
-			eventDom.nodeNameDom = name;
-			// dom.eventDom = eventDom;
-			dom.appendChild(eventDom);
-			var node = new SceneNode(dom, entity, this);
-			entity.node = node;
-			this.currentSelectNode.addChild(node);
+		}else if(type == 'plane'){
+			entity.name = "New Plane";
+			entity.addComponent("model", {
+			    type: "plane",
+			});
+			eventDom.innerHTML = '<i class=\"fa fa-cube\"></i> ';
 		}
+
+
+		var name = document.createElement('span');
+		name.innerText = entity.name;
+		eventDom.appendChild(name);
+		eventDom.nodeNameDom = name;
+		// dom.eventDom = eventDom;
+		dom.appendChild(eventDom);
+		var node = new SceneNode(dom, entity, this);
+		entity.node = node;
+		this.currentSelectNode.addChild(node);
+
+
+
 		entity.selectedHandler = function(){
-			alert(entity.name+'clicked');
+			node.select();
+			// if(!entity.gizmo){
+			// 	entity.gizmo = self.editor.gizmo.clone();
+			// 	entity.addChild(entity.gizmo);
+			// }
+			// if(self.editor.activeGizmo)
+			// 	self.editor.activeGizmo.enabled = false;
+			// self.editor.activeGizmo = entity.gizmo;
+			// entity.gizmo.root.enabled = true;
 		}
 		this.editor.menuManager.destroyMenu();
 	},
@@ -88,7 +114,7 @@ SceneManager.prototype = {
 
 			entity.addComponent('element',{
 
-			})
+			});
 			var dom = document.createElement('li');
 			var eventDom = document.createElement('div');
 			eventDom.innerHTML = '<i class=\"fa fa-lightbulb-o\"></i> ';
@@ -161,11 +187,7 @@ var SceneNode = function(dom, entity, manager){
 				},
 			], e);
 	    }else{
-	    	manager.currentSelectNode.unSelect();
-	    	manager.currentSelectNode = self;
 	    	self.select();
-			if(self == self.manager.root) return;
-	    	self.manager.editor.settingManager.load(self);
 	    }
 
 	});
@@ -189,7 +211,11 @@ SceneNode.prototype = {
 
 	},
 	select : function(){
+    	this.manager.currentSelectNode.unSelect();
+    	this.manager.currentSelectNode = this;
 		this.eventDom.classList.add('select');
+		if(this == this.manager.root)return;
+		this.manager.editor.settingManager.load(this);
 	},
 	unSelect : function(){
 		this.eventDom.classList.remove('select');

@@ -10,6 +10,7 @@
 		<link rel="stylesheet" href="./css/menu.css">
 		<link rel="stylesheet" href="./css/sceneList.css">
 		<link rel="stylesheet" href="./css/setting.css">
+		<link rel="stylesheet" href="./css/perfect-scrollbar.css">
 		<link rel="stylesheet" href="./font-awesome/css/font-awesome.min.css">
 	</head>
 	<body>
@@ -33,8 +34,9 @@
 					<hr />
 					<a><i class="fa fa-file-o"></i></a>
 					<a><i class="fa fa-save"></i></a>
-					<a><i class="fa fa-upload"></i></a>
-					<a><i class="fa fa-database"></i></a>
+					<a><i class="fa fa-sign-in"></i></a>
+					<a><i class="fa fa-download"></i></a>
+					<a><i class="fa fa-code-fork"></i></a>
 					<hr />
 					<a><i class="fa fa-keyboard-o"></i></a>
 					<a><i class="fa fa-cog"></i></a>
@@ -54,7 +56,7 @@
 					<div class="scene_list_panel" id="sceneList">
 						<ul class="scene_list scene_root">
 							<li class="has_child" id="scene_root">
-								<div><i class='fa fa-code'></i>  Scene </div>
+								<div><i class='fa fa-square'></i>  Scene </div>
 								<ul class="scene_list">
 								</ul>
 							</li>
@@ -71,25 +73,10 @@
 				<div class="center_bottom_panel">
 					<div class="assets_hierarchy" id="assets_hierarchy">
 						<ul class="folder_list folder_root">
-							<li class="has_child">
+							<li class="has_child" id="folder_root">
 								<div><i class='fa fa-folder'></i>  / </div>
 								<ul class="folder_list">
-									<li class="has_child">
-										<div><i class='fa fa-folder'></i> Textures</div>
-										<ul class="folder_list">
-											<li class="has_child">
-												<div><i class='fa fa-folder'></i> Textures</div>
-												<ul class="folder_list">
-													<li class="has_child">
-														<div><i class='fa fa-folder'></i> Textures</div>
-													</li>
-													<li><div><i class='fa fa-folder'></i> Models</div></li>
-												</ul>
-											</li>
-											<li><div><i class='fa fa-folder'></i> Models</div></li>
-										</ul>
-									</li>
-									<li><div><i class='fa fa-folder'></i> Models</div></li>
+									
 								</ul>
 							</li>
 						</ul>
@@ -122,21 +109,52 @@
 					<div class="right_panel_preview">
 
 					</div>
-					<div class="setting_panel">
 						
-					</div>
 				</div>
 			</div>
 		</div>
+
+		<template id="material">
+			<div>
+				<div class="file_preview">
+					<img src="./images/snowflake.png">
+				</div>
+				<div class="file_name"></div>
+			</div>
+		</template>
+		<template id="model">
+			<div>
+				<div class="file_preview"><img src="./images/snowflake.png"></div>
+				<div class="file_name">snowflake.jpg</div>
+			</div>
+		</template>
+		<template id="folder">
+			<div>
+				<div class="file_preview"><img src="./images/snowflake.png"></div>
+				<div class="file_name">snowflake.jpg</div>
+			</div>
+		</template>
+		<template id="texture">
+			<div>
+				<div class="file_preview"><img src="./images/snowflake.png"></div>
+				<div class="file_name">snowflake.jpg</div>
+			</div>
+		</template>
+
 		<template id="scene_node">
 
 		</template>
 		<template id="entity_setting">
+
+		<div class="setting_panel">
 			<div class="setting_panel_body" id="node_setting">
 				<div class="setting_panel_row">
 					<div class="input-label">Enable</div>
 					<div class="input-group">
-						<div><input type="checkbox" data-bind="enabled"></div>
+						<div class="checkbox">
+							<input type="checkbox" data-bind="enabled" id="enabled">
+							<label for='enabled'>Enabled</label>
+						</div>
 					</div>
 				</div>
 				<div class="setting_panel_row">
@@ -156,26 +174,150 @@
 				<div class="setting_panel_row">
 					<div class="input-label">Rotation</div>
 					<div class="input-group">
-						<div><input type="text" data-bind="rotation.x"></div>
-						<div><input type="text" data-bind="rotation.y"></div>
-						<div><input type="text" data-bind="rotation.z"></div>
+						<div><input type="text" data-bind="rotation.x"><span>x</span></div>
+						<div><input type="text" data-bind="rotation.y"><span>y</span></div>
+						<div><input type="text" data-bind="rotation.z"><span>z</span></div>
 					</div>
 				</div>
 				<div class="setting_panel_row">
 					<div class="input-label">Scale</div>
 					<div class="input-group">
-						<div><input type="text" data-bind="scale.x"></div>
-						<div><input type="text" data-bind="scale.y"></div>
-						<div><input type="text" data-bind="scale.z"></div>
+						<div><input type="text" data-bind="scale.x"><span>x</span></div>
+						<div><input type="text" data-bind="scale.y"><span>y</span></div>
+						<div><input type="text" data-bind="scale.z"><span>z</span></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		</template>
+		<template id="model_setting">
+
+			<div class="setting_panel">
+				<div class="setting_panel_header">
+					<i class="fa fa-cube"></i>  Model
+				</div>
+				<div class="setting_panel_body">
+					<div class="setting_panel_row">
+						<div class="input-label">Shadows</div>
+						<div class="input-group">
+							<div class="checkbox">
+								<input type="checkbox" data-bind="castShadows" id="castShadows">
+								<label for='castShadows'>Cast</label>
+							</div>
+							<div class="checkbox">
+								<input type="checkbox" data-bind="receiveShadows" id="Receive">
+								<label for='Receive'>Receive</label>
+							</div>
+						</div>
+					</div>
+					<div class="setting_panel_row">
+						<div class="input-label">Lightmap</div>
+						<div class="input-group">
+							<div class="checkbox">
+								<input type="checkbox" data-bind="castShadowsLightmap" id="castLightMap">
+								<label for='castLightMap'>Cast</label>
+							</div>
+							<div class="checkbox">
+								<input type="checkbox" data-bind="lightmapped" id="Lightmapped">
+								<label for='Lightmapped'>Lightmapped</label>
+							</div>
+						</div>
+					</div>
+					<div class="setting_panel_row">
+						<div class="input-label">State</div>
+						<div class="input-group">
+							<div class="checkbox">
+								<input type="checkbox" data-bind="isStatic" id="static">
+								<label for='static'>Static</label>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
 		</template>
+
+		<template id="materials_setting">
+
+			<div class="setting_panel">
+				<div class="setting_panel_header">
+					<i class="fa fa-tint"></i>  Materials
+				</div>
+				<div class="setting_panel_body">
+
+				</div>
+			</div>
+		</template>
+
+		<template id="material_setting_row">
+			<div class="material_setting_row">
+
+				<div class="material_setting_preview">
+					<canvas></canvas>
+				</div>
+				<div class="material_setting_detail">
+					<div>
+						<span></span> 
+						<a data-action="edit_material"><i class="fa fa-edit"></i></a>
+						<a data-action="remove_material"><i class="fa fa-times"></i></a>
+					</div>
+					<div><div class="select">Empty</div></div>
+				</div>
+
+			</div>
+		</template>
+
+		<template id="light_setting">
+
+			<div class="setting_panel">
+				<div class="setting_panel_header">
+					<i class="fa fa-lightbulb-o"></i>  Light
+				</div>
+				<div class="setting_panel_body">
+					<div class="setting_panel_row">
+						<div class="input-label">Shadows</div>
+						<div class="input-group">
+							<div class="checkbox">
+								<input type="checkbox" data-bind="castShadows" id="castShadows">
+								<label for='castShadows'>Cast</label>
+							</div>
+							<div class="checkbox">
+								<input type="checkbox" data-bind="receiveShadows" id="Receive">
+								<label for='Receive'>Receive</label>
+							</div>
+						</div>
+					</div>
+					<div class="setting_panel_row">
+						<div class="input-label">Lightmap</div>
+						<div class="input-group">
+							<div class="checkbox">
+								<input type="checkbox" data-bind="castShadowsLightmap" id="castLightMap">
+								<label for='castLightMap'>Cast</label>
+							</div>
+							<div class="checkbox">
+								<input type="checkbox" data-bind="lightmapped" id="Lightmapped">
+								<label for='Lightmapped'>Lightmapped</label>
+							</div>
+						</div>
+					</div>
+					<div class="setting_panel_row">
+						<div class="input-label">State</div>
+						<div class="input-group">
+							<div class="checkbox">
+								<input type="checkbox" data-bind="isStatic" id="static">
+								<label for='static'>Static</label>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</template>
+
 	</body>
     <script src="./js/vue.min.js"></script>
     <script src="./js/playcanvas-latest.js"></script>
 
     <script src="./libs/Inflate.min.js"></script>
+    <script src="./libs/perfect-scrollbar.min.js"></script>
 
     <script src="./js/hammer.min.js"></script>
     <script src="./js/editorCamera.js"></script>
@@ -188,6 +330,11 @@
     <script src="./js/settingManager.js"></script>
     <script src="./js/menu/menuManager.js"></script>
     <script src="./js/helper/gridHelper.js"></script>
+    <script src="./js/helper/gizmo.js"></script>
     <script src="./js/picker.js"></script>
+    <script src="./js/setting/entitySetting.js"></script>
+    <script src="./js/setting/modelSetting.js"></script>
+    <script src="./js/setting/materialSetting.js"></script>
+    <script src="./js/setting/lightSetting.js"></script>
     <script src="./js/editor.js"></script>
 </html>

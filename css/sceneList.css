@@ -19,11 +19,16 @@
 	height:25px;
 	line-height:25px;
 	cursor: pointer;
+	padding-left: 8px;
+	position: relative;
+	z-index:2;
 }
 
 .scene_list>li>div>i{
 	padding-right:5px;
 	background-color:#233A3A;
+	width:10px;
+	text-align: center;
 }
 
 .scene_list>li>div:before{
@@ -31,12 +36,13 @@
 	width:8px;
 	position:absolute;
 	top:11px;
-	left:-8px;
-	border-top:1px solid #999;
+	left:-2px;
+	border-top:2px solid #1c3030;
 }
 
 .scene_list>li>div:hover{
-	color:#D7D7D7;
+	/*color:#D7D7D7;*/
+	background-color:#1c3030;
 }
 
 .scene_list>li>div.selected{
@@ -53,12 +59,17 @@
 	position: absolute;
 	top:-13px;
 	bottom:13px;
-	left:-9px;
-	border-left:1px solid #999;
+	left:-3px;
+	border-left:2px solid #1c3030;
 	width:1px;
 }
 .scene_list>li:first-child:before{
-	top:-5px;
+	/*top:-5px;*/
+}
+
+.scene_list>li:last-child:before{
+	bottom: auto;
+	height:24px;
 }
 
 .scene_list>li:after{
@@ -91,7 +102,11 @@
 	left:34px;
 }
 
-.scene_list .select{
-	color:#FFF;
-	font-weight: bold;
+.scene_list .select,.scene_list .select:hover{
+	background-color:#0B1A1A;
+	color: #E7E7E7;
+}
+
+.scene_list>li>div.select>i{
+	background-color:#0B1A1A;
 }
