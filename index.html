@@ -95,10 +95,7 @@
 					</div>
 				</div>
 				<div class="right_panel_container" id="setting_container">
-					<div class="right_panel_preview">
-
-					</div>
-						
+					
 				</div>
 			</div>
 		</div>
@@ -121,7 +118,19 @@
 			<div class="file_preview"></div>
 			<div class="file_name"></div>
 		</template>
+		<template id="folder_setting">
 
+			<div class="setting_panel">
+				<div class="setting_panel_body">
+					<div class="setting_panel_row">
+						<div class="input-label">Name</div>
+						<div class="input-group">
+							<div><input type="text" data-bind="name"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</template>
 		<template id="entity_setting">
 
 			<div class="setting_panel">
@@ -214,7 +223,7 @@
 			</div>
 		</template>
 
-		<template id="materials_setting">
+		<template id="model_materials_setting">
 
 			<div class="setting_panel">
 				<div class="setting_panel_header">
@@ -226,7 +235,7 @@
 			</div>
 		</template>
 
-		<template id="material_setting_row">
+		<template id="model_material_setting_row">
 			<div class="material_setting_row">
 
 				<div class="material_setting_preview">
@@ -245,7 +254,6 @@
 		</template>
 
 		<template id="light_setting">
-
 			<div class="setting_panel">
 				<div class="setting_panel_header">
 					<i class="fa fa-lightbulb-o"></i>  Light
@@ -290,6 +298,63 @@
 			</div>
 		</template>
 
+		<template id="material_setting">
+			<div>
+				<div class="material_preview">
+					<canvas></canvas>
+				</div>
+				<div class="setting_panel">
+					<div class="setting_panel_body">
+						<div class="setting_panel_row">
+							<div class="input-label">Name</div>
+							<div class="input-group">
+								<div><input type="text" data-bind="name"></div>
+							</div>
+						</div>
+					</div>
+					<div class="setting_panel_header">
+						<i class="fa fa-cube"></i>  Diffuse
+					</div>
+					<div class="setting_panel_body">
+						<div class="material_setting_row">
+							<div class="material_setting_preview">
+								<canvas></canvas>
+							</div>
+							<div class="material_setting_detail">
+								<div>
+									<span>Diffuse </span> 
+									<a data-action="edit_material"><i class="fa fa-edit"></i></a>
+									<a data-action="remove_material"><i class="fa fa-times"></i></a>
+								</div>
+								<div><div class="select">Empty</div></div>
+							</div>
+
+						</div>
+						<div class="setting_panel_row">
+							<div class="input-group">
+								<div>
+									<select>
+										<option value="uv0">UV0</option>
+										<option value="uv1">UV1</option>
+									</select>
+								</div>
+								<div>
+									<select>
+										<option value="uv0">RGBA</option>
+										<option value="uv0">R</option>
+										<option value="uv1">G</option>
+										<option value="uv0">B</option>
+										<option value="uv1">A</option>
+									</select>
+								</div>
+							</div>
+						</div>
+						
+					</div>
+				</div>
+			</div>
+		</template>
+
 	</body>
     <script src="./js/vue.min.js"></script>
     <script src="./js/playcanvas-latest.js"></script>
@@ -314,8 +379,11 @@
     <script src="./js/picker.js"></script>
     <script src="./js/setting/entitySetting.js"></script>
     <script src="./js/setting/modelSetting.js"></script>
-    <script src="./js/setting/materialSetting.js"></script>
+    <script src="./js/setting/modelMaterialSetting.js"></script>
     <script src="./js/setting/lightSetting.js"></script>
+
+    <script src="./js/setting/folderSetting.js"></script>
+    <script src="./js/setting/materialSetting.js"></script>
 
 
     <script src="./js/editor.js"></script>

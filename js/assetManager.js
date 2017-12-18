@@ -27,8 +27,9 @@ var AssetManager = function(editor, folder, container){
 
 	};
 
-	this.textureUploadInput.accept = 'image/jpeg,image/png';
+	this.filter = null;
 
+	this.textureUploadInput.accept = 'image/jpeg,image/png';
 
 	this.initialize();
 
@@ -134,7 +135,7 @@ AssetManager.prototype = {
 		for(var i in data){
 			var item = data[i];
 			if(item.type === 'folder'){
-				var node = new FolderNode(this);
+				var node = new FolderNode(this, {name : item.name});
 				currentNode.add(node);
 				if(item.children){
 					this.genNode(item.children, node);
@@ -142,7 +143,11 @@ AssetManager.prototype = {
 			}else if(item.type === 'material'){
 				// var material = 
 			}else if(item.type === 'texture'){
-
+				var texture = new Texture(this.editor,{
+					name : item.name,
+					url : item.url,
+				});
+				currentNode.addFile(texture);
 			}else if(item.type === 'model'){
 				
 			}
@@ -159,7 +164,8 @@ AssetManager.prototype = {
 			var node = new FolderNode(this);
 			this.currentSelectNode.add(node);
 		}else if(type == "material"){
-
+			var material = new Material(this.editor);
+			this.currentSelectNode.addFile(material);
 			return;
 		}else if(type == 'texture'){
 			this.textureUploadInput.click();
@@ -196,8 +202,20 @@ AssetManager.prototype = {
 		this.container.innerHTML = '';
 		for(var i in children){
 			var child = children[i];
+			if(this.filter && !this.filter.test(child)){
+				continue;
+			}
 			this.container.appendChild(child.dom);
 		}
+	},
+
+	setFilter : function(filter){
+		this.filter = filter;
+		this.showChildren();
+	},
+	removeFilter : function(){
+		this.filter = null;
+		this.showChildren();
 	},
 	handlerQueue : function(){
 		var file = this.queue.shift();
@@ -235,13 +253,23 @@ AssetManager.prototype = {
 		var self = this;
 		this.textureReader.readAsDataURL(file);
 		this.textureReader.onload = function(data){
-			var texture = new Texture(self.editor.app.graphicsDevice,{
+			var texture = new Texture(self.editor,{
 				name : file.name,
 				file : file,
 				data : data.target.result,
 			});
 			self.currentSelectNode.addFile(texture);
 		}
+
+	},
+	enableEditorMask : function(callback){
+		this.editor.mask.style.display = 'block';
+		document.querySelector('.center_bottom_panel').style.zIndex=101;
+		callback();
+	},
+	disableEditorMask : function(){
+		this.editor.mask.style.display = 'none';
+		document.querySelector('.center_bottom_panel').style.zIndex= 'auto';
 
 	}
 }
@@ -274,7 +302,8 @@ var FolderNode = function(manager, opts){
 		}
 	}
 
-	console.log(this.eventDom);
+	this.nameNode = this.eventDom.childNodes[1];
+
 	this.eventDom.addEventListener('click', function(e){
 		self.select();
 	});
@@ -286,6 +315,15 @@ var FolderNode = function(manager, opts){
 
 
 FolderNode.prototype = {
+	setName : function(name){
+		var self = this;
+		this.name = name;
+		this.nameNode.textContent = this.name;
+		console.log(this.eventDom);
+		this.eventDom.addEventListener('click', function(e){
+			self.select();
+		});
+	},
 	add : function(node){
 		if(! node instanceof FolderNode){
 			console.error('node must be instanceof FolderNode');
@@ -298,7 +336,7 @@ FolderNode.prototype = {
 			this.dom.classList.add('has_child');
 		}
 		this.childContainer.appendChild(node.dom);
-		var folder = new Folder(node);
+		var folder = new Folder(this.manager.editor, node);
 		this.children.push(folder);
 		if(this == this.manager.currentSelectNode){
 			this.manager.container.appendChild(folder.dom);
@@ -322,3 +360,25 @@ FolderNode.prototype = {
 
 	}
 };
+
+
+var Filter = function(opts){
+	this.types = [];
+	if(opts instanceof String){
+		this.types = [opts];
+	}else if(opts instanceof Array){
+		this.types = opts;
+	}else if(opts instanceof Object){
+		//TODO::
+	}
+}
+
+Filter.prototype = {
+	test : function(item){
+		var type = item.type;
+		if(this.types.indexOf(type) >= 0){
+			return true;
+		}
+		return false;
+	}
+}

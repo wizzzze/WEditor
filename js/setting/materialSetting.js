@@ -1,66 +1,70 @@
-
 var MaterialSetting = function(settingManager){
-
 	this.settingManager = settingManager;
 	this.isInited = false;
 	this.inputElements = [];
 	this.node = null;
-	this.isMounted = false;
 
-	this.settingRow = document.getElementById('material_setting_row').content;
-}
+	this.isMounted = false;
+};
 
 MaterialSetting.prototype = {
 	init : function(){
-		var settingPanel = document.getElementById('materials_setting').content;
-		this.materialContainer = settingPanel.querySelector('.setting_panel_body');
-
+		var settingPanel = document.getElementById('material_setting').content;
+		var inputElements = settingPanel.querySelectorAll('[data-bind]');
+		this.diffuseMapBtn = settingPanel.querySelector('.select');
+		this.inputElements = inputElements;
+		this.settingPanel = settingPanel;
 		this.settingManager.container.appendChild(settingPanel);
 		this.isMounted = true;
 		this.settingPanel = this.settingManager.container.lastElementChild;
+
 		this.isInited = true;
 	},
 	reload :function(){
+		var self = this;
 		if(this.isMounted === false){
 			this.settingManager.container.appendChild(this.settingPanel);
 			this.isMounted = true;
 		}
+		// var inputElements = this.inputElements;
+		// for(var i in inputElements){
+		// 	var inputElement = inputElements[i];
+		// 	if(inputElement.tagName){
 
-		this.materialContainer.innerHTML = "";
-		var meshInstances = this.node.entity.model.meshInstances;
-		for(var i = 0; i < meshInstances.length;i++){
-			this.setElement(meshInstances[i]);
+		// 		// this.setElement(inputElement);
+		// 	}
+		// }
+
+		this.diffuseMapBtn.onclick = function(){
+			self.settingManager.editor.assetManager.enableEditorMask(function(){
+				var filter = new Filter(['texture']);
+				self.settingManager.editor.assetManager.setFilter(filter);
+				self.settingManager.editor.setTexture = function(texture){
+					console.log(texture);
+
+					console.log(self.node.material.diffuseMap);
+					self.node.material.diffuseMap = texture;
+					console.log(self.node.material.diffuseMap);
+					self.node.material.update();
+					console.log(self.node.material);
+					self.reload();
+					self.settingManager.editor.assetManager.disableEditorMask();
+					self.settingManager.editor.assetManager.removeFilter();
+					self.settingManager.editor.setMaterial = null;
+
+				}
+			});
 		}
 	},
-	setElement : function(meshInstance){
-		var self = this;
-		var settingRow = this.settingRow.cloneNode(true);
-		console.log(settingRow.children);
-		var nodeName = settingRow.querySelector('span');
-		nodeName.innerText = meshInstance.node.name;
-
-		var edit = settingRow.querySelector('a[data-action="edit_material"]');
-		var remove = settingRow.querySelector('a[data-action="remove_material"');
-		
-		var material = settingRow.querySelector('.select');
-		if(material == pc.Scene.defaultMaterial){
-			material.innerText = 'Empty';
-		}else
-			material.innerText = meshInstance.material.name;
-		console.log(meshInstance.material);
-		material.onclick = function(){
-			alert('select');
-		};
-
-		this.materialContainer.appendChild(settingRow);
-	},
-
 	setNode : function(node){
+		console.log(node);
 		this.node = node;
 	},
 
 	remove : function(){
-		this.settingManager.container.removeChild(this.settingPanel);
-		this.isMounted = false;
+		if(this.isMounted){
+			this.settingManager.container.removeChild(this.settingPanel);
+			this.isMounted = false;
+		}
 	}
 };

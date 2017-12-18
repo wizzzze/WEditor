@@ -15,6 +15,10 @@ var Editor = function(){};
 	app.start();
 	this.app = app;
 
+	this.mask = document.createElement('div');
+	this.mask.classList.add('editor_mask');
+	document.getElementById('editor').appendChild(this.mask);
+
 	this.assetManager = new SceneManager(this);
 	this.settingManager = new SettingManager(this);
 	this.assetManager = new AssetManager(this, 'assets_hierarchy' ,'assets_container');
@@ -46,8 +50,9 @@ var Editor = function(){};
 			},
 
 			{
-				name : 'model.json',
-				type : 'model',
+				name : 'clouds.jpg',
+				url : './images/clouds.jpg',
+				type : 'texture',
 			}
 		]
 

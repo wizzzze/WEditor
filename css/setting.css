@@ -6,10 +6,20 @@
 .checkbox input[type='checkbox']:checked + label:before { background: #F16524; border-color: #F16524; } 
 .checkbox input[type='checkbox']:checked + label:after { background: #F16524;}
 
+.right_panel_container .material_preview{
+	background-color:#1c3030;
+	min-height:180px;
+	width:100%;
+}
+.setting_panel>.material_preview>canvas{
+	background-color:#1c3030;
+	height:120px;
+	width:100%;
+}
 .setting_panel_header{
 	padding: 0 10px;
     padding-right: 0;
-    color: #FFF;
+    color: #A7A7A7;
     background-color: #1c3030;
     font-size: 14px;
     height: 36px;
@@ -18,7 +28,7 @@
 }
 
 .setting_panel_header>i{
-    padding: 0 6px;
+    padding: 0 4px;
 }
 
 .setting_panel_body{
@@ -66,6 +76,29 @@
 	color:#D7D7D7;
 	box-shadow: 2px 2px 10px rgba(0,0,0,.1) inset;
 }
+
+.setting_panel_row>div.input-group>div>select{
+	flex-grow: 1;
+	background-color:#1c3030;
+	display: block;
+	height: 30px;
+	line-height: 30px;
+	padding-left:10px;
+	border:none;
+	outline: none;
+	color:#A7A7A7;
+	cursor:pointer;
+}
+
+.setting_panel_row>div.input-group>div>select:hover{
+    background-color: #0c2020;
+}
+
+.setting_panel_row>div.input-group>div>select>option{
+	outline:none;
+	color:#A7A7A7;
+}
+
 .setting_panel_row>div.input-group>div>span{
 	position:absolute;
 	height:24px;
@@ -167,6 +200,10 @@
     border-radius: 4px;
     position:relative;
     cursor:pointer;
+}
+
+.material_setting_row>.material_setting_detail>div>div.select:hover{
+    background-color: #0c2020;
 }
 
 .material_setting_row>.material_setting_detail>div>div.select:after{

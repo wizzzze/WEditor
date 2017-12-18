@@ -5,6 +5,8 @@ var EntitySetting = function(settingManager){
 	this.inputElements = [];
 	this.node = null;
 
+	this.isMounted = false;
+
 }
 
 EntitySetting.prototype = {
@@ -12,8 +14,10 @@ EntitySetting.prototype = {
 		var settingPanel = document.getElementById('entity_setting').content;
 		var inputElements = settingPanel.querySelectorAll('[data-bind]');
 		this.inputElements = inputElements;
-		// var dom = document.importNode(settingPanel, true);
+		this.settingPanel = settingPanel;
 		this.settingManager.container.appendChild(settingPanel);
+		this.isMounted = true;
+		this.settingPanel = this.settingManager.container.lastElementChild;
 
 		for(var i in inputElements){
 			var inputElement = inputElements[i];
@@ -25,6 +29,10 @@ EntitySetting.prototype = {
 		this.isInited = true;
 	},
 	reload :function(){
+		if(this.isMounted === false){
+			this.settingManager.container.appendChild(this.settingPanel);
+			this.isMounted = true;
+		}
 		var inputElements = this.inputElements;
 		for(var i in inputElements){
 			var inputElement = inputElements[i];
@@ -89,5 +97,12 @@ EntitySetting.prototype = {
 
 	setNode : function(node){
 		this.node = node;
+	},
+
+	remove : function(){
+		if(this.isMounted){
+			this.settingManager.container.removeChild(this.settingPanel);
+			this.isMounted = false;
+		}
 	}
 };

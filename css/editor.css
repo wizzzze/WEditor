@@ -24,6 +24,24 @@ moz-user-select: -moz-none;
 user-select:none;
 }
 
+select{
+  appearance:none;
+  -moz-appearance:none;
+  -webkit-appearance:none;
+
+}
+
+.editor_mask{
+	position: absolute;
+	top:0;
+	bottom:0;
+	left:0;
+	width:100%;
+	background-color:rgba(0,0,0,.2);
+	z-index:100;
+	display: none;
+}
+
 .editor{
 	position: absolute;
 	top:0;

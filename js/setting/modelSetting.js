@@ -56,7 +56,9 @@ ModelSetting.prototype = {
 	},
 
 	remove : function(){
-		this.settingManager.container.removeChild(this.settingPanel);
-		this.isMounted = false;
+		if(this.isMounted){
+			this.settingManager.container.removeChild(this.settingPanel);
+			this.isMounted = false;
+		}
 	}
 };

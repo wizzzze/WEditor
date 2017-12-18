@@ -122,9 +122,9 @@
 	content : "";
 	width:10px;
 	position:absolute;
-	top:11px;
+	top:10px;
 	left:-10px;
-	border-top:1px solid #999;
+	border-top:2px solid #304040;
 }
 
 .folder_list>li>div:hover{
@@ -147,7 +147,7 @@
 	top:-13px;
 	bottom:13px;
 	left:-10px;
-	border-left:1px solid #999;
+	border-left:2px solid #304040;
 	width:1px;
 }
 .folder_list>li:first-child:before{
@@ -171,13 +171,14 @@
 	left:-15px;
 	top:5px;
 	width:10px;
-	height: 10px;
+	height: 12px;
 	position:absolute;
 	content:"\f0fe";
 	font-family: FontAwesome;
-	color:#A7A7A7;
 	line-height: 12px;
+	color:#555;
 	background-color:#1c3030;
+	z-index:2;
 }
 
 .folder_list>li.has_child ul{
