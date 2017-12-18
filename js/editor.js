@@ -52,7 +52,6 @@ var Editor = function(){};
 		]
 
 	);
-	// assetManager.initialize();
 
 	window.addEventListener('resize', function(){
 		app.setCanvasResolution(pc.RESOLUTION_AUTO);

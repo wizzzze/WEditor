@@ -1,6 +1,6 @@
 var Material = function(opts){
 	var material;
-	if(opts.material){
+	if(opts && opts.material){
 		if(opts.material instanceof pc.Material){
 			material = opts.material;
 		}else{
@@ -8,7 +8,11 @@ var Material = function(opts){
 		}
 	}else{
 		material = Editor.defaultMaterial.clone();
+		material.name = 'New Material';
 	}
 
 	this.material = material;
+
+	
+	
 }

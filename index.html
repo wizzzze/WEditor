@@ -83,18 +83,7 @@
 					</div>
 
 					<div class="assets_container" id="assets_container">
-						<div>
-							<div class="file_preview"><img src="./images/clouds.jpg"></div>
-							<div class="file_name">clouds.jpg</div>
-						</div>
-						<div>
-							<div class="file_preview"><img src="./images/snowflake.png"></div>
-							<div class="file_name">snowflake.jpg</div>
-						</div>
-						<div>
-							<div class="file_preview"><img src="./images/spark.png"></div>
-							<div class="file_name">spark.jpg</div>
-						</div>
+						
 					</div>
 				</div>
 			</div>
@@ -114,81 +103,70 @@
 			</div>
 		</div>
 
-		<template id="material">
-			<div>
-				<div class="file_preview">
-					<img src="./images/snowflake.png">
-				</div>
-				<div class="file_name"></div>
-			</div>
+		<template id="folder_tpl">
+			<div class="file_preview"><img src='./images/folder.png' /></div>
+			<div class="file_name"></div>
 		</template>
-		<template id="model">
-			<div>
-				<div class="file_preview"><img src="./images/snowflake.png"></div>
-				<div class="file_name">snowflake.jpg</div>
+		<template id="material_tpl">
+			<div class="file_preview">
+				<canvas></canvas>
 			</div>
+			<div class="file_name"></div>
 		</template>
-		<template id="folder">
-			<div>
-				<div class="file_preview"><img src="./images/snowflake.png"></div>
-				<div class="file_name">snowflake.jpg</div>
-			</div>
+		<template id="model_tpl">
+			<div class="file_preview"><img src="./images/snowflake.png"></div>
+			<div class="file_name">snowflake.jpg</div>
 		</template>
-		<template id="texture">
-			<div>
-				<div class="file_preview"><img src="./images/snowflake.png"></div>
-				<div class="file_name">snowflake.jpg</div>
-			</div>
+		<template id="texture_tpl">
+			<div class="file_preview"></div>
+			<div class="file_name"></div>
 		</template>
 
-		<template id="scene_node">
-
-		</template>
 		<template id="entity_setting">
 
-		<div class="setting_panel">
-			<div class="setting_panel_body" id="node_setting">
-				<div class="setting_panel_row">
-					<div class="input-label">Enable</div>
-					<div class="input-group">
-						<div class="checkbox">
-							<input type="checkbox" data-bind="enabled" id="enabled">
-							<label for='enabled'>Enabled</label>
+			<div class="setting_panel">
+				<div class="setting_panel_body" id="node_setting">
+					<div class="setting_panel_row">
+						<div class="input-label">Enable</div>
+						<div class="input-group">
+							<div class="checkbox">
+								<input type="checkbox" data-bind="enabled" id="enabled">
+								<label for='enabled'>Enabled</label>
+							</div>
+						</div>
+					</div>
+					<div class="setting_panel_row">
+						<div class="input-label">Name</div>
+						<div class="input-group">
+							<div><input type="text" data-bind="name"></div>
+						</div>
+					</div>
+					<div class="setting_panel_row">
+						<div class="input-label">Position</div>
+						<div class="input-group">
+							<div><input type="text" data-bind="position.x"><span>x</span></div>
+							<div><input type="text" data-bind="position.y"><span>y</span></div>
+							<div><input type="text" data-bind="position.z"><span>z</span></div>
+						</div>
+					</div>
+					<div class="setting_panel_row">
+						<div class="input-label">Rotation</div>
+						<div class="input-group">
+							<div><input type="text" data-bind="rotation.x"><span>x</span></div>
+							<div><input type="text" data-bind="rotation.y"><span>y</span></div>
+							<div><input type="text" data-bind="rotation.z"><span>z</span></div>
+						</div>
+					</div>
+					<div class="setting_panel_row">
+						<div class="input-label">Scale</div>
+						<div class="input-group">
+							<div><input type="text" data-bind="scale.x"><span>x</span></div>
+							<div><input type="text" data-bind="scale.y"><span>y</span></div>
+							<div><input type="text" data-bind="scale.z"><span>z</span></div>
 						</div>
 					</div>
 				</div>
-				<div class="setting_panel_row">
-					<div class="input-label">Name</div>
-					<div class="input-group">
-						<div><input type="text" data-bind="name"></div>
-					</div>
-				</div>
-				<div class="setting_panel_row">
-					<div class="input-label">Position</div>
-					<div class="input-group">
-						<div><input type="text" data-bind="position.x"><span>x</span></div>
-						<div><input type="text" data-bind="position.y"><span>y</span></div>
-						<div><input type="text" data-bind="position.z"><span>z</span></div>
-					</div>
-				</div>
-				<div class="setting_panel_row">
-					<div class="input-label">Rotation</div>
-					<div class="input-group">
-						<div><input type="text" data-bind="rotation.x"><span>x</span></div>
-						<div><input type="text" data-bind="rotation.y"><span>y</span></div>
-						<div><input type="text" data-bind="rotation.z"><span>z</span></div>
-					</div>
-				</div>
-				<div class="setting_panel_row">
-					<div class="input-label">Scale</div>
-					<div class="input-group">
-						<div><input type="text" data-bind="scale.x"><span>x</span></div>
-						<div><input type="text" data-bind="scale.y"><span>y</span></div>
-						<div><input type="text" data-bind="scale.z"><span>z</span></div>
-					</div>
-				</div>
 			</div>
-		</div>
 		</template>
 		<template id="model_setting">
 
@@ -323,8 +301,10 @@
     <script src="./js/editorCamera.js"></script>
     <script src="./js/fbxReader.js"></script>
     <script src="./js/model.js"></script>
+    <script src="./js/folder.js"></script>
     <script src="./js/mesh.js"></script>
     <script src="./js/material.js"></script>
+    <script src="./js/texture.js"></script>
     <script src="./js/assetManager.js"></script>
     <script src="./js/sceneManager.js"></script>
     <script src="./js/settingManager.js"></script>
@@ -336,5 +316,7 @@
     <script src="./js/setting/modelSetting.js"></script>
     <script src="./js/setting/materialSetting.js"></script>
     <script src="./js/setting/lightSetting.js"></script>
+
+
     <script src="./js/editor.js"></script>
 </html>

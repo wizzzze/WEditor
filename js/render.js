@@ -6,7 +6,6 @@ var Renderers = function(editor){
 Renderers.prototype = {
 	createRender : function(canvas, file){
 		var renderer = new Renderer(canvas, file);
-
 		this.renderers[file.id] = renderer;
 
 	},

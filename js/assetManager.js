@@ -5,17 +5,18 @@ var AssetManager = function(editor, folder, container){
 	this.container = document.getElementById(container);
 	this.containerScrollbar = new PerfectScrollbar(this.container);
 
-	this.root = new FolderNode(document.getElementById('folder_root'), this);
+	this.root = new FolderNode(this, {
+		dom : document.getElementById('folder_root'),
+		name : '/',
+	}); 
 	this.currentSelectNode = this.root;
 
-	this.uploadInput;
-
-
+	this.textureReader = new FileReader();
 	this.textureUploadInput;
 	this.textureUploadInput = document.createElement('input');
 	this.textureUploadInput.type = 'file';
 	this.textureUploadInput.multiple = "multiple";
-	this.uploadInput.onchange = function(){
+	this.textureUploadInput.onchange = function(){
 		var files = this.files;;
 		var i = 0;
 		while(i < files.length){
@@ -31,6 +32,7 @@ var AssetManager = function(editor, folder, container){
 
 	this.initialize();
 
+	this.uploadInput;
 	this.queue = [];
 	this.reader = new FileReader();
 
@@ -128,15 +130,11 @@ AssetManager.prototype = {
 			this.genNode(data, this.root);
 		}
 	},
-
 	genNode : function(data ,currentNode){
 		for(var i in data){
 			var item = data[i];
 			if(item.type === 'folder'){
-				var dom = document.createElement('li');
-				dom.innerHTML = "<div><i class='fa fa-folder'></i>  "+item.name+"</div>";
-				var node = new FolderNode(dom, this);
-				console.log(currentNode);
+				var node = new FolderNode(this);
 				currentNode.add(node);
 				if(item.children){
 					this.genNode(item.children, node);
@@ -151,22 +149,20 @@ AssetManager.prototype = {
 
 		}
 	},
-	showNode : function(){
-		var children = this.currentNode.children;
+	genFile : function(){
+
 	},
 
 	add : function(type){
 		var self  = this;
 		if(type == 'folder'){
-			var dom = document.createElement('li');
-			dom.innerHTML = "<div><i class='fa fa-folder'></i>  New Folder</div>";
-			var node = new FolderNode(dom, this);
+			var node = new FolderNode(this);
 			this.currentSelectNode.add(node);
 		}else if(type == "material"){
 
 			return;
 		}else if(type == 'texture'){
-
+			this.textureUploadInput.click();
 		}else if(type == 'model'){
 			if(!this.uploadInput){
 				this.uploadInput = document.createElement('input');
@@ -187,8 +183,6 @@ AssetManager.prototype = {
 				this.uploadInput.files.length = 0;
 				this.uploadInput.accept = '';
 			}
-			// this.uploadInput.accept = 'image/jpeg,image/png';
-			
 
 			this.uploadInput.click();
 		}
@@ -197,9 +191,14 @@ AssetManager.prototype = {
 	},
 
 	showChildren : function(){
-
+		var children = this.currentSelectNode.children;
+		console.log(children);
+		this.container.innerHTML = '';
+		for(var i in children){
+			var child = children[i];
+			this.container.appendChild(child.dom);
+		}
 	},
-
 	handlerQueue : function(){
 		var file = this.queue.shift();
 		if(!file){
@@ -233,15 +232,33 @@ AssetManager.prototype = {
 
 	},
 	textureHandler : function(file){
-		
+		var self = this;
+		this.textureReader.readAsDataURL(file);
+		this.textureReader.onload = function(data){
+			var texture = new Texture(self.editor.app.graphicsDevice,{
+				name : file.name,
+				file : file,
+				data : data.target.result,
+			});
+			self.currentSelectNode.addFile(texture);
+		}
+
 	}
 }
 
 
 
 
-var FolderNode = function(dom, manager){
+var FolderNode = function(manager, opts){
 	var self = this;
+	var dom;
+	this.name = opts && opts.name ?opts.name:'New Folder';
+	if(opts && opts.dom){
+		dom = opts.dom;
+	}else{
+		dom = document.createElement('li');
+		dom.innerHTML = "<div><i class='fa fa-folder'></i>  "+this.name+"</div>";
+	}
 
 	this.dom = dom;
 	this.manager = manager;
@@ -257,7 +274,7 @@ var FolderNode = function(dom, manager){
 		}
 	}
 
-
+	console.log(this.eventDom);
 	this.eventDom.addEventListener('click', function(e){
 		self.select();
 	});
@@ -281,13 +298,25 @@ FolderNode.prototype = {
 			this.dom.classList.add('has_child');
 		}
 		this.childContainer.appendChild(node.dom);
-		this.children.push(node);
+		var folder = new Folder(node);
+		this.children.push(folder);
+		if(this == this.manager.currentSelectNode){
+			this.manager.container.appendChild(folder.dom);
+		}
 	},
 	select : function(){
 		this.manager.currentSelectNode.eventDom.classList.remove('selected');
 		this.eventDom.classList.add('selected');
 		this.manager.currentSelectNode = this;
 		this.manager.showChildren();
+	},
+	addFile : function(file){
+		this.children.push(file);
+		this.manager.container.appendChild(file.dom);
+
+	},
+	setName : function(newName){
+		this.dom.innerHTML = "<div><i class='fa fa-folder'></i>  "+ newName +"</div>";
 	},
 	remove : function(){
 
